@@ -7,4 +7,4 @@
 ## Run php artisan serve
 # Required
 ## composer 2.6.5
-## PHP 8.3.16clear
+## PHP 8.3.16
