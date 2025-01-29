@@ -5,3 +5,6 @@
 ## Configure the .env to the database
 ## Run php artisan make:migration
 ## Run php artisan serve
+# Required
+## composer 2.6.5
+## PHP 8.3.16clear
