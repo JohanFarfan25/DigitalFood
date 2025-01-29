@@ -1,6 +1,6 @@
 <!--
 =========================================================
-* Soft UI Dashboard - v1.0.3
+* Digital Food ERP - v1.0.3
 =========================================================
 
 * Copyright 2025 Digital Food ERP (https://www.digital-food-erp.com)
