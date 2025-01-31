@@ -3,7 +3,7 @@
     <i class="fas fa-times p-3 cursor-pointer text-secondary opacity-5 position-absolute end-0 top-0 d-none d-xl-none" aria-hidden="true" id="iconSidenav"></i>
     <a class="align-items-center d-flex m-0 navbar-brand text-wrap" href="{{ route('dashboard') }}"  style="border-radius: 100%;">
       @if(!empty(auth()->user()->profile_picture))
-      <img id="preview-image" src="{{ asset('storage/' . auth()->user()->profile_picture) }}" alt="Preview" class="img-fluid h-100" >
+      <img id="preview-image" src="{{ asset( auth()->user()->profile_picture) }}" alt="Preview" class="img-fluid h-100" >
       @else
       <img src="../assets/img/logo-ct.png" class="navbar-brand-img h-100" alt="...">
       @endif

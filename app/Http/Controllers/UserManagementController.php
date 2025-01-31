@@ -40,21 +40,26 @@ class UserManagementController extends Controller
             ]);
 
             if (request()->hasFile('profile_picture')) {
-                $attributes['profile_picture'] = request()->file('profile_picture')->store('profile_pictures', 'public');
+                $profilePicture = ImageUploadController::upload($request->file('profile_picture'), 'profile_pictures', $user->name);
+                $attributes['profile_picture'] = !empty($profilePicture) ? $profilePicture : $user->profile_picture;
             }
 
             $user->update($attributes);
-            // Eliminar roles previos antes de agregar los nuevos
-            $user->roles()->detach();
 
-            $rolesIds = $request->roles;
-            foreach ($rolesIds as $role) {
-                $user->roles()->syncWithoutDetaching([
-                    $role => [
-                        'model_type' => get_class($user),
-                        'team_id' => $id
-                    ]
-                ]);
+            // Eliminar roles previos antes de agregar los nuevos
+            if ($user->roles()->exists()) {
+                $user->roles()->detach();
+            }
+
+            if (!empty($request->roles)) {
+                foreach ($request->roles as $role) {
+                    $user->roles()->syncWithoutDetaching([
+                        $role => [
+                            'model_type' => get_class($user),
+                            'team_id' => $id
+                        ]
+                    ]);
+                }
             }
         }
 
@@ -83,10 +88,33 @@ class UserManagementController extends Controller
                 $attributes['profile_picture'] = request()->file('profile_picture')->store('profile_pictures', 'public');
             }
 
+            if (request()->hasFile('profile_picture')) {
+                $profilePicture = ImageUploadController::upload(request()->file('profile_picture'), 'profile_pictures', $attributes['name']);
+                $attributes['profile_picture'] = !empty($profilePicture) ? $profilePicture : null;
+            }
+
             $attributes['password'] = bcrypt($attributes['password']);
 
             $user = User::create($attributes);
             if (isset($user->id)) {
+
+                // Eliminar roles previos antes de agregar los nuevos
+                if ($user->roles()->exists()) {
+                    $user->roles()->detach();
+                }
+
+
+                if (!empty(request()->roles)) {
+                    foreach (request()->roles as $role) {
+                        $user->roles()->syncWithoutDetaching([
+                            $role => [
+                                'model_type' => get_class($user),
+                                'team_id' => $user->id
+                            ]
+                        ]);
+                    }
+                }
+
                 return redirect('user-management');
             } else {
                 return back()->withErrors(['email' => 'Email o password invalido.']);

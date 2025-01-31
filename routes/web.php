@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ChangePasswordController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ImageUploadController;
 use App\Http\Controllers\InfoUserController;
 use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\RegisterController;
@@ -77,6 +78,7 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::get('/user-view/{id}', [UserManagementController::class, 'view'])->name('user-view');
 	Route::post('/user-view/{id}', [UserManagementController::class, 'view'])->name('user-view');
 	Route::get('/user-destroy/{id}', [UserManagementController::class, 'destroy'])->name('user-destroy');
+	Route::post('/upload', [ImageUploadController::class, 'upload']);
 
 	Route::get('/roles', [RoleController::class, 'index'])->name('roles');
 	Route::get('/role-destroy/{id}', [RoleController::class, 'destroy'])->name('role-destroy');

@@ -72,7 +72,7 @@
                                     </td>
                                     <td>
                                         <div>
-                                            <img src="{{ $user->profile_picture ? asset('storage/' . $user->profile_picture) : '../assets/img/team-2.jpg' }}" alt="Profile Picture" class="img-fluid avatar avatar-sm me-3">
+                                            <img src="{{ $user->profile_picture ? asset( $user->profile_picture ) : '../assets/img/team-2.jpg' }}" alt="Profile Picture" class="img-fluid avatar avatar-sm me-3">
                                         </div>
                                     </td>
                                     <td class="text-center">

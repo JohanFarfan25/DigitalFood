@@ -11,7 +11,7 @@
             <div class="row gx-4">
                 <div class="col-auto">
                     <div class="avatar avatar-xl position-relative">
-                        <img src="{{ !empty($user->profile_picture) ? asset('storage/' . $user->profile_picture) : '../assets/img/team-2.jpg' }}" alt="Profile Picture" class="w-100 border-radius-lg shadow-sm">
+                        <img src="{{ !empty($user->profile_picture) ? asset( $user->profile_picture) : '../assets/img/team-2.jpg' }}" alt="Profile Picture" class="w-100 border-radius-lg shadow-sm">
                     </div>
                 </div>
                 <div class="col-auto my-auto">
@@ -38,7 +38,7 @@
                             <div class="form-group text-center">
                                 <div id="image-preview" class="border p-2 rounded d-inline-block" style="width: 200px; height: 200px; overflow: hidden;">
                                     @if(!empty($user->profile_picture))
-                                    <img id="preview-image" src="{{ asset('storage/' . $user->profile_picture) }}" alt="Preview" class="img-fluid" style="max-width: 100%; max-height: 100%;">
+                                    <img id="preview-image" src="{{ asset( $user->profile_picture) }}" alt="Preview" class="img-fluid" style="max-width: 100%; max-height: 100%;">
                                     @else
                                     <img id="preview-image" src="" alt="Preview" class="img-fluid" style="display: none; max-width: 100%; max-height: 100%;">
                                     @endif
