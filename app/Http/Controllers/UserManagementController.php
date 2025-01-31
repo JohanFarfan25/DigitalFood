@@ -40,7 +40,7 @@ class UserManagementController extends Controller
             ]);
 
             if (request()->hasFile('profile_picture')) {
-                $profilePicture = ImageUploadController::upload($request->file('profile_picture'), 'profile_pictures', $user->name);
+                $profilePicture = ImageUploadController::upload($request->file('profile_picture'), 'profile_pictures', $user->uuid);
                 $attributes['profile_picture'] = !empty($profilePicture) ? $profilePicture : $user->profile_picture;
             }
 
@@ -88,15 +88,15 @@ class UserManagementController extends Controller
                 $attributes['profile_picture'] = request()->file('profile_picture')->store('profile_pictures', 'public');
             }
 
-            if (request()->hasFile('profile_picture')) {
-                $profilePicture = ImageUploadController::upload(request()->file('profile_picture'), 'profile_pictures', $attributes['name']);
-                $attributes['profile_picture'] = !empty($profilePicture) ? $profilePicture : null;
-            }
-
             $attributes['password'] = bcrypt($attributes['password']);
 
             $user = User::create($attributes);
             if (isset($user->id)) {
+
+                if (request()->hasFile('profile_picture')) {
+                    $profilePicture = ImageUploadController::upload(request()->file('profile_picture'), 'profile_pictures', $user->uuid);
+                    $attributes['profile_picture'] = !empty($profilePicture) ? $profilePicture : null;
+                }
 
                 // Eliminar roles previos antes de agregar los nuevos
                 if ($user->roles()->exists()) {

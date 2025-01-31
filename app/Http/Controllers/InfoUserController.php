@@ -36,7 +36,7 @@ class InfoUserController extends Controller
             return back()->withErrors(['email' => 'Email o password invalido.']);
         }
         if (request()->hasFile('profile_picture')) {
-            $profilePicture = ImageUploadController::upload(request()->file('profile_picture'), 'profile_pictures', $user->name);
+            $profilePicture = ImageUploadController::upload(request()->file('profile_picture'), 'profile_pictures', $user->uuid);
             $user->update(['profile_picture' => !empty($profilePicture) ? $profilePicture : $user->profile_picture]);
         }
 
@@ -96,7 +96,7 @@ class InfoUserController extends Controller
             ];
 
             if (request()->hasFile('profile_picture')) {
-                $profilePicture = ImageUploadController::upload($request->file('profile_picture'), 'profile_pictures', Auth::user()->name);
+                $profilePicture = ImageUploadController::upload($request->file('profile_picture'), 'profile_pictures', Auth::user()->uuid);
                 $dataUpdate['profile_picture'] = !empty($profilePicture) ? $profilePicture : Auth::user()->profile_picture;
             }
 
