@@ -25,7 +25,7 @@
 				<div class="card-header pb-0">
 					<div class="d-flex flex-row justify-content-between">
 						<div style="width: 50%;">
-							<input type="text" id="searchInput" class="form-control me-3" placeholder="Search users..." aria-label="Search">
+							<input type="text" id="searchInput" class="form-control me-3" placeholder="Search permissions..." aria-label="Search">
 						</div>
 						@role('Super Admin')
 						<a href="/permission-create" class="btn bg-gradient-primary btn-sm mb-0" type="button">+&nbsp; New Permission</a>
