@@ -24,8 +24,8 @@
 			<div class="card mb-4 mx-4">
 				<div class="card-header pb-0">
 					<div class="d-flex flex-row justify-content-between">
-						<div>
-							<h5 class="mb-0"></h5>
+						<div style="width: 50%;">
+							<input type="text" id="searchInput" class="form-control me-3" placeholder="Search users..." aria-label="Search">
 						</div>
 						@role('Super Admin')
 						<a href="/role-create" class="btn bg-gradient-primary btn-sm mb-0" type="button">+&nbsp; New Role</a>
@@ -245,5 +245,24 @@
 		$('select').selectpicker();
 	})(jQuery);
 </script>
-
 @endsection
+@section('scripts')
+<script>
+	document.addEventListener('DOMContentLoaded', function() {
+		const searchInput = document.getElementById('searchInput');
+		const tableRows = document.querySelectorAll('tbody tr');
+
+		searchInput.addEventListener('input', function() {
+			const searchTerm = searchInput.value.toLowerCase();
+
+			tableRows.forEach(row => {
+				const rowText = row.textContent.toLowerCase();
+				if (rowText.includes(searchTerm)) {
+					row.style.display = '';
+				} else {
+					row.style.display = 'none';
+				}
+			});
+		});
+	});
+</script>

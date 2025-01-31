@@ -24,8 +24,8 @@
 			<div class="card mb-4 mx-4">
 				<div class="card-header pb-0">
 					<div class="d-flex flex-row justify-content-between">
-						<div>
-							<h5 class="mb-0"></h5>
+						<div style="width: 50%;">
+							<input type="text" id="searchInput" class="form-control me-3" placeholder="Search users..." aria-label="Search">
 						</div>
 						@role('Super Admin')
 						<a href="/permission-create" class="btn bg-gradient-primary btn-sm mb-0" type="button">+&nbsp; New Permission</a>
@@ -96,149 +96,24 @@
 		</div>
 	</div>
 </div>
+@endsection
+@section('scripts')
 <script>
-	(function($) {
-		'use strict';
-		$('#example').DataTable();
-		$('#data-table-2').DataTable();
-		$('#data-table-2').on('draw.dt', function() {
-			$('select').selectpicker();
-		});
-		$('#data-table-3 tfoot th').each(function() {
-			var title = $(this).text();
-			$(this).append('<input type="text" class="form-control mt-2" placeholder="Search ' + title + '" />');
-		});
+	document.addEventListener('DOMContentLoaded', function() {
+		const searchInput = document.getElementById('searchInput');
+		const tableRows = document.querySelectorAll('tbody tr');
 
-		// DataTable
-		var table = $('#data-table-3').DataTable();
+		searchInput.addEventListener('input', function() {
+			const searchTerm = searchInput.value.toLowerCase();
 
-		// Apply the search
-		table.columns().every(function() {
-			var that = this;
-			$('input', this.footer()).on('keyup change', function() {
-				if (that.search() !== this.value) {
-					that
-						.search(this.value)
-						.draw();
+			tableRows.forEach(row => {
+				const rowText = row.textContent.toLowerCase();
+				if (rowText.includes(searchTerm)) {
+					row.style.display = '';
+				} else {
+					row.style.display = 'none';
 				}
 			});
 		});
-
-		//DataTable-4
-		var table = $('#data-table-4').DataTable({
-			"scrollY": "500px",
-			"paging": false
-		});
-		$('.toggle-vis').on('click', function(e) {
-			e.preventDefault();
-			// Get the column API object
-			var column = table.column($(this).attr('data-column'));
-			// Toggle the visibility
-			column.visible(!column.visible());
-		});
-
-		var table = $('#data-table-5').DataTable({
-			"ajax": "objects.txt",
-			"columns": [{
-					"data": "name"
-				},
-				{
-					"data": "position"
-				},
-				{
-					"data": "office"
-				},
-				{
-					"data": "extn"
-				},
-				{
-					"data": "start_date"
-				},
-				{
-					"data": "salary"
-				}
-			]
-		});
-
-		// Add event listener for opening and closing details
-		$('#data-table-5 tbody').on('click', 'td.details-control', function() {
-			var tr = $(this).closest('tr');
-			var row = table.row(tr);
-
-			if (row.child.isShown()) {
-				// This row is already open - close it
-				row.child.hide();
-				tr.removeClass('shown');
-			} else {
-				// Open this row
-				row.child(format(row.data())).show();
-				tr.addClass('shown');
-			}
-		});
-
-		/* Formatting function for row details - modify as you need */
-		function format(d) {
-			// `d` is the original data object for the row
-			return '<table cellpadding="5" cellspacing="0" border="0" style="padding-left:50px;">' +
-				'<tr>' +
-				'<td>Full name:</td>' +
-				'<td>' + d.name + '</td>' +
-				'</tr>' +
-				'<tr>' +
-				'<td>Extension number:</td>' +
-				'<td>' + d.extn + '</td>' +
-				'</tr>' +
-				'<tr>' +
-				'<td>Extra info:</td>' +
-				'<td>And any further details here (images etc)...</td>' +
-				'</tr>' +
-				'</table>';
-		}
-
-
-		var table = $('#data-table-6').DataTable({
-			"ajax": "objects.txt",
-			"columns": [{
-					"className": 'details-control',
-					"orderable": false,
-					"data": null,
-					"defaultContent": ''
-				},
-				{
-					"data": "name"
-				},
-				{
-					"data": "position"
-				},
-				{
-					"data": "office"
-				},
-				{
-					"data": "salary"
-				}
-			],
-			"order": [
-				[1, 'asc']
-			]
-		});
-
-		// Add event listener for opening and closing details
-		$('#data-table-6 tbody').on('click', 'td.details-control', function() {
-			var tr = $(this).closest('tr');
-			var row = table.row(tr);
-
-			if (row.child.isShown()) {
-				// This row is already open - close it
-				row.child.hide();
-				tr.removeClass('shown');
-			} else {
-				// Open this row
-				row.child(format(row.data())).show();
-				tr.addClass('shown');
-			}
-		});
-		$('select').selectpicker();
-	})(jQuery);
+	});
 </script>
-
-@endsection
