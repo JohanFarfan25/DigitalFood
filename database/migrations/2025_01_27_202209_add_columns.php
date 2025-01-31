@@ -12,10 +12,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->string('uuid')->after('id');
             $table->boolean('status')->default(true)->after('uuid');
             $table->integer('rol_id')->after('status');
-            $table->longText('profile_picture')->nullable()->after('about_me');
         });
     }
 
@@ -25,10 +23,8 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->string('uuid')->after('id');
             $table->boolean('status')->default(true)->after('uuid');
             $table->integer('rol_id')->after('status');
-            $table->longText('profile_picture')->nullable()->after('about_me');
         });
     }
 };
