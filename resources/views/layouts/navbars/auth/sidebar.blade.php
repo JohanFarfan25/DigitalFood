@@ -105,7 +105,24 @@
         </a>
       </li>
       <li class="nav-item mt-2">
-        <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">PRODUCTS</h6>
+        <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">Suppliers</h6>
+      </li>
+      <li class="nav-item pb-2">
+        <a class="nav-link {{ (Request::is('suppliers') ? 'active' : '') }}" href="{{ url('suppliers') }}">
+          <div class="icon icon-shape icon-sm shadow border: 1px border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
+            <svg width="800px" height="800px" viewBox="0 0 20 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+              <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                <g id="Dribbble-Light-Preview" transform="translate(-60.000000, -6919.000000)" fill="#000000">
+                  <g id="icons" transform="translate(56.000000, 160.000000)">
+                    <path d="M15,6773 L12.621,6773 C12.176,6773 11.953,6772.461 12.268,6772.146 L15.293,6769.121 C15.683,6768.731 15.683,6768.098 15.293,6767.707 C14.902,6767.317 14.269,6767.317 13.879,6767.707 L10.854,6770.732 C10.539,6771.047 10,6770.824 10,6770.379 L10,6768 C10,6767.448 9.552,6767 9,6767 C8.448,6767 8,6767.448 8,6768 L8,6773 C8,6774.105 8.895,6775 10,6775 L15,6775 C15.552,6775 16,6774.552 16,6774 C16,6773.448 15.552,6773 15,6773 L15,6773 Z M22,6776 C22,6776.552 21.552,6777 21,6777 L7,6777 C6.448,6777 6,6776.552 6,6776 L6,6762 C6,6761.448 6.448,6761 7,6761 L15,6761 C15.552,6761 16,6761.448 16,6762 L16,6765 C16,6766.105 16.895,6767 18,6767 L21,6767 C21.552,6767 22,6767.448 22,6768 L22,6776 Z M22,6759 L6,6759 C4.895,6759 4,6759.895 4,6761 L4,6777 C4,6778.105 4.895,6779 6,6779 L22,6779 C23.105,6779 24,6778.105 24,6777 L24,6761 C24,6759.895 23.105,6759 22,6759 L22,6759 Z" id="arrow_corner-[#282]">
+                    </path>
+                  </g>
+                </g>
+              </g>
+            </svg>
+          </div>
+          <span class="nav-link-text ms-1">Suppliers</span>
+        </a>
       </li>
       <!-- <li class="nav-item">
         <a class="nav-link {{ (Request::is('tables') ? 'active' : '') }}" href="{{ url('tables') }}">
@@ -256,7 +273,7 @@
       </li> -->
     </ul>
   </div>
-  <div class="sidenav-footer mx-2 ">
+  <!-- <div class="sidenav-footer mx-2 ">
     <div class="card card-background shadow-none card-background-mask-secondary" id="sidenavCard">
       <div class="full-background" style="background-image: url('../assets/img/curved-images/white-curved.jpeg')"></div>
       <div class="card-body text-start p-3 w-100">
@@ -272,5 +289,5 @@
         </div>
       </div>
     </div>
-  </div>
+  </div> -->
 </aside>

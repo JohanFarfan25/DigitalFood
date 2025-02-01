@@ -9,6 +9,7 @@ use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\ResetController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\SessionsController;
+use App\Http\Controllers\SupplierController;
 use App\Http\Controllers\UserManagementController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Password;
@@ -33,33 +34,9 @@ Route::group(['middleware' => 'auth'], function () {
 		return view('dashboard');
 	})->name('dashboard');
 
-	Route::get('billing', function () {
-		return view('billing');
-	})->name('billing');
-
 	Route::get('profile', function () {
 		return view('profile');
 	})->name('profile');
-
-	Route::get('rtl', function () {
-		return view('rtl');
-	})->name('rtl');
-
-	Route::get('tables', function () {
-		return view('tables');
-	})->name('tables');
-
-	Route::get('virtual-reality', function () {
-		return view('virtual-reality');
-	})->name('virtual-reality');
-
-	Route::get('static-sign-in', function () {
-		return view('static-sign-in');
-	})->name('sign-in');
-
-	Route::get('static-sign-up', function () {
-		return view('static-sign-up');
-	})->name('sign-up');
 
 	Route::get('/logout', [SessionsController::class, 'destroy']);
 
@@ -71,7 +48,7 @@ Route::group(['middleware' => 'auth'], function () {
 		return view('dashboard');
 	})->name('sign-up');
 
-
+	//Usuarios
 	Route::get('/user-management', [UserManagementController::class, 'index'])->name('user-management');
 	Route::get('/user-create', [UserManagementController::class, 'viewCreate'])->name('user-create');
 	Route::post('/user-create', [UserManagementController::class, 'store'])->name('user-create');
@@ -80,6 +57,7 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::get('/user-destroy/{id}', [UserManagementController::class, 'destroy'])->name('user-destroy');
 	Route::post('/upload', [ImageUploadController::class, 'upload']);
 
+	//Roles
 	Route::get('/roles', [RoleController::class, 'index'])->name('roles');
 	Route::get('/role-destroy/{id}', [RoleController::class, 'destroy'])->name('role-destroy');
 	Route::get('/role-create', [RoleController::class, 'viewCreate'])->name('role-create');
@@ -87,13 +65,21 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::get('/role-view/{id}', [RoleController::class, 'view'])->name('role-view');
 	Route::post('/role-update/{id}', [RoleController::class, 'update'])->name('role-update');
 
-
+	//Permisos
 	Route::get('/permissions', [PermissionController::class, 'view'])->name('permissions');
 	Route::get('/permission-destroy/{id}', [PermissionController::class, 'destroy'])->name('permission-destroy');
 	Route::get('/permission-create', [PermissionController::class, 'viewCreate'])->name('permission-create');
 	Route::post('/permission-create', [PermissionController::class, 'create'])->name('permission-create');
 	Route::get('/permission-create-role-permission', [PermissionController::class, 'viewCreateRolePermsision'])->name('permission-create-role-permission');
 	Route::post('/permission-create-role-permission', [PermissionController::class, 'createRolePermsision'])->name('permission-create-role-permission');
+
+	//Proveedores
+	Route::get('/suppliers', [SupplierController::class, 'index'])->name('suppliers-index');
+	Route::get('/supplier-create', [SupplierController::class, 'viewCreate'])->name('suppliers-create');
+	Route::post('/supplier-create', [SupplierController::class, 'create'])->name('suppliers-create');
+	Route::get('/supplier-view/{id}', [SupplierController::class, 'view'])->name('supplier-view');
+	Route::post('/supplier-update/{id}', [SupplierController::class, 'update'])->name('supplier-update');
+	Route::get('/supplier-destroy/{id}', [SupplierController::class, 'destroy'])->name('suppliers-destroy');
 });
 
 
