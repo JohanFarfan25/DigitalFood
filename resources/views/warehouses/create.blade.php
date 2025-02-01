@@ -51,7 +51,7 @@
                             <div class="form-group">
                                 <label for="warehouse-max_capacity" class="form-control-label">{{ __('Max Capacity') }}</label>
                                 <div class="@error('warehouse.max_capacity')border border-danger rounded-3 @enderror">
-                                    <input type="text" class="form-control" placeholder="max_capacity" name="max_capacity" id="max_capacity" aria-label="max_capacity" aria-describedby="max_capacity">
+                                    <input type="number" class="form-control" placeholder="max_capacity" name="max_capacity" id="max_capacity" aria-label="max_capacity" aria-describedby="max_capacity">
                                     @error('max_capacity')
                                     <p class="text-danger text-xs mt-2">{{ $message }}</p>
                                     @enderror
@@ -61,23 +61,33 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="warehouse-temperature_controlled" class="form-control-label">{{ __('Temperature Controlled') }}</label>
-                                <div class="@error('warehouse.temperature_controlled')border border-danger rounded-3 @enderror">
-                                    <input type="text" class="form-control" placeholder="temperature_controlled" name="temperature_controlled" id="temperature_controlled" aria-label="temperature_controlled" aria-describedby="temperature_controlled">
+                                <div class="@error('temperature_controlled') border border-danger rounded-3 @enderror">
+                                    <!-- Select dropdown para temperatura controlada -->
+                                    <select
+                                        name="temperature_controlled"
+                                        id="temperature_controlled"
+                                        class="form-control"
+                                        aria-label="temperature_controlled"
+                                        aria-describedby="temperature_controlled">
+                                        <option value="">Seleccione una opción</option>
+                                        <option value="1">Sí</option>
+                                        <option value="0">No</option>
+                                    </select>
                                     @error('temperature_controlled')
                                     <p class="text-danger text-xs mt-2">{{ $message }}</p>
                                     @enderror
                                 </div>
                             </div>
                         </div>
-                        </div>
                     </div>
-                    <div class="d-flex justify-content-end">
-                        <button type="submit" class="btn bg-gradient-primary btn-md mt-4 mb-4">{{ 'Save Changes' }}</button>
-                    </div>
-                </form>
-
             </div>
+            <div class="d-flex justify-content-end">
+                <button type="submit" class="btn bg-gradient-primary btn-md mt-4 mb-4">{{ 'Save Changes' }}</button>
+            </div>
+            </form>
+
         </div>
     </div>
+</div>
 </div>
 @endsection

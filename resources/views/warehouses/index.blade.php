@@ -77,7 +77,7 @@
                                         <p class="text-xs font-weight-bold mb-0">{{ $warehouse->max_capacity }}</p>
                                     </td>
                                     <td class="text-center">
-                                        <p class="text-xs font-weight-bold mb-0">{{ $warehouse->temperature_controlled }}</p>
+                                        <p class="text-xs font-weight-bold mb-0"> {{ $warehouse->temperature_controlled ? 'Sí' : 'No' }}</p>
                                     </td>
                                     <td class="text-center">
                                         <span class="text-secondary text-xs font-weight-bold">{{ $warehouse->created_at->format('d/m/Y') }}</span>
