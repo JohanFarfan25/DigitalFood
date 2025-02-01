@@ -68,7 +68,7 @@
                                 @foreach($suppliers as $index => $supplier)
                                 <tr>
                                     <td class="ps-4">
-                                        <p class="text-xs font-weight-bold mb-0">{{ $index + 1 }}</p>
+                                        <p class="text-xs font-weight-bold mb-0">{{ $supplier->id }}</p>
                                     </td>
                                     <td class="text-center">
                                         <p class="text-xs font-weight-bold mb-0">{{ $supplier->name }}</p>

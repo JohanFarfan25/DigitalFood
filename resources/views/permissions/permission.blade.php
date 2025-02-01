@@ -40,9 +40,6 @@
 									<th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
 										ID
 									</th>
-									<th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
-										Team Id
-									</th>
 									<th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
 										Name
 									</th>
@@ -60,14 +57,8 @@
 							<tbody>
 								@foreach($permissions as $index => $permission)
 								<tr>
-									<td class="ps-4">
-										<p class="text-xs font-weight-bold mb-0">{{ $index + 1 }}</p>
-									</td>
 									<td class="text-center">
 										<p class="text-xs font-weight-bold mb-0">{{ $permission->id }}</p>
-									</td>
-									<td class="text-center">
-										<p class="text-xs font-weight-bold mb-0">{{ $permission->team_id }}</p>
 									</td>
 									<td class="text-center">
 										<p class="text-xs font-weight-bold mb-0">{{ $permission->name }}</p>
