@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ChangePasswordController;
+use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ImageUploadController;
 use App\Http\Controllers\InfoUserController;
@@ -80,6 +81,14 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::get('/supplier-view/{id}', [SupplierController::class, 'view'])->name('supplier-view');
 	Route::post('/supplier-update/{id}', [SupplierController::class, 'update'])->name('supplier-update');
 	Route::get('/supplier-destroy/{id}', [SupplierController::class, 'destroy'])->name('suppliers-destroy');
+
+	//Customer
+	Route::get('/customers', [CustomerController::class, 'index'])->name('customers-index');
+	Route::get('/customer-create', [CustomerController::class, 'viewCreate'])->name('customer-create');
+	Route::post('/customer-create', [CustomerController::class, 'create'])->name('customer-create');
+	Route::get('/customer-view/{id}', [CustomerController::class, 'view'])->name('customer-view');
+	Route::post('/customer-update/{id}', [CustomerController::class, 'update'])->name('customer-update');
+	Route::get('/customer-destroy/{id}', [CustomerController::class, 'destroy'])->name('customer-destroy');
 });
 
 

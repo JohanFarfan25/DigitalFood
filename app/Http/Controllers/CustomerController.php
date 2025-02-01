@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Supplier;
+use App\Models\Customer;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class SupplierController extends Controller
+class CustomerController extends Controller
 {
     /**
      * Mostrar una lista de proveedores.
@@ -15,8 +15,8 @@ class SupplierController extends Controller
      */
     public function index()
     {
-        $suppliers = Supplier::all();
-        return view('suppliers.index', compact('suppliers'));
+        $customers = Customer::all();
+        return view('customers.index', compact('customers'));
     }
 
     /**
@@ -26,7 +26,7 @@ class SupplierController extends Controller
      */
     public function viewCreate()
     {
-        return view('suppliers.create');
+        return view('customers.create');
     }
 
     /**
@@ -40,16 +40,15 @@ class SupplierController extends Controller
 
         $attributes = $request->validate([
             'name' => 'required|string|max:255',
-            'contact' => 'nullable|string|max:255',
             'address' => 'nullable|string|max:255',
             'phone' => 'nullable|string|max:15',
             'email' => 'nullable|email|max:100'
         ]);
         $attributes['status'] = 'active';
         $attributes['registered_by'] = Auth::user()->id;
-        Supplier::create($attributes);
+        Customer::create($attributes);
 
-        return redirect()->route('suppliers-index');
+        return redirect()->route('customers-index');
     }
 
     /**
@@ -59,26 +58,22 @@ class SupplierController extends Controller
      */
     public function view($id)
     {
-
-        $supplier = Supplier::find($id);
-        return view('suppliers.view', compact('supplier'));
+        $customer = Customer::find($id);
+        return view('customers.view', compact('customer'));
     }
 
     public function update($id, Request $request)
     {
-        
-        $supplier = Supplier::find($id);
+        $customer = Customer::find($id);
         $attributes = $request->validate([
             'name' => 'required|string|max:255',
-            'contact' => 'nullable|string|max:255',
             'address' => 'nullable|string|max:255',
             'phone' => 'nullable|string|max:15',
-            'email' => 'nullable|email|max:100',
-            'status' => 'required|in:active,inactive'
+            'email' => 'nullable|email|max:100'
         ]);
 
-        $supplier->update($attributes);
-        return view('suppliers.view', compact('supplier'));
+        $customer->update($attributes);
+        return view('customers.view', compact('customer'));
     }
 
     /**
@@ -88,8 +83,8 @@ class SupplierController extends Controller
      */
     public function destroy($id)
     {
-        $supplier = Supplier::find($id);
-        $supplier->delete();
-        return redirect()->route('suppliers-index');
+        $customer = Customer::find($id);
+        $customer->delete();
+        return redirect()->route('customers-index');
     }
 }
