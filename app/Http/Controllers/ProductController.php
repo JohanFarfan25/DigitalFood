@@ -35,8 +35,15 @@ class ProductController extends Controller
             'expiration_date' => 'nullable|date',
             'purchase_price' => 'required|numeric|min:0',
             'sale_price' => 'required|numeric|min:0',
-            'supplier_id' => 'required|exists:suppliers,id'
+            'supplier_id' => 'required|exists:suppliers,id',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
+
+        if (request()->hasFile('image')) {
+            $image = ImageUploadController::upload(request()->file('image'), 'image', Auth::user()->uuid);
+            $attributes['image'] = !empty($image) ? $image : null;
+        }
+
         $attributes['status'] = 'active';
         $attributes['registered_by'] = Auth::user()->id;
         Product::create($attributes);
@@ -66,6 +73,11 @@ class ProductController extends Controller
             'sale_price' => 'required|numeric|min:0',
             'supplier_id' => 'required|exists:suppliers,id'
         ]);
+
+        if (request()->hasFile('image')) {
+            $image = ImageUploadController::upload(request()->file('image'), 'image', $product->id);
+            $attributes['image'] = !empty($image) ? $image : null;
+        }
 
         $product->update($attributes);
         return view('products.view', compact('product','suppliers'));

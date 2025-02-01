@@ -25,6 +25,28 @@
                 <form action="/product-update/{{$product->id}}" method="POST" enctype="multipart/form-data" role="form text-left">
                     @csrf
                     <div class="row">
+                        <div class="col-md-12">
+                            <!-- Contenedor para la vista previa -->
+                            <div class="form-group text-center">
+                                <div id="image-preview" class="border p-2 rounded d-inline-block" style="width: 200px; height: 200px; overflow: hidden;">
+                                    @if(!empty($product->image))
+                                    <img id="preview-image" src="{{ asset( $product->image) }}" alt="Preview" class="img-fluid" style="max-width: 100%; max-height: 100%;">
+                                    @else
+                                    <img id="preview-image" src="" alt="Preview" class="img-fluid" style="display: none; max-width: 100%; max-height: 100%;">
+                                    @endif
+                                </div>
+                            </div>
+                            <!-- Input para cargar imagen -->
+                            <div class="form-group">
+                                <label for="image" class="form-control-label">{{ __('Upload Image') }}</label>
+                                <div class="@error('image') border border-danger rounded-3 @enderror">
+                                    <input type="file" id="image" class="form-control" name="image" accept="image/*" onchange="previewImage(event)">
+                                    @error('image')
+                                    <p class="text-danger text-xs mt-2">{{ $message }}</p>
+                                    @enderror
+                                </div>
+                            </div>
+                        </div>
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="product-name" class="form-control-label">{{ __('Name') }}</label>
@@ -149,3 +171,21 @@
     </div>
 </div>
 @endsection
+<script>
+    document.getElementById('image').addEventListener('change', function(event) {
+        const file = event.target.files[0];
+        const previewImage = document.getElementById('preview-image');
+
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                previewImage.src = e.target.result; // Establecer la URL de la imagen
+                previewImage.style.display = 'block'; // Mostrar la imagen
+            };
+            reader.readAsDataURL(file); // Leer el archivo seleccionado
+        } else {
+            previewImage.src = '';
+            previewImage.style.display = 'none'; // Ocultar la imagen si no hay archivo seleccionado
+        }
+    });
+</script>

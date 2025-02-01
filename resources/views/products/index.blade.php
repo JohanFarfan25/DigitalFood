@@ -42,6 +42,9 @@
                                         ID
                                     </th>
                                     <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
+                                        Image
+                                    </th>
+                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
                                         Name
                                     </th>
                                     <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
@@ -78,6 +81,11 @@
                                 <tr>
                                     <td class="ps-4">
                                         <p class="text-xs font-weight-bold mb-0">{{ $product->id }}</p>
+                                    </td>
+                                    <td>
+                                        <div>
+                                            <img src="{{ $product->image ?? asset( $product->image ) }}" alt="Product Image" class="img-fluid avatar avatar-sm me-3">
+                                        </div>
                                     </td>
                                     <td class="text-center">
                                         <p class="text-xs font-weight-bold mb-0">{{ $product->name }}</p>

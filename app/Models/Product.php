@@ -32,6 +32,7 @@ class Product extends Model
         'supplier_id',
         'status',
         'registered_by',
+        'image',
     ];
 
     /**

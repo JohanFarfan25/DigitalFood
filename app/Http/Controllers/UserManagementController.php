@@ -84,10 +84,6 @@ class UserManagementController extends Controller
                 'profile_picture' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
             ]);
 
-            if (request()->hasFile('profile_picture')) {
-                $attributes['profile_picture'] = request()->file('profile_picture')->store('profile_pictures', 'public');
-            }
-
             $attributes['password'] = bcrypt($attributes['password']);
 
             $user = User::create($attributes);
