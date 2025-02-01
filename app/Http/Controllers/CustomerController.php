@@ -8,33 +8,20 @@ use Illuminate\Support\Facades\Auth;
 
 class CustomerController extends Controller
 {
-    /**
-     * Mostrar una lista de proveedores.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function index()
     {
         $customers = Customer::all();
         return view('customers.index', compact('customers'));
     }
 
-    /**
-     * Mostrar el formulario para crear un nuevo proveedor.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function viewCreate()
     {
         return view('customers.create');
     }
 
-    /**
-     * Almacenar un nuevo proveedor en la base de datos.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+
     public function create(Request $request)
     {
 
@@ -51,11 +38,7 @@ class CustomerController extends Controller
         return redirect()->route('customers-index');
     }
 
-    /**
-     * Actualizar un proveedor en la base de datos.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function view($id)
     {
         $customer = Customer::find($id);
@@ -76,11 +59,7 @@ class CustomerController extends Controller
         return view('customers.view', compact('customer'));
     }
 
-    /**
-     * Eliminar un proveedor de la base de datos.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function destroy($id)
     {
         $customer = Customer::find($id);

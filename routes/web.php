@@ -12,6 +12,8 @@ use App\Http\Controllers\RoleController;
 use App\Http\Controllers\SessionsController;
 use App\Http\Controllers\SupplierController;
 use App\Http\Controllers\UserManagementController;
+use App\Http\Controllers\WarehouseController;
+use App\Models\Warehouse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Password;
 use Illuminate\Support\Facades\Route;
@@ -89,6 +91,14 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::get('/customer-view/{id}', [CustomerController::class, 'view'])->name('customer-view');
 	Route::post('/customer-update/{id}', [CustomerController::class, 'update'])->name('customer-update');
 	Route::get('/customer-destroy/{id}', [CustomerController::class, 'destroy'])->name('customer-destroy');
+
+	//Almacenes
+	Route::get('/warehouses', [WarehouseController::class, 'index'])->name('warehouses-index');
+	Route::get('/warehouse-create', [WarehouseController::class, 'viewCreate'])->name('warehouse-create');
+	Route::post('/warehouse-create', [WarehouseController::class, 'create'])->name('warehouse-create');
+	Route::get('/warehouse-view/{id}', [WarehouseController::class, 'view'])->name('warehouse-view');
+	Route::post('/warehouse-update/{id}', [WarehouseController::class, 'update'])->name('warehouse-update');
+	Route::get('/warehouse-destroy/{id}', [WarehouseController::class, 'destroy'])->name('warehouse-destroy');
 });
 
 

@@ -90,23 +90,4 @@
         </div>
     </div>
 </div>
-<script>
-    document.getElementById('profile_picture').addEventListener('change', function(event) {
-        const file = event.target.files[0];
-        const previewImage = document.getElementById('preview-image');
-
-        if (file) {
-            const reader = new FileReader();
-            reader.onload = function(e) {
-                previewImage.src = e.target.result; // Establecer la URL de la imagen
-                previewImage.style.display = 'block'; // Mostrar la imagen
-            };
-            reader.readAsDataURL(file); // Leer el archivo seleccionado
-        } else {
-            previewImage.src = '';
-            previewImage.style.display = 'none'; // Ocultar la imagen si no hay archivo seleccionado
-        }
-    });
-</script>
-
 @endsection

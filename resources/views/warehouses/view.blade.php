@@ -12,7 +12,7 @@
                 <div class="col-auto my-auto">
                     <div class="h-100">
                         <h5 class="mt-2">
-                            {{ __('Customer Create') }}
+                            {{ __('Warehouse View') }}
                         </h5>
                     </div>
                 </div>
@@ -22,14 +22,14 @@
     <div class="container-fluid py-4">
         <div class="card">
             <div class="card-body pt-4 p-6 mt-4">
-                <form action="/customer-create" method="POST" enctype="multipart/form-data" role="form text-left">
+                <form action="/warehouse-update/{{$warehouse->id}}" method="POST" enctype="multipart/form-data" role="form text-left">
                     @csrf
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label for="customer-name" class="form-control-label">{{ __('Name') }}</label>
-                                <div class="@error('customer.name')border border-danger rounded-3 @enderror">
-                                    <input type="text" class="form-control" placeholder="Name" name="name" id="name" aria-label="Name" aria-describedby="name">
+                                <label for="warehouse-name" class="form-control-label">{{ __('Name') }}</label>
+                                <div class="@error('warehouse.name')border border-danger rounded-3 @enderror">
+                                    <input type="text" class="form-control" placeholder="Name" name="name" id="name" aria-label="Name" aria-describedby="name" value="{{ old('name', $warehouse->name) }}">
                                     @error('name')
                                     <p class="text-danger text-xs mt-2">{{ $message }}</p>
                                     @enderror
@@ -38,10 +38,10 @@
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label for="customer-address" class="form-control-label">{{ __('Address') }}</label>
-                                <div class="@error('customer.address')border border-danger rounded-3 @enderror">
-                                    <input type="text" class="form-control" placeholder="address" name="address" id="address" aria-label="address" aria-describedby="address">
-                                    @error('address')
+                                <label for="warehouse-location" class="form-control-label">{{ __('Location') }}</label>
+                                <div class="@error('warehouse.location')border border-danger rounded-3 @enderror">
+                                    <input type="text" class="form-control" placeholder="location" name="location" id="location" aria-label="location" aria-describedby="location" value="{{ old('location', $warehouse->location) }}">
+                                    @error('location')
                                     <p class="text-danger text-xs mt-2">{{ $message }}</p>
                                     @enderror
                                 </div>
@@ -49,10 +49,10 @@
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label for="customer-phone" class="form-control-label">{{ __('Phone') }}</label>
-                                <div class="@error('customer.phone')border border-danger rounded-3 @enderror">
-                                    <input type="text" class="form-control" placeholder="phone" name="phone" id="phone" aria-label="phone" aria-describedby="phone">
-                                    @error('phone')
+                                <label for="warehouse-max_capacity" class="form-control-label">{{ __('Max Capacity') }}</label>
+                                <div class="@error('warehouse.max_capacity')border border-danger rounded-3 @enderror">
+                                    <input type="text" class="form-control" placeholder="max_capacity" name="max_capacity" id="max_capacity" aria-label="max_capacity" aria-describedby="max_capacity" value="{{ old('max_capacity', $warehouse->max_capacity) }}">
+                                    @error('max_capacity')
                                     <p class="text-danger text-xs mt-2">{{ $message }}</p>
                                     @enderror
                                 </div>
@@ -60,10 +60,10 @@
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label for="customer-email" class="form-control-label">{{ __('Email') }}</label>
-                                <div class="@error('customer.email')border border-danger rounded-3 @enderror">
-                                    <input type="text" class="form-control" placeholder="email" name="email" id="email" aria-label="email" aria-describedby="email">
-                                    @error('email')
+                                <label for="warehouse-temperature_controlled" class="form-control-label">{{ __('Temperature Controlled') }}</label>
+                                <div class="@error('warehouse.temperature_controlled')border border-danger rounded-3 @enderror">
+                                    <input type="text" class="form-control" placeholder="temperature_controlled" name="temperature_controlled" id="temperature_controlled" aria-label="temperature_controlled" aria-describedby="temperature_controlled" value="{{ old('temperature_controlled', $warehouse->temperature_controlled) }}">
+                                    @error('temperature_controlled')
                                     <p class="text-danger text-xs mt-2">{{ $message }}</p>
                                     @enderror
                                 </div>
