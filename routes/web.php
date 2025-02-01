@@ -6,6 +6,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ImageUploadController;
 use App\Http\Controllers\InfoUserController;
 use App\Http\Controllers\PermissionController;
+use App\Http\Controllers\ProductController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\ResetController;
 use App\Http\Controllers\RoleController;
@@ -99,6 +100,14 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::get('/warehouse-view/{id}', [WarehouseController::class, 'view'])->name('warehouse-view');
 	Route::post('/warehouse-update/{id}', [WarehouseController::class, 'update'])->name('warehouse-update');
 	Route::get('/warehouse-destroy/{id}', [WarehouseController::class, 'destroy'])->name('warehouse-destroy');
+
+	//Productos
+	Route::get('/products', [ProductController::class, 'index'])->name('products-index');
+	Route::get('/product-create', [ProductController::class, 'viewCreate'])->name('product-create');
+	Route::post('/product-create', [ProductController::class, 'create'])->name('product-create');
+	Route::get('/product-view/{id}', [ProductController::class, 'view'])->name('product-view');
+	Route::post('/product-update/{id}', [ProductController::class, 'update'])->name('product-update');
+	Route::get('/product-destroy/{id}', [ProductController::class, 'destroy'])->name('product-destroy');
 });
 
 

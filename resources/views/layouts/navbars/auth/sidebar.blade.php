@@ -151,6 +151,19 @@
           <span class="nav-link-text ms-1">Warehouses</span>
         </a>
       </li>
+      <li class="nav-item pb-2">
+        <a class="nav-link {{ (Request::is('products') ? 'active' : '') }}" href="{{ url('products') }}">
+          <div class="icon icon-shape icon-sm shadow border: 1px border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
+            <svg width="800px" height="800px" viewBox="2 5 20 20" xmlns="http://www.w3.org/2000/svg">
+              <rect x="0" fill="none" width="24" height="24" />
+              <g>
+                <path d="M22 3H2v6h1v11c0 1.105.895 2 2 2h14c1.105 0 2-.895 2-2V9h1V3zM4 5h16v2H4V5zm15 15H5V9h14v11zm-2-9v6h-2v-2.59l-3.29 3.29-1.41-1.41L13.59 13H11v-2h6z" />
+              </g>
+            </svg>
+          </div>
+          <span class="nav-link-text ms-1">Products</span>
+        </a>
+      </li>
     </ul>
   </div>
   <hr class="horizontal dark mt-3">

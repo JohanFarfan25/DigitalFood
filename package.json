@@ -19,6 +19,7 @@
         "sass-loader": "^12.3.0"
     },
     "dependencies": {
-        "bootstrap-switch-button": "^1.1.0"
+        "bootstrap-switch-button": "^1.1.0",
+        "flatpickr": "^4.6.13"
     }
 }
