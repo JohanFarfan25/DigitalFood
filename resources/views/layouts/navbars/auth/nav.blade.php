@@ -9,6 +9,10 @@
         </nav>
         <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4 d-flex justify-content-end" id="navbar">
             <div class="ms-md-3 pe-md-3 d-flex align-items-center">
+                <div class="p-3 nav-item d-flex align-items-center" style="font-weight: 600;">
+                ({{ auth()->user()->getRoleNames()->first()}})
+                </div>
+            
                 <div class="nav-link text-body font-weight-bold px-0" style="width: 70px;">
                     <img id="preview-image" src="{{ asset( auth()->user()->profile_picture) }}" alt="Profile" class="img-fluid" style="border-radius:100%;">
                 </div>

@@ -2,7 +2,24 @@
   <div class="sidenav-header">
     <i class="fas fa-times p-3 cursor-pointer text-secondary opacity-5 position-absolute end-0 top-0 d-none d-xl-none" aria-hidden="true" id="iconSidenav"></i>
     <a class="align-items-center d-flex m-0 navbar-brand text-wrap" href="{{ route('dashboard') }}">
-      <span class="ms-3 font-weight-bold">Digital Food ERP <br>({{ auth()->user()->getRoleNames()->first()}})</span>
+      <span class="ms-0 font-weight-bold">
+        <svg width="180" height="70" viewBox="0 0 250 100" xmlns="http://www.w3.org/2000/svg">
+          <text x="10" y="40" font-family="Arial, sans-serif" font-size="32" font-weight="bold" fill="#0dcaf0">
+            Digital
+          </text>
+          <text x="110" y="40" font-family="Arial, sans-serif" font-size="32" font-weight="bold" fill="#d63384">
+            Food
+          </text>
+          <text x="10" y="70" font-family="Arial, sans-serif" font-size="16" fill="#555">
+            Optimize, control and grow
+          </text>
+          <circle cx="100" cy="30" r="5" fill="#596cff" />
+          <rect x="102" y="25" width="6" height="10" fill="#596cff" />
+          <circle cx="180" cy="30" r="15" fill="none" stroke="#00cc66" stroke-width="3" />
+          <line x1="172" y1="22" x2="188" y2="38" stroke="#00cc66" stroke-width="3" />
+          <line x1="188" y1="22" x2="172" y2="38" stroke="#00cc66" stroke-width="3" />
+        </svg>
+      </span>
     </a>
   </div>
   <span class="ms-4 font-weight-bold" style="font-size: 80%;">{{ auth()->user()->name }}</span>
