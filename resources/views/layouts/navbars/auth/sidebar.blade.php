@@ -202,13 +202,20 @@
       <li class="nav-item pb-2">
         <a class="nav-link {{ (Request::is('transactions') ? 'active' : '') }}" href="{{ url('transactions') }}">
           <div class="icon icon-shape icon-sm shadow border: 1px border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
-            <svg width="800px" height="800px" viewBox="15 15 50.00 50.00" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns="http://www.w3.org/2000/svg" xmlns:cc="http://creativecommons.org/ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" fill="#000000" stroke="#000000">
+            <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="10 15 412.00 412.00" xml:space="preserve" width="181px" height="181px" fill="#000000" stroke="#000000" stroke-width="9.728">
               <g id="SVGRepo_bgCarrier" stroke-width="0" />
               <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round" />
               <g id="SVGRepo_iconCarrier">
-                <path d="m151.6 413.16c-2.4757 0-4.4662 1.9933-4.4662 4.469v30.552c0 2.4757 1.9905 4.469 4.4662 4.469h30.645c2.4757 0 4.469-1.9933 4.469-4.469v-30.552c0-2.4757-1.9933-4.469-4.469-4.469h-30.645zm0.36676 10.213h30.005v24.898h-30.005v-24.898zm36.765 1.6618v6.19c8.6064-0.1467 10.721 1.7568 10.445 9.5446l-4.3787 0.0198 8.5007 9.7166 8.0634-9.8436-4.8329-0.0198c-0.22153-10.476-0.24993-15.536-17.797-15.608zm-34.575 0.98464v4.833h24.989v-4.833h-24.989zm0 7.1352v4.8329h24.989v-4.8329h-24.989zm0 7.138v4.8329h24.989v-4.8329h-24.989zm36.861 12.767c-1.3234 0-2.3897 1.0663-2.3897 2.3897v16.33c0 1.3234 1.0663 2.3896 2.3897 2.3896h16.381c1.3234 0 2.3897-1.0662 2.3897-2.3896v-16.33c0-1.3234-1.0663-2.3897-2.3897-2.3897h-16.381zm19.848 3.3912v18.528h-18.525v2.5843h18.525 2.5843v-2.5843-18.528h-2.5843zm-19.653 2.068h16.039v13.311h-16.039v-13.311zm23.338 1.4135v18.528h-18.525v2.5843h18.525 2.5844v-2.5843-18.528h-2.5844zm-21.987 0.64043v2.5815h13.359v-2.5815h-13.359z" fill="#0000¡" transform="translate(-147.13 -413.16)" />
+                <path style="fill:#fffafa;" d="M146.712,6.456H512l0,0v251.768c0,22.84-18.512,41.352-41.352,41.352H105.36l0,0V47.808 C105.36,24.968,123.872,6.456,146.712,6.456L146.712,6.456z" />
+                <rect x="105.36" y="53.608" width="406.64" height="58.584" />
+                <path style="fill:#FFFFFF;" d="M4,501.544V253.776c0.024-20.616,16.736-37.328,37.352-37.352H402.64v247.76 c-0.024,20.624-16.728,37.336-37.352,37.36H4z" />
+                <path style="fill:#CCCCCC;" d="M398.64,220.424v243.768c-0.024,18.408-14.944,33.328-33.352,33.352H8V253.776 c0.024-18.408,14.944-33.328,33.352-33.352H398.64 M406.64,212.424H41.352C18.512,212.424,0,230.936,0,253.776l0,0v251.768h365.288 c22.84,0,41.352-18.512,41.352-41.352C406.64,464.192,406.64,212.424,406.64,212.424z" />
+                <rect y="259.568" width="406.64" height="58.584" />
+                <rect x="52.8" y="363.68" style="fill:#FFFFFF;" width="134.032" height="18.592" />
+                <g style="opacity:0.15;">
+                  <polygon points="105.36,212.424 406.64,212.424 406.64,299.72 430.576,299.72 430.576,187.864 105.36,187.864 " />
+                </g>
               </g>
-
             </svg>
           </div>
           <span class="nav-link-text ms-1">Transactions</span>
