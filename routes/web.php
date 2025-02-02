@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\BatchController;
 use App\Http\Controllers\ChangePasswordController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\HomeController;
@@ -108,6 +109,14 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::get('/product-view/{id}', [ProductController::class, 'view'])->name('product-view');
 	Route::post('/product-update/{id}', [ProductController::class, 'update'])->name('product-update');
 	Route::get('/product-destroy/{id}', [ProductController::class, 'destroy'])->name('product-destroy');
+
+	//Lotes
+	Route::get('/batches', [BatchController::class, 'index'])->name('batches-index');
+	Route::get('/batch-create', [BatchController::class, 'viewCreate'])->name('batch-create');
+	Route::post('/batch-create', [BatchController::class, 'create'])->name('batch-create');
+	Route::get('/batch-view/{id}', [BatchController::class, 'view'])->name('batch-view');
+	Route::post('/batch-update/{id}', [BatchController::class, 'update'])->name('batch-update');
+	Route::get('/batch-destroy/{id}', [BatchController::class, 'destroy'])->name('batch-destroy');
 });
 
 

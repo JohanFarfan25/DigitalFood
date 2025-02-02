@@ -8,33 +8,20 @@ use Illuminate\Support\Facades\Auth;
 
 class SupplierController extends Controller
 {
-    /**
-     * Mostrar una lista de proveedores.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function index()
     {
         $suppliers = Supplier::all();
         return view('suppliers.index', compact('suppliers'));
     }
 
-    /**
-     * Mostrar el formulario para crear un nuevo proveedor.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function viewCreate()
     {
         return view('suppliers.create');
     }
 
-    /**
-     * Almacenar un nuevo proveedor en la base de datos.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+
     public function create(Request $request)
     {
 
@@ -52,11 +39,7 @@ class SupplierController extends Controller
         return redirect()->route('suppliers-index');
     }
 
-    /**
-     * Actualizar un proveedor en la base de datos.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function view($id)
     {
 
@@ -81,11 +64,7 @@ class SupplierController extends Controller
         return view('suppliers.view', compact('supplier'));
     }
 
-    /**
-     * Eliminar un proveedor de la base de datos.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function destroy($id)
     {
         $supplier = Supplier::find($id);
