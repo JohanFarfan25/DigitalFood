@@ -12,7 +12,7 @@
                 <div class="col-auto my-auto">
                     <div class="h-100">
                         <h5 class="mt-2">
-                            Batches
+                            Transactions
                         </h5>
                     </div>
                 </div>
@@ -26,10 +26,10 @@
                 <div class="card-header pb-0">
                     <div class="d-flex flex-row justify-content-between">
                         <div style="width: 50%;">
-                            <input type="text" id="searchInput" class="form-control me-3" placeholder="Search batches..." aria-label="Search">
+                            <input type="text" id="searchInput" class="form-control me-3" placeholder="Search transactions..." aria-label="Search">
                         </div>
                         @role('Super Admin')
-                        <a href="/batch-create" class="btn bg-gradient-primary btn-sm mb-0" type="button">+&nbsp; New Batch</a>
+                        <a href="/transaction-create" class="btn bg-gradient-primary btn-sm mb-0" type="button">+&nbsp; New Transaction</a>
                         @endrole
                     </div>
                 </div>
@@ -42,19 +42,28 @@
                                         ID
                                     </th>
                                     <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
-                                        Product
+                                        Batch
                                     </th>
                                     <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                                        Production Date
+                                        Type
                                     </th>
                                     <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                                        Expiration Date
+                                        Date
                                     </th>
                                     <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                                        Total Quantity
+                                        Quantity
                                     </th>
                                     <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                                        Location
+                                        Price
+                                    </th>
+                                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                        Warehouse
+                                    </th>
+                                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                        Supplier
+                                    </th>
+                                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                        Customer
                                     </th>
                                     <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
                                         Creation Date
@@ -65,35 +74,44 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach($batches as $index => $batch)
+                                @foreach($transactions as $index => $transaction)
                                 <tr>
                                     <td class="ps-4">
-                                        <p class="text-xs font-weight-bold mb-0">{{ $batch->id }}</p>
+                                        <p class="text-xs font-weight-bold mb-0">{{ $transaction->id }}</p>
                                     </td>
                                     <td class="text-center">
-                                        <p class="text-xs font-weight-bold mb-0">{{ $batch->product->name }}</p>
+                                        <p class="text-xs font-weight-bold mb-0">{{ $transaction->batch_id }}</p>
                                     </td>
                                     <td class="text-center">
-                                        <p class="text-xs font-weight-bold mb-0">{{ $batch->production_date->format('d/m/Y') }}</p>
+                                        <p class="text-xs font-weight-bold mb-0">{{ $transaction->type }}</p>
                                     </td>
                                     <td class="text-center">
-                                        <p class="text-xs font-weight-bold mb-0">{{ $batch->expiration_date->format('d/m/Y') }}</p>
+                                        <p class="text-xs font-weight-bold mb-0">{{ $transaction->date->format('d/m/Y') }}</p>
                                     </td>
                                     <td class="text-center">
-                                        <p class="text-xs font-weight-bold mb-0"> {{ $batch->total_quantity }}</p>
+                                        <p class="text-xs font-weight-bold mb-0"> {{ $transaction->quantity }}</p>
                                     </td>
                                     <td class="text-center">
-                                        <p class="text-xs font-weight-bold mb-0">{{ $batch->location }}</p>
+                                        <p class="text-xs font-weight-bold mb-0"> {{ $transaction->price }}</p>
                                     </td>
                                     <td class="text-center">
-                                        <span class="text-secondary text-xs font-weight-bold">{{ $batch->created_at->format('d/m/Y') }}</span>
+                                        <p class="text-xs font-weight-bold mb-0">{{ $transaction->warehouse->name }}</p>
                                     </td>
                                     <td class="text-center">
-                                        <a href="/batch-view/{{ $batch->id }}" class="mx-3" data-bs-toggle="tooltip" data-bs-original-title="Edit User">
+                                        <p class="text-xs font-weight-bold mb-0">{{ $transaction->supplier->name }}</p>
+                                    </td>
+                                    <td class="text-center">
+                                        <p class="text-xs font-weight-bold mb-0">{{ $transaction->customer->name }}</p>
+                                    </td>
+                                    <td class="text-center">
+                                        <span class="text-secondary text-xs font-weight-bold">{{ $transaction->created_at->format('d/m/Y') }}</span>
+                                    </td>
+                                    <td class="text-center">
+                                        <a href="/transaction-view/{{ $transaction->id }}" class="mx-3" data-bs-toggle="tooltip" data-bs-original-title="Edit User">
                                             <span class="badge badge-sm bg-gradient-success">View</span>
                                         </a>
                                         @role('Super Admin')
-                                        <a href="/batch-destroy/{{ $batch->id }}" class="mx-3" data-bs-toggle="tooltip" data-bs-original-title="Delete User">
+                                        <a href="/transaction-destroy/{{ $transaction->id }}" class="mx-3" data-bs-toggle="tooltip" data-bs-original-title="Delete User">
                                             <span class="badge badge-sm bg-gradient-secondary">delete</span>
                                         </a>
                                         @endrole

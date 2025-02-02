@@ -13,6 +13,7 @@ use App\Http\Controllers\ResetController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\SessionsController;
 use App\Http\Controllers\SupplierController;
+use App\Http\Controllers\TransactionController;
 use App\Http\Controllers\UserManagementController;
 use App\Http\Controllers\WarehouseController;
 use App\Models\Warehouse;
@@ -117,6 +118,14 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::get('/batch-view/{id}', [BatchController::class, 'view'])->name('batch-view');
 	Route::post('/batch-update/{id}', [BatchController::class, 'update'])->name('batch-update');
 	Route::get('/batch-destroy/{id}', [BatchController::class, 'destroy'])->name('batch-destroy');
+
+	//Tran sacciones
+	Route::get('/transactions', [TransactionController::class, 'index'])->name('transactions-index');
+	Route::get('/transaction-create', [TransactionController::class, 'viewCreate'])->name('transaction-create');
+	Route::post('/transaction-create', [TransactionController::class, 'create'])->name('transaction-create');
+	Route::get('/transaction-view/{id}', [TransactionController::class, 'view'])->name('transaction-view');
+	Route::post('/transaction-update/{id}', [TransactionController::class, 'update'])->name('transaction-update');
+	Route::get('/transaction-destroy/{id}', [TransactionController::class, 'destroy'])->name('transaction-destroy');
 });
 
 
