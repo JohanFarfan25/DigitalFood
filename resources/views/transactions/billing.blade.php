@@ -130,6 +130,34 @@
 @section('scripts')
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const saveButton = document.getElementById("save");
+        const orderType = document.getElementById("type"); // Asegúrate de que este sea el ID del select
+
+        function updateButtonText() {
+            switch (orderType.value) {
+                case "purchase":
+                    saveButton.textContent = "Generate Purchase Order";
+                    break;
+                case "sale":
+                    saveButton.textContent = "Generate Sale Order";
+                    break;
+                case "adjustment":
+                    saveButton.textContent = "Generate Adjustment Order";
+                    break;
+                default:
+                    saveButton.textContent = "Generate Purchase Order"; // Valor por defecto
+            }
+        }
+
+        // Evento para detectar cambios en la selección
+        orderType.addEventListener("change", updateButtonText);
+
+        // Llamar la función al cargar para establecer el valor inicial
+        updateButtonText();
+    });
+
+
     let items = []; // Almacena los productos/lotes seleccionados
 
     // Función para agregar un producto/lote

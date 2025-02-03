@@ -49,19 +49,27 @@ class SupplierController extends Controller
 
     public function update($id, Request $request)
     {
-        
-        $supplier = Supplier::find($id);
-        $attributes = $request->validate([
-            'name' => 'required|string|max:255',
-            'contact' => 'nullable|string|max:255',
-            'address' => 'nullable|string|max:255',
-            'phone' => 'nullable|string|max:15',
-            'email' => 'nullable|email|max:100',
-            'status' => 'required|in:active,inactive'
-        ]);
 
-        $supplier->update($attributes);
-        return view('suppliers.view', compact('supplier'));
+        try {
+            $supplier = Supplier::find($id);
+            $attributes = $request->validate([
+                'name' => 'required|string|max:255',
+                'contact' => 'nullable|string|max:255',
+                'address' => 'nullable|string|max:255',
+                'phone' => 'nullable|string|max:15',
+                'email' => 'nullable|email|max:100'
+            ]);
+    
+            $attributes['status'] = 'active';
+            $attributes['registered_by'] = Auth::user()->id;
+            
+            $supplier->update($attributes);
+            
+            return view('suppliers.view', compact('supplier'));
+        } catch (\Exception $e) {
+            print_r($e);die;
+        }
+
     }
 
 
