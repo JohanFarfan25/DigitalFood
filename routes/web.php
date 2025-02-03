@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\BatchController;
+use App\Http\Controllers\BillingController;
 use App\Http\Controllers\ChangePasswordController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\HomeController;
@@ -126,6 +127,11 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::get('/transaction-view/{id}', [TransactionController::class, 'view'])->name('transaction-view');
 	Route::post('/transaction-update/{id}', [TransactionController::class, 'update'])->name('transaction-update');
 	Route::get('/transaction-destroy/{id}', [TransactionController::class, 'destroy'])->name('transaction-destroy');
+	Route::get('/transaction-billing', [TransactionController::class, 'index'])->name('billing');
+	Route::post('/transaction-billing', [TransactionController::class, 'store'])->name('billing');
+	
+	Route::get('/billing', [BillingController::class, 'index'])->name('billing');
+	Route::post('/billing-store', [BillingController::class, 'store'])->name('billing-store');
 });
 
 

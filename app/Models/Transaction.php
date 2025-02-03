@@ -100,4 +100,9 @@ class Transaction extends Model
     {
         return $this->belongsTo(User::class, 'registered_by');
     }
+
+    public function items()
+    {
+        return $this->hasMany(Item::class);
+    }
 }
