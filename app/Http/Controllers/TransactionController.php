@@ -51,7 +51,8 @@ class TransactionController extends Controller
     public function view($id)
     {
         $transaction = Transaction::find($id);
-        return view('transactions.view', compact('transaction'));
+        $items = $transaction->items;
+        return view('transactions.view', compact('transaction','items'));
     }
 
     public function update($id, Request $request)
