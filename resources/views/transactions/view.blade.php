@@ -11,7 +11,7 @@
             <div class="col-auto my-auto">
                 <div class="h-100">
                     <h5 class="mt-2">
-                        Order {{$transaction->type}} information
+                        Order {{$transaction->type}} information Nº {{$transaction->id}}
                     </h5>
                 </div>
             </div>
