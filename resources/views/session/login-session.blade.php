@@ -1,6 +1,7 @@
 @extends('layouts.user_type.guest')
 
 @section('content')
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
 
 <main class="main-content  mt-0">
   <section>
@@ -42,8 +43,11 @@
                     @enderror
                   </div>
                   <label>Password</label>
-                  <div class="mb-3">
-                    <input type="password" class="form-control" name="password" id="password" placeholder="Password" aria-label="Password" aria-describedby="password-addon">
+                  <div class="mb-3 position-relative">
+                    <input type="password" class="form-control pe-5" name="password" id="password" placeholder="Password" aria-label="Password" aria-describedby="password-addon">
+                    <span class="position-absolute end-0 top-50 translate-middle-y me-3" onclick="togglePassword()" style="cursor: pointer;">
+                      <i id="eyeIcon" class="fas fa-eye"></i>
+                    </span>
                     @error('password')
                     <p class="text-danger text-xs mt-2">{{ $message }}</p>
                     @enderror
@@ -80,3 +84,21 @@
 </main>
 
 @endsection
+@section('scripts')
+<script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+<script>
+function togglePassword() {
+  var passwordInput = document.getElementById("password");
+  var eyeIcon = document.getElementById("eyeIcon");
+
+  if (passwordInput.type === "password") {
+    passwordInput.type = "text";
+    eyeIcon.classList.remove("fa-eye");
+    eyeIcon.classList.add("fa-eye-slash");
+  } else {
+    passwordInput.type = "password";
+    eyeIcon.classList.remove("fa-eye-slash");
+    eyeIcon.classList.add("fa-eye");
+  }
+}
+</script>
