@@ -28,6 +28,9 @@ class Customer extends Model
         'email',
         'status',
         'registered_by',
+        'document_type',
+        'document_number',
+        'customer_id',
     ];
 
     /**

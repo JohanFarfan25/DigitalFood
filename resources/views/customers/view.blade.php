@@ -27,10 +27,20 @@
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label for="customer-name" class="form-control-label">{{ __('Name') }}</label>
-                                <div class="@error('customer.name')border border-danger rounded-3 @enderror">
-                                    <input type="text" class="form-control" placeholder="Name" name="name" id="name" aria-label="Name" aria-describedby="name" value="{{ old('name', $customer->name) }}">
-                                    @error('name')
+                                <label for="document_type">Document Type</label>
+                                <select name="document_type" id="document_type" class="form-control" required>
+                                    <option value="">Select Document Type</option>
+                                    <option value="CC" {{ old('document_type', $customer->document_type ?? '') == 'CC' ? 'selected' : '' }}>CC</option>
+                                    <option value="NIT" {{ old('document_type', $customer->document_type ?? '') == 'NIT' ? 'selected' : '' }}>NIT</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="customer-document_number" class="form-control-label">{{ __('Document Number') }}</label>
+                                <div class="@error('customer.document_number')border border-danger rounded-3 @enderror">
+                                    <input type="text" class="form-control" placeholder="Document Number" name="document_number" id="document_number" aria-label="document_number" aria-describedby="document_number" value="{{ old('document_number', $customer->document_number) }}">
+                                    @error('document_number')
                                     <p class="text-danger text-xs mt-2">{{ $message }}</p>
                                     @enderror
                                 </div>
@@ -38,10 +48,10 @@
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label for="customer-contact" class="form-control-label">{{ __('Contact') }}</label>
-                                <div class="@error('customer.contact')border border-danger rounded-3 @enderror">
-                                    <input type="text" class="form-control" placeholder="Contact" name="contact" id="contact" aria-label="contact" aria-describedby="contact" value="{{ old('contact', $customer->contact) }}">
-                                    @error('contact')
+                                <label for="customer-name" class="form-control-label">{{ __('Name') }}</label>
+                                <div class="@error('customer.name')border border-danger rounded-3 @enderror">
+                                    <input type="text" class="form-control" placeholder="Name" name="name" id="name" aria-label="Name" aria-describedby="name" value="{{ old('name', $customer->name) }}">
+                                    @error('name')
                                     <p class="text-danger text-xs mt-2">{{ $message }}</p>
                                     @enderror
                                 </div>

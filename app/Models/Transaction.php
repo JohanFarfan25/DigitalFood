@@ -33,6 +33,7 @@ class Transaction extends Model
         'status',
         'registered_by',
         'transaction_status',
+        'reson_rejection',
     ];
 
     /**

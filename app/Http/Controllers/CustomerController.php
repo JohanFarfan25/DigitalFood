@@ -24,13 +24,14 @@ class CustomerController extends Controller
 
     public function create(Request $request)
     {
-
         $attributes = $request->validate([
             'name' => 'required|string|max:255',
             'address' => 'nullable|string|max:255',
             'phone' => 'nullable|string|max:15',
             'email' => 'nullable|email|max:100'
         ]);
+        $attributes['document_type'] = $request['document_type'];
+        $attributes['document_number'] = $request['document_number'];
         $attributes['status'] = 'active';
         $attributes['registered_by'] = Auth::user()->id;
         Customer::create($attributes);
@@ -47,6 +48,7 @@ class CustomerController extends Controller
 
     public function update($id, Request $request)
     {
+
         $customer = Customer::find($id);
         $attributes = $request->validate([
             'name' => 'required|string|max:255',
@@ -54,7 +56,8 @@ class CustomerController extends Controller
             'phone' => 'nullable|string|max:15',
             'email' => 'nullable|email|max:100'
         ]);
-
+        $attributes['document_type'] = $request['document_type'];
+        $attributes['document_number'] = $request['document_number'];
         $customer->update($attributes);
         return view('customers.view', compact('customer'));
     }

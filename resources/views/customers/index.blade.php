@@ -29,7 +29,7 @@
                             <input type="text" id="searchInput" class="form-control me-3" placeholder="Search customers..." aria-label="Search">
                         </div>
                         @role('Super Admin')
-                        <a href="/customer-create" class="btn bg-gradient-primary btn-sm mb-0" type="button">+&nbsp; New Supplier</a>
+                        <a href="/customer-create" class="btn bg-gradient-primary btn-sm mb-0" type="button">+&nbsp; New Customer</a>
                         @endrole
                     </div>
                 </div>

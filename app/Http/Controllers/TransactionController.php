@@ -26,7 +26,7 @@ class TransactionController extends Controller
         $warehouses = Warehouse::all();
         $suppliers = Supplier::all();
         $customers = Customer::all();
-        return view('transactions.create', compact('batches','products', 'warehouses', 'suppliers', 'customers'));
+        return view('transactions.create', compact('batches', 'products', 'warehouses', 'suppliers', 'customers'));
     }
 
     public function create(Request $request)
@@ -54,7 +54,7 @@ class TransactionController extends Controller
     {
         $transaction = Transaction::find($id);
         $items = $transaction->items;
-        return view('transactions.view', compact('transaction','items'));
+        return view('transactions.view', compact('transaction', 'items'));
     }
 
     public function update($id, Request $request)
@@ -86,5 +86,35 @@ class TransactionController extends Controller
         $transaction = Transaction::find($id);
         $transaction->delete();
         return redirect()->route('transactions-index');
+    }
+
+
+    public function paymentTransaction(Request $request)
+    {
+
+        $card = $request->card;
+        $dataPayer = $request->dataPayer;
+        $transactionId = $request->transactionId;
+        $description = '';
+        $ip = $request->ip();
+
+        $transaction = Transaction::find($transactionId);
+        $items = $transaction->items;
+        foreach ($items as $item) {
+            $description = $description .= ', ' . $item->product->name;
+        }
+
+        $payment = (new EpaycoController)->payment($transaction->customer, $card, $dataPayer, $transactionId, $description, $ip);
+
+        if ($payment->status == 'success') {
+            $transaction->transaction_status = 'completed';
+            $transaction->save();
+            return response()->json(['status' => 'success', 'message' => 'Transaction paid successfully']);
+        } else {
+            $transaction->transaction_status = 'failed';
+            $transaction->reson_rejection = $payment->message;
+            $transaction->save();
+            return response()->json(['status' => 'error', 'message' => 'Transaction failed']);
+        }
     }
 }

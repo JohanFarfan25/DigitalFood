@@ -38,6 +38,27 @@
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
+                                <label for="document_type">Document Type</label>
+                                <select name="document_type" id="document_type" class="form-control" required>
+                                    <option value="">Select Document Type</option>
+                                    <option value="CC">CC</option>
+                                    <option value="NIT">NIT</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="customer-document_number" class="form-control-label">{{ __('document_number') }}</label>
+                                <div class="@error('customer.document_number')border border-danger rounded-3 @enderror">
+                                    <input type="text" class="form-control" placeholder="document_number" name="document_number" id="document_number" aria-label="document_number" aria-describedby="document_number">
+                                    @error('document_number')
+                                    <p class="text-danger text-xs mt-2">{{ $message }}</p>
+                                    @enderror
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
                                 <label for="customer-address" class="form-control-label">{{ __('Address') }}</label>
                                 <div class="@error('customer.address')border border-danger rounded-3 @enderror">
                                     <input type="text" class="form-control" placeholder="address" name="address" id="address" aria-label="address" aria-describedby="address">
