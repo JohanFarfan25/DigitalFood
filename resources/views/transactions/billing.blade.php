@@ -193,6 +193,15 @@
         supplier.disabled = desable;
         customer.disabled = desable;
 
+        if (items?.length > 0) {
+            items.map((item) => {
+                if (item.productType != productType) {
+                    alert("Solo puede agregar un solo tipo de producto Lotes o Productos.");
+                    return;
+                }
+            });
+        }
+
         if (productType === 'batch') {
             // Cargar lotes
             batches.forEach(batch => {
