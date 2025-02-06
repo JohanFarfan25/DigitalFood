@@ -47,6 +47,7 @@ class BillingController extends Controller
             'quantity' =>  $request->quantity,
             'price' => $request->price,
             'status' => 'active',
+            'transaction_status' => 'pending',
             'registered_by' => Auth::user()->id,
         ]);
 
