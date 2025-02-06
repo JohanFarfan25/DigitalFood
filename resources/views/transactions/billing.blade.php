@@ -28,8 +28,8 @@
 
                     <!-- Selección de productos/lotes -->
                     <div class="card-body px-0 pt-0 pb-2 mt-3">
-                        <div class="table-responsive p-0">
-                            <h6>Select products/lots</h6>
+                        <div class="table-responsive p-1">
+                            <h6>Products Selected</h6>
                             <table class="table align-items-center mb-0">
                                 <thead>
                                     <tr>
