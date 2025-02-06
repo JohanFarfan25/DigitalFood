@@ -174,7 +174,7 @@
                         <li class="list-group-item border-0 d-flex p-4 mb-2 bg-gray-100 border-radius-lg justify-content-between">
                             <div class="d-flex flex-column w-50">
                                 @if(isset($item->batch->id) && !is_null($item->batch->id))
-                                <span class="mb-2 text-xs text-dark"><b>Batch: {{$item->batch->id}}</b>
+                                <span class="mb-2 text-xs text-dark"><b>Batch Nº:</b> {{$item->batch->id}}
                                     <span class="text-dark ms-sm-2">
                                         <p style="line-height: 0.0; font-size: 13px; margin-top:1.5rem;">Product Name: {{$item->batch->product->name}}</p>
                                         <p style="line-height: 1.1; font-size: 13px;">Total Quantity: {{$item->batch->total_quantity}}</p>
@@ -182,7 +182,7 @@
                                     </span>
                                 </span>
                                 @else
-                                <span class="mb-2 text-xs text-dark"><b>Product Name: {{$item->product->name}}</b>
+                                <span class="mb-2 text-xs text-dark"><b>Product Name: {{$item->product->name}} - Nº:</b> {{$item->product->id}}
                                     <span class="text-dark ms-sm-2">
                                         <p style="line-height: 0.0; font-size: 13px; margin-top:1.5rem;">Quantity: {{$item->quantity}}</p>
                                         <p style="line-height: 1.1; font-size: 13px;">Price V/U: {{$item->batch->product->sale_price}}</p>
