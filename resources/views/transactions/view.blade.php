@@ -114,7 +114,8 @@
                                 {{$transaction->customer->name}}
                             </div>
                         </li>
-                        <li class="list-group-item border-0 d-flex justify-content-between ps-0 mb-2 border-radius-lg">
+                        <hr>
+                        <li class="list-group-item border-0 d-flex justify-content-between ps-0 border-radius-lg">
                             <div class="d-flex align-items-center text-danger text-dark text-sm">
                                 @php
                                 // Definir la variable antes del switch
@@ -149,10 +150,10 @@
                                 </div>
                             </div>
                             <div class="d-flex align-items-center text-danger text-dark text-sm ">
-                                <div class="text-dark p-3">
+                                <div class="text-dark p-3  text-sm">
                                     <b>Total:</b>
                                 </div>
-                                <div class="ms-sm-2 text-success">
+                                <div class="d-flex align-items-center ms-sm-2 text-success text-sm">
                                     <b>${{$transaction->price}}</b>
                                 </div>
                             </div>
@@ -165,24 +166,30 @@
         <div class="col-md-7 mt-4">
             <div class="card">
                 <div class="card-header pb-0 px-3">
-                    <h6 class="mb-0">Items</h6>
+                    <h6 class="mb-0">( {{count($items)}} ) - Items</h6>
                 </div>
                 <div class="card-body pt-4 p-3">
                     <ul class="list-group">
                         @foreach ($items as $item)
                         <li class="list-group-item border-0 d-flex p-4 mb-2 bg-gray-100 border-radius-lg justify-content-between">
                             <div class="d-flex flex-column w-50">
-                                <span class="mb-2 text-xs text-dark"><b>Batch:</b>
-                                    <span class="text-dark ms-sm-2"><br>
-                                        {{'id: '.$item->batch->id.', Total Quantity: '.$item->batch->total_quantity.' ,location: '.$item->batch->location}}
+                                @if(isset($item->batch->id) && !is_null($item->batch->id))
+                                <span class="mb-2 text-xs text-dark"><b>Batch: {{$item->batch->id}}</b>
+                                    <span class="text-dark ms-sm-2">
+                                        <p style="line-height: 0.0; font-size: 13px; margin-top:1.5rem;">Product Name: {{$item->batch->product->name}}</p>
+                                        <p style="line-height: 1.1; font-size: 13px;">Total Quantity: {{$item->batch->total_quantity}}</p>
+                                        <p style="line-height: 0.0; font-size: 13px;">Location: {{$item->batch->location}}</p>
                                     </span>
                                 </span>
-                                <span class="mb-2 text-xs text-dark"><b>Product:</b>
-                                    <span class="text-dark ms-sm-2">{{$item->batch->product->name}}</span>
+                                @else
+                                <span class="mb-2 text-xs text-dark"><b>Product Name: {{$item->product->name}}</b>
+                                    <span class="text-dark ms-sm-2">
+                                        <p style="line-height: 0.0; font-size: 13px; margin-top:1.5rem;">Quantity: {{$item->quantity}}</p>
+                                        <p style="line-height: 1.1; font-size: 13px;">Price V/U: {{$item->batch->product->sale_price}}</p>
+                                        <p style="line-height: 0.0; font-size: 13px;">Location: {{$item->batch->location}}</p>
+                                    </span>
                                 </span>
-                                <span class="mb-2 text-xs text-dark"><b>Quantity:</b>
-                                    <span class="text-dark ms-sm-2">{{$item->quantity}}</span>
-                                </span>
+                                @endif
                             </div>
                             <div class="d-flex flex-column w-50">
                                 <span class="mb-2 text-m text-dark"><b>Price:</b>
