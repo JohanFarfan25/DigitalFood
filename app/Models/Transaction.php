@@ -32,6 +32,7 @@ class Transaction extends Model
         'customer_id',
         'status',
         'registered_by',
+        'transaction_status',
     ];
 
     /**

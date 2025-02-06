@@ -115,8 +115,38 @@
                             </div>
                         </li>
                         <li class="list-group-item border-0 d-flex justify-content-between ps-0 mb-2 border-radius-lg">
-                            <div class="d-flex align-items-center">
-                                <br>
+                            <div class="d-flex align-items-center text-danger text-dark text-sm">
+                                @php
+                                // Definir la variable antes del switch
+                                $colorTheme = "#82d616"; // Valor por defecto
+                                @endphp
+
+                                @switch ($transaction->transaction_status)
+                                @case('pending')
+                                @php $colorTheme = "#ff8d72"; @endphp
+                                @break
+                                @case('authorized')
+                                @php $colorTheme = "#82d616"; @endphp
+                                @break
+                                @case('failed')
+                                @php $colorTheme = "#ea0606"; @endphp
+                                @break
+                                @case('cancelled')
+                                @php $colorTheme = "#fd7e14"; @endphp
+                                @break
+                                @case('expired')
+                                @php $colorTheme = "#D63381"; @endphp
+                                @break
+                                @default
+                                @php $colorTheme = "#82d616"; @endphp
+                                @endswitch
+
+                                <div class="text-dark p-3">
+                                    <b>Status:</b>
+                                </div>
+                                <div class="ms-sm-2" style="color: {{ $colorTheme }};">
+                                    <b>{{ $transaction->transaction_status }}</b>
+                                </div>
                             </div>
                             <div class="d-flex align-items-center text-danger text-dark text-sm ">
                                 <div class="text-dark p-3">
