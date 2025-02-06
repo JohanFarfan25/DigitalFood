@@ -1,6 +1,7 @@
 @extends('layouts.user_type.auth')
 
 @section('content')
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
 <div class="container-fluid py-4">
     <div class="card">
         <div class="card-header pb-0">
@@ -176,32 +177,6 @@
         const productSelect = document.getElementById('product_id');
         productSelect.innerHTML = ''; // Limpiar el select
 
-        const type = document.getElementById('type');
-        const warehouse = document.getElementById('warehouse_id');
-        const supplier = document.getElementById('supplier_id');
-        const customer = document.getElementById('customer_id');
-        let desable = false;
-
-        if (!productType) {
-            desable = false;
-        } else {
-            desable = true;
-        }
-
-        type.disabled = desable;
-        warehouse.disabled = desable;
-        supplier.disabled = desable;
-        customer.disabled = desable;
-
-        if (items?.length > 0) {
-            items.map((item) => {
-                if (item.productType != productType) {
-                    alert("Solo puede agregar un solo tipo de producto Lotes o Productos.");
-                    return;
-                }
-            });
-        }
-
         if (productType === 'batch') {
             // Cargar lotes
             batches.forEach(batch => {
@@ -231,6 +206,7 @@
 
     // Función para agregar un producto/lote
     function addItem() {
+
         const productSelect = document.getElementById('product_id');
         const selectedProduct = productSelect.options[productSelect.selectedIndex];
         const productType = document.getElementById('type_product').value;
@@ -240,25 +216,25 @@
             return;
         }
 
-        items.map((item) => {
-            if (item.productType != productType) {
-                alert("Solo puede agregar un solo tipo de producto Lotes o Productos.");
-                return;
-            }
-        });
+        if (items?.length > 0) {
+            items.map((item) => {
+                if (item.productType != productType) {
+                    alert("Solo puede agregar un solo tipo de producto Lotes o Productos.");
+                    selectedProduct = '';
+                    return;
+                } else if (item.productId == productSelect.value) {
+                    alert("Este producto / lote ya fue agregado.");
+                    selectedProduct = '';
+                    return;
 
+                }
+            });
+        }
 
         const productId = selectedProduct.value;
         const productName = selectedProduct.text;
         const price = parseFloat(selectedProduct.getAttribute('data-price')) || 0;
         const quantity = 1;
-
-        // Verificar si el producto/lote ya está agregado
-        const existingItem = items.find(item => item.productId == productId && item.productType == productType);
-        if (existingItem) {
-            alert("Este producto/lote ya fue agregado.");
-            return;
-        }
 
         const item = {
             productType,
@@ -269,7 +245,9 @@
             total: quantity * price
         };
 
-        items.push(item);
+        if (selectedProduct) {
+            items.push(item);
+        }
         renderItemsTable();
         toggleSaveButton();
     }
@@ -302,7 +280,9 @@
                     <p class="text-xs font-weight-bold mb-0">$${item.subtotal.toFixed(2)}</p>
                 </td>
                 <td class="text-center">
-                    <button type="button" class="btn btn-danger btn-sm" onclick="removeItem(${index})">Eliminar</button>
+                    <button type="button" class="btn btn-danger btn-sm mb-2" onclick="removeItem(${index})">
+                        <i class="fa fa-trash"></i>
+                    </button>
                 </td>
             </tr>
         `;
