@@ -98,20 +98,28 @@
                             </select>
                         </div>
                     </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="type_product">Product Type</label>
+                            <select name="type_product" id="type_product" class="form-control" required onchange="updateProductSelect()">
+                                <option value="">Select Product Type</option>
+                                <option value="batch">Batch</option>
+                                <option value="unit">Unit</option>
+                            </select>
+                        </div>
+                    </div>
                     <div class="col-md-12">
                         <div class="form-group">
-                            <label for="batch_id">Lot/Product</label>
-                            <select name="batch_id" id="batch_id" class="form-control" required>
-                                @foreach ($batches as $batch)
-                                <option value="{{ $batch->id }}" data-price="{{ $batch->product->sale_price }}">{{ $batch->product->name.', Total Quantity: '.$batch->total_quantity }}</option>
-                                @endforeach
+                            <label for="product_id">Batch / Product</label>
+                            <select name="product_id" id="product_id" class="form-control">
+                                <!-- Aquí se cargarán dinámicamente los lotes o productos -->
                             </select>
                         </div>
                     </div>
                 </div>
                 <input type="hidden" name="items" id="items-data">
                 <div style="margin-bottom: 2rem; margin-top: 2rem;">
-                    <button type="button" class="btn btn-primary" onclick="addItem()">Agregar Producto/Lote</button>
+                    <button type="button" class="btn btn-primary" onclick="addItem()">Add Product / Batch</button>
                 </div>
 
                 <!-- Total y botón de pago -->
@@ -157,34 +165,96 @@
         updateButtonText();
     });
 
+    // Datos de lotes y productos (puedes pasarlos desde el controlador)
+    const batches = @json($batches);
+    const products = @json($products);
+
+    // Función para actualizar el select de productos/lotes
+    function updateProductSelect() {
+
+        const productType = document.getElementById('type_product').value;
+        const productSelect = document.getElementById('product_id');
+        productSelect.innerHTML = ''; // Limpiar el select
+
+        const type = document.getElementById('type');
+        const warehouse = document.getElementById('warehouse_id');
+        const supplier = document.getElementById('supplier_id');
+        const customer = document.getElementById('customer_id');
+        let desable = false;
+
+        if (!productType) {
+            desable = false;
+        } else {
+            desable = true;
+        }
+
+        type.disabled = desable;
+        warehouse.disabled = desable;
+        supplier.disabled = desable;
+        customer.disabled = desable;
+
+        if (productType === 'batch') {
+            // Cargar lotes
+            batches.forEach(batch => {
+                const option = document.createElement('option');
+                option.value = batch.id;
+                option.textContent = `${batch.product.name}, Total Quantity: ${batch.total_quantity}`;
+                option.setAttribute('data-price', batch.product.sale_price);
+                productSelect.appendChild(option);
+            });
+        } else if (productType === 'unit') {
+            // Cargar productos
+            products.forEach(product => {
+                const option = document.createElement('option');
+                option.value = product.id;
+                option.textContent = product.name;
+                option.setAttribute('data-price', product.sale_price);
+                productSelect.appendChild(option);
+            });
+        }
+    }
+
+    // Llamar a la función al cargar la página para establecer el valor inicial
+    document.addEventListener('DOMContentLoaded', updateProductSelect);
+
 
     let items = []; // Almacena los productos/lotes seleccionados
 
     // Función para agregar un producto/lote
     function addItem() {
-        const batchSelect = document.getElementById('batch_id');
-        const selectedBatch = batchSelect.options[batchSelect.selectedIndex];
+        const productSelect = document.getElementById('product_id');
+        const selectedProduct = productSelect.options[productSelect.selectedIndex];
+        const productType = document.getElementById('type_product').value;
 
-        if (!selectedBatch.value) {
+        if (!selectedProduct.value) {
             alert("Seleccione un lote/producto válido.");
             return;
         }
 
-        const batchId = selectedBatch.value;
-        const batchName = selectedBatch.text;
-        const price = parseFloat(selectedBatch.getAttribute('data-price')) || 0; // Obtener precio del lote
+        items.map((item) => {
+            if (item.productType != productType) {
+                alert("Solo puede agregar un solo tipo de producto Lotes o Productos.");
+                return;
+            }
+        });
+
+
+        const productId = selectedProduct.value;
+        const productName = selectedProduct.text;
+        const price = parseFloat(selectedProduct.getAttribute('data-price')) || 0;
         const quantity = 1;
 
-        // Verificar si el lote ya está agregado
-        const existingItem = items.find(item => item.batchId == batchId);
+        // Verificar si el producto/lote ya está agregado
+        const existingItem = items.find(item => item.productId == productId && item.productType == productType);
         if (existingItem) {
-            alert("Este lote ya fue agregado.");
+            alert("Este producto/lote ya fue agregado.");
             return;
         }
 
         const item = {
-            batchId,
-            batchName,
+            productType,
+            productId,
+            productName,
             quantity,
             price,
             total: quantity * price
@@ -208,10 +278,10 @@
             table.innerHTML += `
             <tr>
                 <td class="ps-4">
-                    <p class="text-xs font-weight-bold mb-0">${item.batchId}</p>
+                    <p class="text-xs font-weight-bold mb-0">${item.productId}</p>
                 </td>
                 <td class="text-left">
-                    <p class="text-xs font-weight-bold mb-0"><b>${item.batchName}</b></p>
+                    <p class="text-xs font-weight-bold mb-0"><b>${item.productName}</b></p>
                 </td>
                 <td class="text-center">
                     <p class="text-xs font-weight-bold mb-0"><input type="number" value="${item.quantity}" min="1" onchange="updateQuantity(${index}, this.value)" class="form-control"></p>

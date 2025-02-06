@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Batch;
 use App\Models\Customer;
+use App\Models\Product;
 use App\Models\Supplier;
 use App\Models\Transaction;
 use App\Models\Warehouse;
@@ -21,10 +22,11 @@ class TransactionController extends Controller
     public function viewCreate()
     {
         $batches = Batch::all();
+        $products = Product::all();
         $warehouses = Warehouse::all();
         $suppliers = Supplier::all();
         $customers = Customer::all();
-        return view('transactions.create', compact('batches', 'warehouses', 'suppliers', 'customers'));
+        return view('transactions.create', compact('batches','products', 'warehouses', 'suppliers', 'customers'));
     }
 
     public function create(Request $request)

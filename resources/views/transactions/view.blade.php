@@ -182,11 +182,11 @@
                                     </span>
                                 </span>
                                 @else
-                                <span class="mb-2 text-xs text-dark"><b>Product Name: {{$item->product->name}} - Nº:</b> {{$item->product->id}}
+                                <span class="mb-2 text-xs text-dark"><b>Product Name: </b>{{$item->product->name}}
                                     <span class="text-dark ms-sm-2">
-                                        <p style="line-height: 0.0; font-size: 13px; margin-top:1.5rem;">Quantity: {{$item->quantity}}</p>
-                                        <p style="line-height: 1.1; font-size: 13px;">Price V/U: {{$item->batch->product->sale_price}}</p>
-                                        <p style="line-height: 0.0; font-size: 13px;">Location: {{$item->batch->location}}</p>
+                                        <p style="line-height: 0.0; font-size: 13px; margin-top:1.5rem; ">Price V/U: {{$item->product->sale_price}}</p>
+                                        <p style="line-height: 1.1; font-size: 13px; ">Quantity: {{$item->quantity}}</p>
+                                        <p style="line-height: 0.0; font-size: 13px;">Location: {{$transaction->warehouse->name}}</p>
                                     </span>
                                 </span>
                                 @endif

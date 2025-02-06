@@ -18,11 +18,12 @@ class BillingController extends Controller
 
     public function index()
     {
-        $batches = Batch::all();
+        $batches = Batch::with('product')->get();
+        $products = Product::all();
         $warehouses = Warehouse::all();
         $suppliers = Supplier::all();
         $customers = Customer::all();
-        return view('transactions.billing', compact('batches', 'warehouses', 'suppliers', 'customers'));
+        return view('transactions.billing', compact('batches', 'products', 'warehouses', 'suppliers', 'customers'));
     }
 
     public function store(Request $request)
@@ -54,11 +55,18 @@ class BillingController extends Controller
         if (isset($transaction->id)) {
             // Guardar los productos/lotes asociados a la transacción
             foreach ($request->items as $item) {
-                $batch =  Batch::find($item['batchId']);
+                $productId = $item['productId'] ?? null;
+                $batchId = null;
+                if (isset($item['type-product']) == 'batch') {
+                    $batch =  Batch::find($item['productId']);
+                    $batchId = $item['productId'] ?? null;
+                    $productId = $batch->product->id ?? null;
+                }
+
                 Item::create([
                     'transaction_id' => $transaction->id,
-                    'batch_id' => $batch->id ?? $item['batchId'] ?? null,
-                    'product_id' => $batch->product->id ?? null,
+                    'batch_id' => $batchId,
+                    'product_id' => $productId,
                     'quantity' => $item['quantity'],
                     'price' => $item['subtotal'],
                     'registered_by' => Auth::user()->id,
