@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Batch;
 use App\Models\Customer;
+use App\Models\PaymentMethod;
 use App\Models\Product;
 use App\Models\Supplier;
 use App\Models\Transaction;
@@ -54,7 +55,8 @@ class TransactionController extends Controller
     {
         $transaction = Transaction::find($id);
         $items = $transaction->items;
-        return view('transactions.view', compact('transaction', 'items'));
+        $paymentmethod = $transaction->paymentmethod;
+        return view('transactions.view', compact('transaction', 'items', 'paymentmethod'));
     }
 
     public function update($id, Request $request)
@@ -88,9 +90,15 @@ class TransactionController extends Controller
         return redirect()->route('transactions-index');
     }
 
+    public function payment($transactionId)
+    {
+        return view('transactions.payment', compact('transactionId'));
+    }
+
 
     public function paymentTransaction(Request $request)
     {
+
 
         $card = $request->card;
         $dataPayer = $request->dataPayer;
@@ -104,17 +112,43 @@ class TransactionController extends Controller
             $description = $description .= ', ' . $item->product->name;
         }
 
-        $payment = (new EpaycoController)->payment($transaction->customer, $card, $dataPayer, $transactionId, $description, $ip);
+        $payment = (new EpaycoController)->payment($card, $dataPayer, $transaction, $description, $transaction->customer, $ip);
 
-        if ($payment->status == 'success') {
+        if (isset($payment->data->transaction->data->cod_respuesta) && $payment->data->transaction->data->cod_respuesta == 1) {
+
+            $transaction->external_ref = $payment->data->transaction->data->ref_payco ?? '';
+            $transaction->fact = $payment->data->transaction->data->factura ?? '';
+            $transaction->franchise = $payment->data->transaction->data->franquicia ?? '';
             $transaction->transaction_status = 'completed';
-            $transaction->save();
-            return response()->json(['status' => 'success', 'message' => 'Transaction paid successfully']);
+
+            $paymentmethod = PaymentMethod::create(
+                [
+                    'customer_id' => $transaction->customer_id,
+                    'account_type' => $payment->data->transaction->data->franquicia ?? '',
+                    'account_number' => '******' . substr($card['number'], -4) ?? '',
+                    'expiration_date' => $card['exp_month'] . '/' . $card['exp_year'],
+                    'status' => 'active',
+                ]
+            );
+            
+            $transaction->payment_method_id =  $paymentmethod->id;
         } else {
+            $message = 'Error en la transacción validar los datos';
+            if (isset($payment->data->transaction->data->cc_network_response->message)) {
+                $message = $payment->data->transaction->data->cc_network_response->message;
+            }
             $transaction->transaction_status = 'failed';
-            $transaction->reson_rejection = $payment->message;
-            $transaction->save();
-            return response()->json(['status' => 'error', 'message' => 'Transaction failed']);
+            $transaction->reson_rejection = $message;
         }
+
+        $transaction->save();
+        $transaction = Transaction::find($transactionId);
+        $items = $transaction->items;
+        $compact = compact('transaction', 'items');
+        if ($transaction->transaction_status == 'completed') {
+            $compact = compact('transaction', 'items', 'paymentmethod');
+        }
+
+        return view('transactions.view', $compact);
     }
 }

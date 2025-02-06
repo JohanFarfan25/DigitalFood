@@ -158,7 +158,25 @@
                                 </div>
                             </div>
                         </li>
+                        @if($transaction->transaction_status == 'pending')
+                        <a href="/payment-process/{{ $transaction->id }}" class="mx-3 mt-2" data-bs-toggle="tooltip" data-bs-original-title="Pay">
+                            <span class="badge badge-sm bg-gradient-success">Pay transaction</span>
+                        </a>
+                        @endif
                     </ul>
+                    <hr>
+                    @if(isset($paymentmethod))
+                    <div class="list-group mb-4">
+                        <span class="mb-2 text-xs text-dark"><b>Payment Method</b>
+                            <span class="text-dark ms-sm-2">
+                                <p style="line-height: 1.1; font-size: 13px; margin-top:1.5rem;">Franchise: {{$paymentmethod->account_type}}</p>
+                                <p style="line-height: 0.0; font-size: 13px;">Account Number: {{$paymentmethod->account_number}}</p>
+                                <p style="line-height: 0.0; font-size: 13px; margin-top:1.5rem;">Expiration Date: {{$paymentmethod->expiration_date}}</p>
+                                <p style="line-height: 0.0; font-size: 13px; margin-top:1.5rem;">Invoice: {{$transaction->fact}}</p>
+                            </span>
+                        </span>
+                    </div>
+                    @endif
                 </div>
             </div>
         </div>

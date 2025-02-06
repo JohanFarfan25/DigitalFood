@@ -132,6 +132,9 @@ Route::group(['middleware' => 'auth'], function () {
 	
 	Route::get('/billing', [BillingController::class, 'index'])->name('billing');
 	Route::post('/billing-store', [BillingController::class, 'store'])->name('billing-store');
+
+	Route::get('/payment-process/{transaction_id}', [TransactionController::class, 'payment'])->name('payment');
+	Route::post('/payment-pay', [TransactionController::class, 'paymentTransaction'])->name('payment.pay');
 });
 
 

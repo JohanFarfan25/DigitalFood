@@ -3,97 +3,68 @@
 namespace App\Http\Controllers;
 
 use Epayco\Epayco;
+use GuzzleHttp\Client;
 
 class EpaycoController extends Controller
 {
-    private $epayco;
+    private $token;
+    private $client;
+
+    const API_LOGUIN = 'https://apify.epayco.co/login';
+    const API_PAY = 'https://apify.epayco.co/payment/process';
 
     public function __construct()
     {
-        $this->epayco = new Epayco(array(
-            "apiKey" => "EPAYCO_PUBLIC_API_KEY",
-            "privateKey" => "EPAYCO_PRIVATE_API_KEY",
-            "lenguage" => "ES",
-            "test" => true
-        ));
+        $this->client = new Client();
+        $apiKey = env('PUBLIC_API_KEY_EPAYCO');
+        $privateKey = env('PRIVATE_API_KEY_EPAYCO');
+
+        $authorization = base64_encode("$apiKey:$privateKey");
+
+        $res = $this->client->post(SELF::API_LOGUIN, [
+            'headers' => [
+                'accept' => 'text/plain',
+                'Authorization' => 'Basic ' . $authorization
+            ],
+        ]);
+
+        $res = json_decode($res->getBody());
+        $this->token = $res->token;
     }
-    /**
-     * Display a listing of the resource.
-     */
-    public function createCustomer($dataPayer)
+
+
+    public function payment($card, $dataPayer, $transaction, $description, $customer, $ip)
     {
-        return $this->epayco->customer->create(array(
-            "token_card" => $this->epayco->id,
-            "name" => $dataPayer['name'],
-            "last_name" => $dataPayer['lastName'],
-            "email" => $dataPayer['email'],
-            "default" => true,
-            "city" => "Bogota",
-            "address" => $dataPayer['address'],
-            "phone" => $dataPayer['phone'],
-            "cell_phone" => $dataPayer['phone'],
-        ));
+
+        $body = [
+            'value' => strval($transaction->price ?? ''),
+            'currency' => strval('COP'),
+            'docType' => strval($dataPayer['documentType']),
+            'docNumber' => strval($dataPayer['documentNumber']),
+            'name' => strval($dataPayer['name']),
+            'lastName' => strval($dataPayer['lastName']),
+            'email' => strval($dataPayer['email']),
+            'cellPhone' => strval($dataPayer['phone']),
+            'phone' => strval($dataPayer['phone']),
+            'cardNumber' => $card['number'],
+            'cardExpYear' => $card['exp_year'],
+            'cardExpMonth' => $card['exp_month'],
+            'cardCvc' => $card['cvc'],
+            'dues' => strval(1),
+            // 'urlConfirmation' => $urlConfirmation,
+            // 'methodConfirmation' => 'POST',
+            'testMode' => true
+        ];
+
+        $res = $this->client->post(SELF::API_PAY, [
+            'body' => json_encode($body),
+            'headers' => [
+                'Authorization' =>  'Bearer ' . $this->token,
+                'content-type' => 'application/json',
+            ],
+        ]);
+        
+        return json_decode($res->getBody());
     }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function getCustomer($idClient, $customer)
-    {
-        $customerEpayco = $this->epayco->customer->get($idClient);
-        if (!$customerEpayco) {
-            return $this->createCustomer($customer);
-        }
-        return $customerEpayco;
-    }
-
-
-    public function createToken($card)
-    {
-        return $this->epayco->token->create(array(
-            "card[number]" => $card['number'],
-            "card[exp_year]" => $card['exp_year'],
-            "card[exp_month]" => $card['exp_month'],
-            "card[cvc]" => $card['cvc']
-        ));
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function pay($idClient, $tokenCard, $dataPayer, $transactionId, $description, $customer, $ip)
-    {
-        return $this->epayco->charge->create(array(
-
-            "token_card" => $tokenCard->id,
-            "customer_id" => $idClient,
-            "doc_type" => $dataPayer['documentType'],
-            "doc_number" => $dataPayer['documentNumber'],
-            "name" => $dataPayer['name'],
-            "last_name" => $dataPayer['lastName'],
-            "email" => $dataPayer['email'],
-            "value" => $dataPayer['value'],
-            "currency" => "COP",
-            "bill" => "OR-" . $transactionId,
-            "description" => $description,
-            "tax" => "16000",
-            "tax_base" => "100000",
-            "dues" => "12",
-            "address" => $customer->address,
-            "city" => "Medellín",
-            "country" => "CO",
-            "phone" => $customer->phone,
-            "ip" => $ip,
-            // "url_response" => "",
-            // "url_confirmation" => "",
-            // "method_confirmation" => "GET"
-        ));
-    }
-
-    public function payment($customer, $card, $dataPayer, $transactionId, $description, $ip)
-    {
-        $tokenCard = $this->createToken($card);
-        $idClient = $this->createCustomer($dataPayer)->data->customerId;
-        return $this->pay($idClient, $tokenCard, $dataPayer, $transactionId, $description, $customer, $ip);
-    }
+    
 }

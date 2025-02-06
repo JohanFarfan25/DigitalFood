@@ -34,6 +34,7 @@ class Transaction extends Model
         'registered_by',
         'transaction_status',
         'reson_rejection',
+        'expiration_date',
     ];
 
     /**
@@ -61,6 +62,7 @@ class Transaction extends Model
         'created_at',
         'updated_at',
         'deleted_at',
+        'expiration_date'
     ];
 
     /**
@@ -106,5 +108,10 @@ class Transaction extends Model
     public function items()
     {
         return $this->hasMany(Item::class);
+    }
+
+    public function paymentmethod()
+    {
+        return $this->belongsTo(PaymentMethod::class, 'payment_method_id');
     }
 }

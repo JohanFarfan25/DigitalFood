@@ -150,135 +150,135 @@
             </div>
         </div>
     </div>
-    <div>
-        @endsection
-        @section('scripts')
-        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-        <script>
-            document.addEventListener("DOMContentLoaded", function() {
-                const saveButton = document.getElementById("save");
-                const orderType = document.getElementById("type"); // Asegúrate de que este sea el ID del select
+</div>
+@endsection
+@section('scripts')
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const saveButton = document.getElementById("save");
+        const orderType = document.getElementById("type"); // Asegúrate de que este sea el ID del select
 
-                function updateButtonText() {
-                    switch (orderType.value) {
-                        case "purchase":
-                            saveButton.textContent = "Generate Purchase Order";
-                            break;
-                        case "sale":
-                            saveButton.textContent = "Generate Sale Order";
-                            break;
-                        case "adjustment":
-                            saveButton.textContent = "Generate Adjustment Order";
-                            break;
-                        default:
-                            saveButton.textContent = "Generate Purchase Order"; // Valor por defecto
-                    }
-                }
+        function updateButtonText() {
+            switch (orderType.value) {
+                case "purchase":
+                    saveButton.textContent = "Generate Purchase Order";
+                    break;
+                case "sale":
+                    saveButton.textContent = "Generate Sale Order";
+                    break;
+                case "adjustment":
+                    saveButton.textContent = "Generate Adjustment Order";
+                    break;
+                default:
+                    saveButton.textContent = "Generate Purchase Order"; // Valor por defecto
+            }
+        }
 
-                // Evento para detectar cambios en la selección
-                orderType.addEventListener("change", updateButtonText);
+        // Evento para detectar cambios en la selección
+        orderType.addEventListener("change", updateButtonText);
 
-                // Llamar la función al cargar para establecer el valor inicial
-                updateButtonText();
+        // Llamar la función al cargar para establecer el valor inicial
+        updateButtonText();
+    });
+
+    // Datos de lotes y productos (puedes pasarlos desde el controlador)
+    const batches = @json($batches);
+    const products = @json($products);
+
+    // Función para actualizar el select de productos/lotes
+    function updateProductSelect() {
+
+        const productType = document.getElementById('type_product').value;
+        const productSelect = document.getElementById('product_id');
+        productSelect.innerHTML = ''; // Limpiar el select
+
+        if (productType === 'batch') {
+            // Cargar lotes
+            batches.forEach(batch => {
+                const option = document.createElement('option');
+                option.value = batch.id;
+                option.textContent = `${batch.product.name}, Total Quantity: ${batch.total_quantity}`;
+                option.setAttribute('data-price', batch.product.sale_price);
+                productSelect.appendChild(option);
             });
+        } else if (productType === 'unit') {
+            // Cargar productos
+            products.forEach(product => {
+                const option = document.createElement('option');
+                option.value = product.id;
+                option.textContent = product.name;
+                option.setAttribute('data-price', product.sale_price);
+                productSelect.appendChild(option);
+            });
+        }
+    }
 
-            // Datos de lotes y productos (puedes pasarlos desde el controlador)
-            const batches = @json($batches);
-            const products = @json($products);
-
-            // Función para actualizar el select de productos/lotes
-            function updateProductSelect() {
-
-                const productType = document.getElementById('type_product').value;
-                const productSelect = document.getElementById('product_id');
-                productSelect.innerHTML = ''; // Limpiar el select
-
-                if (productType === 'batch') {
-                    // Cargar lotes
-                    batches.forEach(batch => {
-                        const option = document.createElement('option');
-                        option.value = batch.id;
-                        option.textContent = `${batch.product.name}, Total Quantity: ${batch.total_quantity}`;
-                        option.setAttribute('data-price', batch.product.sale_price);
-                        productSelect.appendChild(option);
-                    });
-                } else if (productType === 'unit') {
-                    // Cargar productos
-                    products.forEach(product => {
-                        const option = document.createElement('option');
-                        option.value = product.id;
-                        option.textContent = product.name;
-                        option.setAttribute('data-price', product.sale_price);
-                        productSelect.appendChild(option);
-                    });
-                }
-            }
-
-            // Llamar a la función al cargar la página para establecer el valor inicial
-            document.addEventListener('DOMContentLoaded', updateProductSelect);
+    // Llamar a la función al cargar la página para establecer el valor inicial
+    document.addEventListener('DOMContentLoaded', updateProductSelect);
 
 
-            let items = []; // Almacena los productos/lotes seleccionados
+    let items = []; // Almacena los productos/lotes seleccionados
 
-            // Función para agregar un producto/lote
-            function addItem() {
+    // Función para agregar un producto/lote
+    function addItem() {
 
-                const productSelect = document.getElementById('product_id');
-                const selectedProduct = productSelect.options[productSelect.selectedIndex];
-                const productType = document.getElementById('type_product').value;
+        const productSelect = document.getElementById('product_id');
+        const selectedProduct = productSelect.options[productSelect.selectedIndex];
+        const productType = document.getElementById('type_product').value;
 
-                if (!selectedProduct.value) {
-                    alert("Seleccione un lote/producto válido.");
+        if (!selectedProduct.value) {
+            alert("Seleccione un lote/producto válido.");
+            return;
+        }
+
+        if (items?.length > 0) {
+            items.map((item) => {
+                if (item.productType != productType) {
+                    alert("Solo puede agregar un solo tipo de producto Lotes o Productos.");
+                    selectedProduct = '';
                     return;
+                } else if (item.productId == productSelect.value) {
+                    alert("Este producto / lote ya fue agregado.");
+                    selectedProduct = '';
+                    return;
+
                 }
+            });
+        }
 
-                if (items?.length > 0) {
-                    items.map((item) => {
-                        if (item.productType != productType) {
-                            alert("Solo puede agregar un solo tipo de producto Lotes o Productos.");
-                            selectedProduct = '';
-                            return;
-                        } else if (item.productId == productSelect.value) {
-                            alert("Este producto / lote ya fue agregado.");
-                            selectedProduct = '';
-                            return;
+        const productId = selectedProduct.value;
+        const productName = selectedProduct.text;
+        const price = parseFloat(selectedProduct.getAttribute('data-price')) || 0;
+        const quantity = 1;
 
-                        }
-                    });
-                }
+        const item = {
+            productType,
+            productId,
+            productName,
+            quantity,
+            price,
+            total: quantity * price
+        };
 
-                const productId = selectedProduct.value;
-                const productName = selectedProduct.text;
-                const price = parseFloat(selectedProduct.getAttribute('data-price')) || 0;
-                const quantity = 1;
+        if (selectedProduct) {
+            items.push(item);
+        }
+        renderItemsTable();
+        toggleSaveButton();
+    }
 
-                const item = {
-                    productType,
-                    productId,
-                    productName,
-                    quantity,
-                    price,
-                    total: quantity * price
-                };
+    // Función para renderizar la tabla de productos/lotes
+    function renderItemsTable() {
+        const table = document.getElementById('items-table');
+        table.innerHTML = '';
+        let total = 0;
 
-                if (selectedProduct) {
-                    items.push(item);
-                }
-                renderItemsTable();
-                toggleSaveButton();
-            }
+        items.forEach((item, index) => {
+            item.subtotal = item.quantity * item.price;
+            total += item.subtotal;
 
-            // Función para renderizar la tabla de productos/lotes
-            function renderItemsTable() {
-                const table = document.getElementById('items-table');
-                table.innerHTML = '';
-                let total = 0;
-
-                items.forEach((item, index) => {
-                    item.subtotal = item.quantity * item.price;
-                    total += item.subtotal;
-
-                    table.innerHTML += `
+            table.innerHTML += `
             <tr>
                 <td class="ps-4">
                     <p class="text-xs font-weight-bold mb-0">${item.productId}</p>
@@ -302,115 +302,115 @@
                 </td>
             </tr>
         `;
-                });
+        });
 
-                document.getElementById('total-amount').textContent = `$${total.toFixed(2)}`;
+        document.getElementById('total-amount').textContent = `$${total.toFixed(2)}`;
+    }
+
+    // Función para actualizar la cantidad de un producto/lote
+    function updateQuantity(index, quantity) {
+        items[index].quantity = parseInt(quantity) || 1;
+        renderItemsTable();
+        toggleSaveButton();
+    }
+
+    // Función para eliminar un producto/lote
+    function removeItem(index) {
+        items.splice(index, 1);
+        renderItemsTable();
+        toggleSaveButton();
+    }
+
+    // Función para habilitar o deshabilitar el botón "Generate Purchase Order"
+    function toggleSaveButton() {
+        const saveButton = document.getElementById('save');
+        if (items.length > 0) {
+            saveButton.disabled = false;
+            saveButton.classList.remove('btn-secondary'); // Elimina la clase gris
+            saveButton.classList.add('btn-success'); // Vuelve a agregar el color original
+        } else {
+            saveButton.disabled = true;
+            saveButton.classList.remove('btn-success'); // Elimina la clase original
+            saveButton.classList.add('btn-secondary'); // Agrega la clase gris
+        }
+    }
+
+    // Función para enviar los datos al backend
+
+    $(document).ready(function() {
+        toggleSaveButton();
+        $(document).on("click", "#save", function(e) {
+            e.preventDefault(); // Evitar el envío normal del formulario
+
+            if (items.length === 0) {
+                alert("Debe agregar al menos un producto/lote.");
+                return;
             }
-
-            // Función para actualizar la cantidad de un producto/lote
-            function updateQuantity(index, quantity) {
-                items[index].quantity = parseInt(quantity) || 1;
-                renderItemsTable();
-                toggleSaveButton();
-            }
-
-            // Función para eliminar un producto/lote
-            function removeItem(index) {
-                items.splice(index, 1);
-                renderItemsTable();
-                toggleSaveButton();
-            }
-
-            // Función para habilitar o deshabilitar el botón "Generate Purchase Order"
-            function toggleSaveButton() {
-                const saveButton = document.getElementById('save');
-                if (items.length > 0) {
-                    saveButton.disabled = false;
-                    saveButton.classList.remove('btn-secondary'); // Elimina la clase gris
-                    saveButton.classList.add('btn-success'); // Vuelve a agregar el color original
-                } else {
-                    saveButton.disabled = true;
-                    saveButton.classList.remove('btn-success'); // Elimina la clase original
-                    saveButton.classList.add('btn-secondary'); // Agrega la clase gris
-                }
-            }
-
-            // Función para enviar los datos al backend
-
-            $(document).ready(function() {
-                toggleSaveButton();
-                $(document).on("click", "#save", function(e) {
-                    e.preventDefault(); // Evitar el envío normal del formulario
-
-                    if (items.length === 0) {
-                        alert("Debe agregar al menos un producto/lote.");
-                        return;
-                    }
-                    let totalttc = 0;
-                    items.forEach((item, index) => {
-                        item.subtotal = item.quantity * item.price;
-                        totalttc += item.subtotal;
-                    });
-
-                    const formData = new FormData(document.getElementById("checkout-form"));
-                    formData.append("items", JSON.stringify(items));
-
-                    fetch('/billing-store', {
-                            method: "POST",
-                            body: JSON.stringify({
-                                items: items,
-                                type: formData.get("type"),
-                                date: formData.get("date"),
-                                warehouse_id: formData.get("warehouse_id"),
-                                supplier_id: formData.get("supplier_id"),
-                                customer_id: formData.get("customer_id"),
-                                price: totalttc,
-                                quantity: items.length ?? 0,
-                            }),
-                            headers: {
-                                "X-CSRF-TOKEN": document.querySelector('input[name="_token"]').value,
-                                "Content-Type": "application/json"
-                            }
-                        })
-                        .then(response => response.json())
-                        .then(data => {
-                            window.location.href = "/transactions";
-                        })
-                        .catch(error => console.error("Error:", error));
-                });
+            let totalttc = 0;
+            items.forEach((item, index) => {
+                item.subtotal = item.quantity * item.price;
+                totalttc += item.subtotal;
             });
 
+            const formData = new FormData(document.getElementById("checkout-form"));
+            formData.append("items", JSON.stringify(items));
+
+            fetch('/billing-store', {
+                    method: "POST",
+                    body: JSON.stringify({
+                        items: items,
+                        type: formData.get("type"),
+                        date: formData.get("date"),
+                        warehouse_id: formData.get("warehouse_id"),
+                        supplier_id: formData.get("supplier_id"),
+                        customer_id: formData.get("customer_id"),
+                        price: totalttc,
+                        quantity: items.length ?? 0,
+                    }),
+                    headers: {
+                        "X-CSRF-TOKEN": document.querySelector('input[name="_token"]').value,
+                        "Content-Type": "application/json"
+                    }
+                })
+                .then(response => response.json())
+                .then(data => {
+                    window.location.href = "/transactions";
+                })
+                .catch(error => console.error("Error:", error));
+        });
+    });
 
 
-            // Función para procesar el pago con Epayco
-            function processPayment() {
-                const total = parseFloat(document.getElementById('total-amount').textContent.replace('$', ''));
-                if (total <= 0) {
-                    alert('Agregue productos/lotes para continuar.');
-                    return;
-                }
 
-                // Integración con Epayco
-                const handler = ePayco.checkout.configure({
-                    key: 'TU_CLAVE_PÚBLICA_DE_EPAYCO',
-                    test: true // Cambiar a false en producción
-                });
+    // Función para procesar el pago con Epayco
+    function processPayment() {
+        const total = parseFloat(document.getElementById('total-amount').textContent.replace('$', ''));
+        if (total <= 0) {
+            alert('Agregue productos/lotes para continuar.');
+            return;
+        }
 
-                const paymentData = {
-                    name: 'Compra en Digital Food',
-                    description: 'Pago de productos/lotes',
-                    invoice: 'INV-' + Date.now(),
-                    currency: 'cop',
-                    amount: total,
-                    tax_base: '0',
-                    tax: '0',
-                    country: 'co',
-                    lang: 'es',
-                    external: 'false',
-                    confirmation: 'https://tudominio.com/confirmacion',
-                    response: 'https://tudominio.com/respuesta',
-                };
+        // Integración con Epayco
+        const handler = ePayco.checkout.configure({
+            key: 'TU_CLAVE_PÚBLICA_DE_EPAYCO',
+            test: true // Cambiar a false en producción
+        });
 
-                handler.open(paymentData);
-            }
-        </script>
+        const paymentData = {
+            name: 'Compra en Digital Food',
+            description: 'Pago de productos/lotes',
+            invoice: 'INV-' + Date.now(),
+            currency: 'cop',
+            amount: total,
+            tax_base: '0',
+            tax: '0',
+            country: 'co',
+            lang: 'es',
+            external: 'false',
+            confirmation: 'https://tudominio.com/confirmacion',
+            response: 'https://tudominio.com/respuesta',
+        };
+
+        handler.open(paymentData);
+    }
+</script>
