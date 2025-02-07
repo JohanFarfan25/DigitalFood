@@ -84,7 +84,7 @@
                                 <div class="col-md-3">
                                     <label for="cvc" class="form-label">CVC</label>
                                     <input type="text" class="form-control" id="cvc" name="card[cvc]" placeholder="000" required
-                                    maxlength="3" pattern="\d{3}" oninput="this.value = this.value.replace(/\D/g, '')">
+                                        maxlength="3" pattern="\d{3}" oninput="this.value = this.value.replace(/\D/g, '')">
                                 </div>
                             </div>
 
@@ -136,11 +136,43 @@
                     <input type="hidden" name="transactionId" value="{{ $transactionId ?? '' }}">
 
                     <div class="text-center mt-4">
-                        <button type="submit" class="btn btn-success btn-lg">
+                        <button type="submit" class="btn btn-success btn-lg" id="pay-transaction">
                             <i class="fa fa-credit-card"></i> Pay
                         </button>
                     </div>
                 </form>
+            </div>
+        </div>
+    </div>
+    <!-- Modal -->
+    <div class="modal fade" id="paymentModal" tabindex="-1" aria-labelledby="paymentModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="paymentModalLabel">Processing Payment</h5>
+                </div>
+                <div class="modal-body">
+                    Please wait while we process your transaction...
+                </div>
+                <div class="modal-footer">
+                    <svg width="140" height="70" viewBox="0 0 250 100" xmlns="http://www.w3.org/2000/svg">
+                        <text x="10" y="40" font-family="Arial, sans-serif" font-size="32" font-weight="bold" fill="#0dcaf0">
+                            Digital
+                        </text>
+                        <text x="110" y="40" font-family="Arial, sans-serif" font-size="32" font-weight="bold" fill="#d63384">
+                            Food
+                        </text>
+                        <text x="10" y="70" font-family="Arial, sans-serif" font-size="16" fill="#555">
+                            Optimize, control and grow
+                        </text>
+                        <circle cx="100" cy="30" r="5" fill="#596cff" />
+                        <rect x="102" y="25" width="6" height="10" fill="#596cff" />
+                        <circle cx="180" cy="30" r="15" fill="none" stroke="#00cc66" stroke-width="3" />
+                        <line x1="172" y1="22" x2="188" y2="38" stroke="#00cc66" stroke-width="3" />
+                        <line x1="188" y1="22" x2="172" y2="38" stroke="#00cc66" stroke-width="3" />
+                    </svg>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="btn-close">Close</button>
+                </div>
             </div>
         </div>
     </div>
@@ -151,7 +183,26 @@
 @section('scripts')
 <!-- JavaScript para la Tarjeta Dinámica -->
 <script>
+    //Credit Card
     document.addEventListener('DOMContentLoaded', function() {
+
+        // Validar que todos los campos estén llenos
+        const inputs = document.querySelectorAll("#name, #lastName, #documentType, #documentNumber, #email, #phone");
+        const payButton = document.getElementById("pay-transaction");
+
+        function validateInputs() {
+            let allFilled = Array.from(inputs).every(input => input.value.trim() !== "");
+            payButton.disabled = !allFilled;
+        }
+
+        inputs.forEach(input => {
+            input.addEventListener("input", validateInputs);
+        });
+
+        // Asegurarse de que el botón comience deshabilitado
+        validateInputs();
+
+
         const cardNumberInput = document.getElementById('cardNumber');
         const expMonthInput = document.getElementById('expMonth');
         const expYearInput = document.getElementById('expYear');
@@ -193,6 +244,19 @@
             const expYear = expYearInput.value;
             cardExpiryDisplay.textContent = `${expMonth || '●●'}/${expYear || '●●'}`;
         });
+
+        //Modal de pago
+        const payTransactionBtn = document.getElementById("pay-transaction");
+        const btnClose = document.getElementById("btn-close");
+
+        payTransactionBtn.addEventListener("click", function(event) {
+            const modal = new bootstrap.Modal(document.getElementById("paymentModal"));
+            modal.show();
+            payTransactionBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Loading...';
+            btnClose.disabled = true;
+            btnClose.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Loading...';
+        });
+
     });
 </script>
 
