@@ -26,27 +26,44 @@
                 <form id="payment-form" method="POST" action="{{ route('payment.pay') }}">
                     @csrf
                     <!-- Datos de la tarjeta -->
-                    <div class="col-md-12">
+                    <div class="col-md-12" style="margin-left: 30px;">
                         <h4>Card Information</h4>
                         <!-- Tarjeta Dinámica -->
                         <div class="row">
                             <div class="col-md-6 mt-4">
                                 <div class="credit-card mb-4">
                                     <div class="card-front">
-                                        <div class="card-logo">INSTALLMENTS</div>
+                                        <div class="card-logo" style="text-align: right;">
+                                            <svg width="140" height="70" viewBox="0 0 250 100" xmlns="http://www.w3.org/2000/svg">
+                                                <text x="10" y="40" font-family="Arial, sans-serif" font-size="32" font-weight="bold" fill="#0dcaf0">
+                                                    Digital
+                                                </text>
+                                                <text x="110" y="40" font-family="Arial, sans-serif" font-size="32" font-weight="bold" fill="#d63384">
+                                                    Food
+                                                </text>
+                                                <text x="10" y="70" font-family="Arial, sans-serif" font-size="16" fill="#555">
+                                                    Optimize, control and grow
+                                                </text>
+                                                <circle cx="100" cy="30" r="5" fill="#596cff" />
+                                                <rect x="102" y="25" width="6" height="10" fill="#596cff" />
+                                                <circle cx="180" cy="30" r="15" fill="none" stroke="#00cc66" stroke-width="3" />
+                                                <line x1="172" y1="22" x2="188" y2="38" stroke="#00cc66" stroke-width="3" />
+                                                <line x1="188" y1="22" x2="172" y2="38" stroke="#00cc66" stroke-width="3" />
+                                            </svg>
+                                        </div>
                                         <div class="card-number" id="card-number-display">●●●● ●●●● ●●●● ●●●●</div>
                                         <div class="card-holder">
                                             <label>NAME AND SURNAME OF THE OWNER</label>
                                             <div id="card-holder-display">******</div>
                                         </div>
                                         <div class="card-expiry">
-                                            <label>CVC</label>
+                                            <label>Expiration date</label>
                                             <div id="card-expiry-display">●●/●●</div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-6">
+                            <div class="col-md-4">
                                 <div class="mb-3">
                                     <label for="cardNumber" class="form-label">Card Number</label>
                                     <input type="number" class="form-control" id="cardNumber" name="card[number]" placeholder="0000000000" required>
@@ -54,17 +71,20 @@
                                 <div class="row">
                                     <div class="col-md-6">
                                         <label for="expMonth" class="form-label">Expiration Month</label>
-                                        <input type="text" class="form-control" id="expMonth" name="card[exp_month]" placeholder="00" required>
+                                        <input type="text" class="form-control" id="expMonth" name="card[exp_month]" placeholder="00" required
+                                            maxlength="2" pattern="\d{2}" oninput="this.value = this.value.replace(/\D/g, '')">
                                     </div>
                                     <div class="col-md-6">
-                                        <label for="expYear" class="form-label">Expriration Year</label>
-                                        <input type="text" class="form-control" id="expYear" name="card[exp_year]" placeholder="0000" required>
+                                        <label for="expYear" class="form-label">Expiration Year</label>
+                                        <input type="text" class="form-control" id="expYear" name="card[exp_year]" placeholder="0000" required
+                                            maxlength="4" pattern="\d{4}" oninput="this.value = this.value.replace(/\D/g, '')">
                                     </div>
                                 </div>
 
                                 <div class="col-md-3">
                                     <label for="cvc" class="form-label">CVC</label>
-                                    <input type="text" class="form-control" id="cvc" name="card[cvc]" placeholder="000" required>
+                                    <input type="text" class="form-control" id="cvc" name="card[cvc]" placeholder="000" required
+                                    maxlength="3" pattern="\d{3}" oninput="this.value = this.value.replace(/\D/g, '')">
                                 </div>
                             </div>
 
@@ -126,6 +146,9 @@
     </div>
 </div>
 
+@endsection
+
+@section('scripts')
 <!-- JavaScript para la Tarjeta Dinámica -->
 <script>
     document.addEventListener('DOMContentLoaded', function() {
@@ -173,15 +196,16 @@
     });
 </script>
 
+@section('srtyles')
 <!-- Estilos para la Tarjeta Dinámica -->
 <style>
     .credit-card {
-        background: linear-gradient(135deg, #4a90e2, #2c3e50);
+        background: linear-gradient(800deg, #ff0080, #ffff);
         color: white;
         border-radius: 10px;
         padding: 20px;
         margin-bottom: 20px;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
     }
 
     .card-front {
@@ -211,5 +235,3 @@
         opacity: 0.8;
     }
 </style>
-
-@endsection
