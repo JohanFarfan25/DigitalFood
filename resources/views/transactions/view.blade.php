@@ -158,6 +158,9 @@
                                 </div>
                             </div>
                         </li>
+                        @if($transaction->transaction_status != 'completed' && $transaction->transaction_status != 'pending')
+                        <p style="font-size:80%; text-align:center; color:red;">{{$transaction->reson_rejection}}</p>
+                        @endif
                         @if($transaction->transaction_status != 'completed')
                         <a href="/payment-process/{{ $transaction->id }}" class="mx-3 mt-2" data-bs-toggle="tooltip" data-bs-original-title="Pay">
                             <span class="badge badge-sm bg-gradient-success">Pay transaction</span>

@@ -54,6 +54,10 @@ class TransactionController extends Controller
     public function view($id)
     {
         $transaction = Transaction::find($id);
+        if (!is_null($transaction->reson_rejection) && json_decode($transaction->reson_rejection)) {
+            $reson_rejection = json_decode($transaction->reson_rejection);
+            $transaction->reson_rejection = isset($reson_rejection[0]->errorMessage) ? '¡'. $reson_rejection[0]->errorMessage.' !' : $transaction->reson_rejection . '!';
+        }
         $items = $transaction->items;
         $paymentmethod = $transaction->paymentmethod;
         return view('transactions.view', compact('transaction', 'items', 'paymentmethod'));
@@ -143,7 +147,7 @@ class TransactionController extends Controller
             $message = 'Error en la transacción validar los datos';
             if (isset($payment->data->transaction->data->cc_network_response->message)) {
                 $message = $payment->data->transaction->data->cc_network_response->message;
-            }elseif(!$payment->success){
+            } elseif (!$payment->success) {
                 $message = isset($payment->data->error->errors) ? json_encode($payment->data->error->errors) : 'Error en la transacción validar los datos';
             }
             $transaction->transaction_status = 'failed';
