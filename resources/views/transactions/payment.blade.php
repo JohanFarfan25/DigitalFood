@@ -134,8 +134,9 @@
 
                     <!-- Datos adicionales -->
                     <input type="hidden" name="transactionId" value="{{ $transactionId ?? '' }}">
-
+                    
                     <div class="text-center mt-4">
+                        <img src="https://369969691f476073508a-60bf0867add971908d4f26a64519c2aa.ssl.cf5.rackcdn.com/btns/epayco/pagos_procesados_por_epayco_260px.png" width="300" alt="">
                         <button type="submit" class="btn btn-success btn-lg" id="pay-transaction">
                             <i class="fa fa-credit-card"></i> Pay
                         </button>
