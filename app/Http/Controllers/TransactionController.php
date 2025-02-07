@@ -92,7 +92,9 @@ class TransactionController extends Controller
 
     public function payment($transactionId)
     {
-        return view('transactions.payment', compact('transactionId'));
+        $transaction = Transaction::find($transactionId);
+        $items = $transaction->items;
+        return view('transactions.payment', compact('transactionId', 'transaction','items'));
     }
 
 
@@ -130,7 +132,7 @@ class TransactionController extends Controller
                     'status' => 'active',
                 ]
             );
-            
+
             $transaction->payment_method_id =  $paymentmethod->id;
         } else {
             $message = 'Error en la transacción validar los datos';

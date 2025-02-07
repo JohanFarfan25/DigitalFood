@@ -25,74 +25,99 @@
             <div class="card-body">
                 <form id="payment-form" method="POST" action="{{ route('payment.pay') }}">
                     @csrf
-                    <div class="row">
-                        <!-- Información del pagador -->
-                        <div class="col-md-6">
-                            <h4>Datos del Pagador</h4>
-                            <div class="mb-3">
-                                <label for="name" class="form-label">Nombre</label>
+                    <!-- Datos de la tarjeta -->
+                    <div class="col-md-12">
+                        <h4>Card Information</h4>
+                        <!-- Tarjeta Dinámica -->
+                        <div class="row">
+                            <div class="col-md-6 mt-4">
+                                <div class="credit-card mb-4">
+                                    <div class="card-front">
+                                        <div class="card-logo">INSTALLMENTS</div>
+                                        <div class="card-number" id="card-number-display">●●●● ●●●● ●●●● ●●●●</div>
+                                        <div class="card-holder">
+                                            <label>NAME AND SURNAME OF THE OWNER</label>
+                                            <div id="card-holder-display">******</div>
+                                        </div>
+                                        <div class="card-expiry">
+                                            <label>CVC</label>
+                                            <div id="card-expiry-display">●●/●●</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label for="cardNumber" class="form-label">Card Number</label>
+                                    <input type="number" class="form-control" id="cardNumber" name="card[number]" placeholder="0000000000" required>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <label for="expMonth" class="form-label">Expiration Month</label>
+                                        <input type="text" class="form-control" id="expMonth" name="card[exp_month]" placeholder="00" required>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="expYear" class="form-label">Expriration Year</label>
+                                        <input type="text" class="form-control" id="expYear" name="card[exp_year]" placeholder="0000" required>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-3">
+                                    <label for="cvc" class="form-label">CVC</label>
+                                    <input type="text" class="form-control" id="cvc" name="card[cvc]" placeholder="000" required>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <!-- Información del pagador -->
+                    <div class="col-md-12 mt-4">
+                        <h4>Payer Data</h4>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label for="name" class="form-label">Name</label>
                                 <input type="text" class="form-control" id="name" name="dataPayer[name]" required>
                             </div>
-                            <div class="mb-3">
-                                <label for="lastName" class="form-label">Apellido</label>
+                            <div class="col-md-6">
+                                <label for="lastName" class="form-label">Last Name</label>
                                 <input type="text" class="form-control" id="lastName" name="dataPayer[lastName]" required>
                             </div>
-                            <div class="mb-3">
-                                <label for="email" class="form-label">Correo Electrónico</label>
-                                <input type="email" class="form-control" id="email" name="dataPayer[email]" required>
-                            </div>
-                            <div class="mb-3">
-                                <label for="documentType" class="form-label">Tipo de Documento</label>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label for="documentType" class="form-label">Document Type</label>
                                 <select class="form-control" id="documentType" name="dataPayer[documentType]" required>
-                                    <option value="CC">Cédula</option>
-                                    <option value="CE">Cédula Extranjera</option>
+                                    <option value="">Selected Document Type</option>
+                                    <option value="CC">CC</option>
                                     <option value="NIT">NIT</option>
-                                    <option value="TI">Tarjeta de Identidad</option>
-                                    <option value="PP">Pasaporte</option>
                                 </select>
                             </div>
-                            <div class="mb-3">
-                                <label for="documentNumber" class="form-label">Número de Documento</label>
+                            <div class="col-md-6">
+                                <label for="documentNumber" class="form-label">Document Number</label>
                                 <input type="text" class="form-control" id="documentNumber" name="dataPayer[documentNumber]" required>
                             </div>
-                            <div class="mb-3">
-                                <label for="phone" class="form-label">Teléfono</label>
-                                <input type="text" class="form-control" id="phone" name="dataPayer[phone]" required>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label for="email" class="form-label">Email</label>
+                                <input type="email" class="form-control" id="email" name="dataPayer[email]" required>
                             </div>
-                            <div class="mb-3">
-                                <label for="address" class="form-label">Dirección</label>
-                                <input type="text" class="form-control" id="address" name="dataPayer[address]" required>
+
+                            <div class="col-md-6">
+                                <label for="phone" class="form-label">Phone</label>
+                                <input type="text" class="form-control" id="phone" name="dataPayer[phone]" required>
                             </div>
                         </div>
 
-                        <!-- Datos de la tarjeta -->
-                        <div class="col-md-6">
-                            <h4>Información de la Tarjeta</h4>
-                            <div class="mb-3">
-                                <label for="cardNumber" class="form-label">Número de Tarjeta</label>
-                                <input type="text" class="form-control" id="cardNumber" name="card[number]" required>
-                            </div>
-                            <div class="mb-3">
-                                <label for="expMonth" class="form-label">Mes de Expiración</label>
-                                <input type="text" class="form-control" id="expMonth" name="card[exp_month]" required>
-                            </div>
-                            <div class="mb-3">
-                                <label for="expYear" class="form-label">Año de Expiración</label>
-                                <input type="text" class="form-control" id="expYear" name="card[exp_year]" required>
-                            </div>
-                            <div class="mb-3">
-                                <label for="cvc" class="form-label">CVC</label>
-                                <input type="text" class="form-control" id="cvc" name="card[cvc]" required>
-                            </div>
-                        </div>
                     </div>
+
 
                     <!-- Datos adicionales -->
                     <input type="hidden" name="transactionId" value="{{ $transactionId ?? '' }}">
 
                     <div class="text-center mt-4">
                         <button type="submit" class="btn btn-success btn-lg">
-                            <i class="fa fa-credit-card"></i> Pagar
+                            <i class="fa fa-credit-card"></i> Pay
                         </button>
                     </div>
                 </form>
@@ -100,4 +125,91 @@
         </div>
     </div>
 </div>
+
+<!-- JavaScript para la Tarjeta Dinámica -->
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const cardNumberInput = document.getElementById('cardNumber');
+        const expMonthInput = document.getElementById('expMonth');
+        const expYearInput = document.getElementById('expYear');
+        const cvcInput = document.getElementById('cvc');
+
+        const cardNumberDisplay = document.getElementById('card-number-display');
+        const cardHolderDisplay = document.getElementById('card-holder-display');
+        const cardExpiryDisplay = document.getElementById('card-expiry-display');
+
+        // Actualizar número de tarjeta
+        cardNumberInput.addEventListener('input', function() {
+            let value = cardNumberInput.value.replace(/\s/g, ''); // Eliminar espacios
+            value = value.replace(/(\d{4})/g, '$1 ').trim(); // Formatear en grupos de 4
+            cardNumberDisplay.textContent = value || '●●●● ●●●● ●●●● ●●●●';
+        });
+
+        // Actualizar nombre del titular
+        document.getElementById('name').addEventListener('input', function() {
+            const name = document.getElementById('name').value;
+            const lastName = document.getElementById('lastName').value;
+            cardHolderDisplay.textContent = `${name} ${lastName}` || 'NOMBRE';
+        });
+
+        document.getElementById('lastName').addEventListener('input', function() {
+            const name = document.getElementById('name').value;
+            const lastName = document.getElementById('lastName').value;
+            cardHolderDisplay.textContent = `${name} ${lastName}` || 'NOMBRE';
+        });
+
+        // Actualizar fecha de expiración
+        expMonthInput.addEventListener('input', function() {
+            const expMonth = expMonthInput.value;
+            const expYear = expYearInput.value;
+            cardExpiryDisplay.textContent = `${expMonth || '●●'}/${expYear || '●●'}`;
+        });
+
+        expYearInput.addEventListener('input', function() {
+            const expMonth = expMonthInput.value;
+            const expYear = expYearInput.value;
+            cardExpiryDisplay.textContent = `${expMonth || '●●'}/${expYear || '●●'}`;
+        });
+    });
+</script>
+
+<!-- Estilos para la Tarjeta Dinámica -->
+<style>
+    .credit-card {
+        background: linear-gradient(135deg, #4a90e2, #2c3e50);
+        color: white;
+        border-radius: 10px;
+        padding: 20px;
+        margin-bottom: 20px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    .card-front {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .card-logo {
+        font-size: 18px;
+        font-weight: bold;
+    }
+
+    .card-number {
+        font-size: 24px;
+        letter-spacing: 2px;
+    }
+
+    .card-holder,
+    .card-expiry {
+        font-size: 14px;
+    }
+
+    .card-holder label,
+    .card-expiry label {
+        font-size: 12px;
+        opacity: 0.8;
+    }
+</style>
+
 @endsection
