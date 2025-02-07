@@ -94,7 +94,7 @@ class TransactionController extends Controller
     {
         $transaction = Transaction::find($transactionId);
         $items = $transaction->items;
-        return view('transactions.payment', compact('transactionId', 'transaction','items'));
+        return view('transactions.payment', compact('transactionId', 'transaction', 'items'));
     }
 
 
@@ -105,13 +105,18 @@ class TransactionController extends Controller
         $card = $request->card;
         $dataPayer = $request->dataPayer;
         $transactionId = $request->transactionId;
-        $description = '';
+        $description = 'Compra de productos: ';
         $ip = $request->ip();
 
         $transaction = Transaction::find($transactionId);
+
         $items = $transaction->items;
         foreach ($items as $item) {
-            $description = $description .= ', ' . $item->product->name;
+            if (isset($item->product->id)) {
+                $description = $description .= ', (' . $item->product->name . ')-Cantidad: ' . $item->quantity . '-V/u: ' . $item->price;
+            } else {
+                $description = $description .= ', (' . $item->batch->product->name . ')-Valor del lote: ' . $item->batch->total_quantity;
+            }
         }
 
         $payment = (new EpaycoController)->payment($card, $dataPayer, $transaction, $description, $transaction->customer, $ip);
@@ -138,6 +143,8 @@ class TransactionController extends Controller
             $message = 'Error en la transacción validar los datos';
             if (isset($payment->data->transaction->data->cc_network_response->message)) {
                 $message = $payment->data->transaction->data->cc_network_response->message;
+            }elseif(!$payment->success){
+                $message = isset($payment->data->error->errors) ? json_encode($payment->data->error->errors) : 'Error en la transacción validar los datos';
             }
             $transaction->transaction_status = 'failed';
             $transaction->reson_rejection = $message;

@@ -53,7 +53,9 @@ class EpaycoController extends Controller
             'dues' => strval(1),
             // 'urlConfirmation' => $urlConfirmation,
             // 'methodConfirmation' => 'POST',
-            'testMode' => true
+            'testMode' => true,
+            'description' => $description,
+            'ip' => $ip,
         ];
 
         $res = $this->client->post(SELF::API_PAY, [
@@ -63,8 +65,7 @@ class EpaycoController extends Controller
                 'content-type' => 'application/json',
             ],
         ]);
-        
+
         return json_decode($res->getBody());
     }
-    
 }
