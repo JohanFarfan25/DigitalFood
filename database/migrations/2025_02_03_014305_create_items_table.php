@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('transaction_id')->constrained()->onDelete('cascade');
             $table->integer('product_id')->nullable();
-            $table->foreignId('batch_id')->constrained()->onDelete('cascade');
+            $table->integer('batch_id');
             $table->integer('quantity');
             $table->decimal('price', 10, 2);
             $table->foreignId('registered_by')->constrained('users')->onDelete('cascade');

@@ -10,7 +10,7 @@ return new class extends Migration
     {
         Schema::create('transactions', function (Blueprint $table) {
             $table->id('id');
-            $table->unsignedBigInteger('batch_id');
+            $table->bigInteger('batch_id');
             $table->enum('type', ['purchase', 'sale', 'adjustment']);
             $table->timestamp('date')->useCurrent();
             $table->integer('quantity');
