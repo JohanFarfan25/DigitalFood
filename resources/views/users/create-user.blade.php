@@ -101,10 +101,19 @@
                             <div class="form-group">
                                 <label for="user.rol_id" class="form-control-label">{{ __('Rol') }}</label>
                                 <div class="@error('user.rol_id')border border-danger rounded-3 @enderror">
-                                    <select class="form-select" name="rol_id" id="rol_id">
-                                        <option value="null">Selected</option>
-                                        <option value="1">Adminstrador</option>
-                                        <option value="2">Super Usuario</option>
+                                    <select
+                                        class="form-control"
+                                        name="roles[]"
+                                        id="roles"
+                                        multiple
+                                        data-mdb-select-init
+                                        aria-label="roles">
+                                        @foreach ($roles as $role)
+                                        <option value="{{ $role->id }}"
+                                            {{ (isset($user) && $user->hasAnyRole($role->id)) ? 'selected' : '' }}>
+                                            {{ $role->name }}
+                                        </option>
+                                        @endforeach
                                     </select>
                                     @error('rol_id')
                                     <p class="text-danger text-xs mt-2">{{ $message }}</p>

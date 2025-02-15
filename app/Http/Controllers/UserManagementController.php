@@ -69,7 +69,8 @@ class UserManagementController extends Controller
 
     public function viewCreate()
     {
-        return view('users/create-user');
+        $roles = Role::all();
+        return view('users/create-user',compact('roles'));
     }
 
 
@@ -80,10 +81,9 @@ class UserManagementController extends Controller
                 'name' => ['required', 'max:50'],
                 'email' => ['required', 'email', 'max:50', Rule::unique('users', 'email')],
                 'password' => ['required', 'min:5', 'max:20'],
-                'rol_id' => ['required'],
                 'profile_picture' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
             ]);
-
+            $attributes['rol_id'] = 1;
             $attributes['password'] = bcrypt($attributes['password']);
 
             $user = User::create($attributes);
