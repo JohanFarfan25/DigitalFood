@@ -27,9 +27,9 @@
 						<div style="width: 50%;">
 							<input type="text" id="searchInput" class="form-control me-3" placeholder="Search permissions..." aria-label="Search">
 						</div>
-						<!-- @role('Super Admin') -->
+						@role('Super Admin')
 						<a href="/permission-create" class="btn bg-gradient-primary btn-sm mb-0" type="button">+&nbsp; New Permission</a>
-						<!-- @endrole -->
+						@endrole
 					</div>
 				</div>
 				<div class="card-body px-0 pt-0 pb-2 mt-3">
