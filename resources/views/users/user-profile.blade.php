@@ -111,7 +111,7 @@
                                 </div>
                             </div>
                         </div>
-                        @role('Super Admin')
+                        <!-- @role('Super Admin') -->
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="roles" class="form-control-label">{{ __('Roles') }}</label>
@@ -135,7 +135,7 @@
                                 <small class="text-muted">{{ __('Hold Ctrl/Command to select multiple options.') }}</small>
                             </div>
                         </div>
-                        @endrole
+                        <!-- @endrole -->
 
                     </div>
 

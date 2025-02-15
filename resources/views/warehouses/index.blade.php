@@ -28,9 +28,9 @@
                         <div style="width: 50%;">
                             <input type="text" id="searchInput" class="form-control me-3" placeholder="Search Warehouses..." aria-label="Search">
                         </div>
-                        @role('Super Admin')
+                        <!-- @role('Super Admin') -->
                         <a href="/warehouse-create" class="btn bg-gradient-primary btn-sm mb-0" type="button">+&nbsp; New Warehouse</a>
-                        @endrole
+                        <!-- @endrole -->
                     </div>
                 </div>
                 <div class="card-body px-0 pt-0 pb-2 mt-3">
@@ -86,11 +86,11 @@
                                         <a href="/warehouse-view/{{ $warehouse->id }}" class="mx-3" data-bs-toggle="tooltip" data-bs-original-title="Edit User">
                                             <span class="badge badge-sm bg-gradient-success">View</span>
                                         </a>
-                                        @role('Super Admin')
+                                        <!-- @role('Super Admin') -->
                                         <a href="/warehouse-destroy/{{ $warehouse->id }}" class="mx-3" data-bs-toggle="tooltip" data-bs-original-title="Delete User">
                                             <span class="badge badge-sm bg-gradient-secondary">delete</span>
                                         </a>
-                                        @endrole
+                                        <!-- @endrole -->
                                     </td>
                                 </tr>
                                 @endforeach
