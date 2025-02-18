@@ -1,12 +1,11 @@
 @extends('layouts.user_type.auth')
 
 @section('content')
-<div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
+<div class="col-xl-12 col-sm-6 mb-xl-0 mb-4">
   <div class="col-auto my-auto p-3">
-    <div class="h-100">
-      <h5 class="mt-2">
-        Total Transactions
-      </h5>
+    <div class="h-100 font-weight-bolder mb-0" style="display: flex; justify-content: space-start;">
+      <h5 class="mt-2 mb-3"> Total Transactions: </h5>
+      <p class="h-100 font-weight-bolder mb-0 mt-1" style="font-size: 25px; margin-left:6px;"> ${{$grantTotal}}</p>
     </div>
   </div>
 </div>
@@ -120,37 +119,37 @@
               </div>
               <h4 class="font-weight-bolder" style="font-size: 90%;">{{$totalUsers}}</h4>
               <div class="progress w-75">
-              <div class="progress-bar bg-dark w-90" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+              <div class="progress-bar bg-secondary w-90" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
               </div>
             </div>
             <div class="col-3 py-3 ps-0">
               <div class="d-flex mb-2">
-                <i class="ni ni-circle-08 text-lg opacity-10" aria-hidden="true"></i>
+                <i class="ni ni-circle-08 text-primary text-lg opacity-10" aria-hidden="true"></i>
                 <p class="text-xs mt-1 mb-0 font-weight-bold">Customers</p>
               </div>
               <h4 class="font-weight-bolder" style="font-size: 90%;">{{$totalCustomers}}</h4>
               <div class="progress w-75">
-                <div class="progress-bar bg-dark w-90" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+                <div class="progress-bar bg-primary w-90" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
               </div>
             </div>
             <div class="col-3 py-3 ps-0">
               <div class="d-flex mb-2">
-                <i class="ni ni-check-bold text-lg opacity-10" aria-hidden="true"></i>
-                <p class="text-xs mt-1 mb-0 font-weight-bold">Transactions</p>
+                <i class="ni ni-check-bold text-success text-lg opacity-10" aria-hidden="true"></i>
+                <p class="text-xs mt-1 mb-0 font-weight-bold">Suppliers</p>
               </div>
-              <h4 class="font-weight-bolder" style="font-size: 90%;">${{$grantTotal}}</h4>
+              <h4 class="font-weight-bolder" style="font-size: 90%;">{{$totalSupliers}}</h4>
               <div class="progress w-75">
-              <div class="progress-bar bg-dark w-90" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+              <div class="progress-bar bg-success w-90" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
               </div>
             </div>
             <div class="col-3 py-3 ps-0">
               <div class="d-flex mb-2">
-                <i class="ni ni-bullet-list-67 text-lg opacity-10" aria-hidden="true"></i>
+                <i class="ni ni-bullet-list-67 text-danger text-lg opacity-10" aria-hidden="true"></i>
                 <p class="text-xs mt-1 mb-0 font-weight-bold">Products</p>
               </div>
               <h4 class="font-weight-bolder" style="font-size: 90%;">{{$totalProducts}}</h4>
               <div class="progress w-75">
-              <div class="progress-bar bg-dark w-90" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+              <div class="progress-bar bg-danger w-90" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
               </div>
             </div>
           </div>
