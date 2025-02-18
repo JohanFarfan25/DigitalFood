@@ -120,7 +120,7 @@
               </div>
               <h4 class="font-weight-bolder" style="font-size: 90%;">{{$totalUsers}}</h4>
               <div class="progress w-75">
-                <div class="progress-bar bg-dark w-60" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>
+              <div class="progress-bar bg-dark w-90" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
               </div>
             </div>
             <div class="col-3 py-3 ps-0">
@@ -130,7 +130,7 @@
               </div>
               <h4 class="font-weight-bolder" style="font-size: 90%;">{{$totalCustomers}}</h4>
               <div class="progress w-75">
-                <div class="progress-bar bg-dark w-90" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100"></div>
+                <div class="progress-bar bg-dark w-90" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
               </div>
             </div>
             <div class="col-3 py-3 ps-0">
@@ -140,7 +140,7 @@
               </div>
               <h4 class="font-weight-bolder" style="font-size: 90%;">${{$grantTotal}}</h4>
               <div class="progress w-75">
-                <div class="progress-bar bg-dark w-30" role="progressbar" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100"></div>
+              <div class="progress-bar bg-dark w-90" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
               </div>
             </div>
             <div class="col-3 py-3 ps-0">
@@ -150,7 +150,7 @@
               </div>
               <h4 class="font-weight-bolder" style="font-size: 90%;">{{$totalProducts}}</h4>
               <div class="progress w-75">
-                <div class="progress-bar bg-dark w-50" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+              <div class="progress-bar bg-dark w-90" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
               </div>
             </div>
           </div>
