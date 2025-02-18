@@ -22,7 +22,7 @@
                     Food
                   </text>
                   <text x="20" y="110" font-family="Arial, sans-serif" font-size="24" fill="#555">
-                    Optimize, control and grow
+                    Optimizar, controlar y hacer crecer
                   </text>
                   <circle cx="200" cy="60" r="10" fill="#596cff" />
                   <rect x="204" y="50" width="12" height="20" fill="#596cff" />
@@ -35,14 +35,14 @@
               <div class="card-body">
                 <form role="form" method="POST" action="/session">
                   @csrf
-                  <label>Email</label>
+                  <label>Correo</label>
                   <div class="mb-3">
                     <input type="email" class="form-control" name="email" id="email" placeholder="Email" aria-label="Email" aria-describedby="email-addon">
                     @error('email')
                     <p class="text-danger text-xs mt-2">{{ $message }}</p>
                     @enderror
                   </div>
-                  <label>Password</label>
+                  <label>Contaseña</label>
                   <div class="mb-3 position-relative">
                     <input type="password" class="form-control pe-5" name="password" id="password" placeholder="Password" aria-label="Password" aria-describedby="password-addon">
                     <span class="position-absolute end-0 top-50 translate-middle-y me-3" onclick="togglePassword()" style="cursor: pointer;">
@@ -54,20 +54,20 @@
                   </div>
                   <div class="form-check form-switch">
                     <input class="form-check-input" type="checkbox" id="rememberMe" checked="">
-                    <label class="form-check-label" for="rememberMe">Remember me</label>
+                    <label class="form-check-label" for="rememberMe">Recordar</label>
                   </div>
                   <div class="text-center">
-                    <button type="submit" class="btn bg-gradient-primary w-100 mt-4 mb-0">Sign in</button>
+                    <button type="submit" class="btn bg-gradient-primary w-100 mt-4 mb-0">Iniciar sesión</button>
                   </div>
                 </form>
               </div>
               <div class="card-footer text-center pt-0 px-lg-2 px-1">
-                <small class="text-muted">Forgot you password? Reset you password
-                  <a href="/login/forgot-password" class="text-info text-gradient font-weight-bold">here</a>
+                <small class="text-muted">¿Olvidaste tu contraseña? Restablecer tu contraseña
+                  <a href="/login/forgot-password" class="text-info text-gradient font-weight-bold">aquí</a>
                 </small>
                 <p class="mb-4 text-sm mx-auto">
-                  Don't have an account?
-                  <a href="register" class="text-info text-gradient font-weight-bold">Sign up</a>
+                  ¿No tienes una cuenta?
+                  <a href="register" class="text-info text-gradient font-weight-bold">Crear Cuenta</a>
                 </p>
               </div>
             </div>
@@ -87,18 +87,18 @@
 @section('scripts')
 <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 <script>
-function togglePassword() {
-  var passwordInput = document.getElementById("password");
-  var eyeIcon = document.getElementById("eyeIcon");
+  function togglePassword() {
+    var passwordInput = document.getElementById("password");
+    var eyeIcon = document.getElementById("eyeIcon");
 
-  if (passwordInput.type === "password") {
-    passwordInput.type = "text";
-    eyeIcon.classList.remove("fa-eye");
-    eyeIcon.classList.add("fa-eye-slash");
-  } else {
-    passwordInput.type = "password";
-    eyeIcon.classList.remove("fa-eye-slash");
-    eyeIcon.classList.add("fa-eye");
+    if (passwordInput.type === "password") {
+      passwordInput.type = "text";
+      eyeIcon.classList.remove("fa-eye");
+      eyeIcon.classList.add("fa-eye-slash");
+    } else {
+      passwordInput.type = "password";
+      eyeIcon.classList.remove("fa-eye-slash");
+      eyeIcon.classList.add("fa-eye");
+    }
   }
-}
 </script>
