@@ -22,7 +22,7 @@ class SessionsController extends Controller
 
         if (Auth::attempt($attributes)) {
             session()->regenerate();
-            return redirect('dashboard')->with(['success' => 'Bienvenido.']);
+            return (new HomeController)->dashboard();
         } else {
             return back()->withErrors(['email' => 'Email o password invalido.']);
         }

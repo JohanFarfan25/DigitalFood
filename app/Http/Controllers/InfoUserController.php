@@ -55,8 +55,7 @@ class InfoUserController extends Controller
                 ]);
             }
         }
-
-        return redirect('dashboard')->with(['success' => 'Usuario creado exitosamente.']);
+        return (new HomeController)->dashboard();
     }
 
 
