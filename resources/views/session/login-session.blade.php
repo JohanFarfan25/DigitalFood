@@ -11,7 +11,7 @@
           <div class="col-xl-4 col-lg-5 col-md-6 d-flex flex-column mx-auto">
             <div class="card card-plain mt-6">
               <div class="card-header pb-0 text-left bg-transparent">
-                <h3 class="font-weight-bolder text-info text-gradient ">Welcome</h3>
+                <h3 class="font-weight-bolder text-info text-gradient ">Bienvenido</h3>
               </div>
               <div style="margin-left: 50px;" class="col-xl-4 col-lg-5 col-md-6">
                 <svg width="300" height="100" viewBox="40 0 300 120" xmlns="http://www.w3.org/2000/svg">
