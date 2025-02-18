@@ -28,9 +28,9 @@
                         <div style="width: 50%;">
                             <input type="text" id="searchInput" class="form-control me-3" placeholder="Search users..." aria-label="Search">
                         </div>
-                        @role('Super Admin')
+                        <!-- @role('Super Admin') -->
                         <a href="/user-create" class="btn bg-gradient-primary btn-sm mb-0" type="button">+&nbsp; Nuevo Usuario</a>
-                        @endrole
+                        <!-- @endrole -->
                     </div>
                 </div>
                 <div class="card-body px-0 pt-0 pb-2 mt-3">
@@ -94,11 +94,11 @@
                                         <a href="/user-view/{{ $user->id }}" class="mx-3" data-bs-toggle="tooltip" data-bs-original-title="Edit User">
                                             <span class="badge badge-sm bg-gradient-success">Ver</span>
                                         </a>
-                                        @role('Super Admin')
+                                        <!-- @role('Super Admin') -->
                                         <a href="/user-destroy/{{ $user->id }}" class="mx-3" data-bs-toggle="tooltip" data-bs-original-title="Delete User">
                                             <span class="badge badge-sm bg-gradient-secondary">Eliminar</span>
                                         </a>
-                                        @endrole
+                                        <!-- @endrole -->
                                     </td>
                                 </tr>
                                 @endforeach

@@ -27,9 +27,9 @@
 						<div style="width: 50%;">
 							<input type="text" id="searchInput" class="form-control me-3" placeholder="Search roles..." aria-label="Search">
 						</div>
-						@role('Super Admin')
+						<!-- @role('Super Admin') -->
 						<a href="/role-create" class="btn bg-gradient-primary btn-sm mb-0" type="button">+&nbsp; Nuevo Rol</a>
-						@endrole
+						<!-- @endrole -->
 					</div>
 				</div>
 				<div class="card-body px-0 pt-0 pb-2 mt-3">
@@ -80,13 +80,13 @@
 											<span class="badge badge-sm bg-gradient-success">Ver</span>
 										</a>
 									</td>
-									@role('Super Admin')
+									<!-- @role('Super Admin') -->
 									<td class="text-center">
 										<a href="/roles-destroy/{{ $role->id }}" class="mx-3" data-bs-toggle="tooltip" data-bs-original-title="Delete Role">
 											<span class="badge badge-sm bg-gradient-secondary">Eliminar</span>
 										</a>
 									</td>
-									@endrole
+									<!-- @endrole -->
 								</tr>
 								@endforeach
 							</tbody>

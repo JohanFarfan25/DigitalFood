@@ -101,11 +101,11 @@
                                         <a href="/transaction-view/{{ $transaction->id }}" class="mx-3" data-bs-toggle="tooltip" data-bs-original-title="Edit User">
                                             <span class="badge badge-sm bg-gradient-success">View</span>
                                         </a>
-                                        @role('Super Admin')
+                                        <!-- @role('Super Admin') -->
                                         <a href="/transaction-destroy/{{ $transaction->id }}" class="mx-3" data-bs-toggle="tooltip" data-bs-original-title="Delete User">
                                             <span class="badge badge-sm bg-gradient-secondary">delete</span>
                                         </a>
-                                        @endrole
+                                        <!-- @endrole -->
                                     </td>
                                 </tr>
                                 @endforeach
