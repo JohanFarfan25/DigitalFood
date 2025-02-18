@@ -119,7 +119,7 @@
               </div>
               <h4 class="font-weight-bolder" style="font-size: 90%;">{{$totalUsers}}</h4>
               <div class="progress w-75">
-              <div class="progress-bar bg-secondary w-90" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+                <div class="progress-bar bg-secondary w-90" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
               </div>
             </div>
             <div class="col-3 py-3 ps-0">
@@ -139,7 +139,7 @@
               </div>
               <h4 class="font-weight-bolder" style="font-size: 90%;">{{$totalSupliers}}</h4>
               <div class="progress w-75">
-              <div class="progress-bar bg-success w-90" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+                <div class="progress-bar bg-success w-90" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
               </div>
             </div>
             <div class="col-3 py-3 ps-0">
@@ -149,7 +149,7 @@
               </div>
               <h4 class="font-weight-bolder" style="font-size: 90%;">{{$totalProducts}}</h4>
               <div class="progress w-75">
-              <div class="progress-bar bg-danger w-90" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+                <div class="progress-bar bg-danger w-90" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
               </div>
             </div>
           </div>
@@ -183,7 +183,7 @@
     new Chart(ctx, {
       type: "bar",
       data: {
-        labels: ["Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+        labels: @json($months),
         datasets: [{
           label: "Sales",
           tension: 0.4,
@@ -191,9 +191,9 @@
           borderRadius: 4,
           borderSkipped: false,
           backgroundColor: "#fff",
-          data: [450, 200, 100, 220, 500, 100, 400, 230, 500],
+          data: @json($salesData),
           maxBarThickness: 6
-        }, ],
+        }],
       },
       options: {
         responsive: true,
@@ -217,7 +217,7 @@
             },
             ticks: {
               suggestedMin: 0,
-              suggestedMax: 500,
+              suggestedMax: Math.max(...@json($salesData)) + 100,
               beginAtZero: true,
               padding: 15,
               font: {
@@ -237,7 +237,8 @@
               drawTicks: false
             },
             ticks: {
-              display: false
+              display: true,
+              color: '#fff'
             },
           },
         },

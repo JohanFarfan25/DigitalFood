@@ -29,6 +29,21 @@ class HomeController extends Controller
         $totalBaches = Batch::count();
         $transactions = Transaction::where('status', 1)->get();
 
+        $salesByMonth = Transaction::selectRaw('MONTH(created_at) as month, SUM(price) as total')
+        ->where('status', 1)
+        ->groupBy('month')
+        ->orderBy('month')
+        ->pluck('total', 'month')
+        ->toArray();
+
+        $months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+        $salesData = array_fill(0, 12, 0);
+
+        foreach ($salesByMonth as $month => $total) {
+            $salesData[$month - 1] = $total;
+        }
+    
+
         $completed = 0;
         $pending = 0;
         $failed = 0;
@@ -55,6 +70,7 @@ class HomeController extends Controller
         return view(
             'dashboard',
             compact(
+                'transactions',
                 'totalUsers',
                 'totalCustomers',
                 'totalSupliers',
@@ -65,7 +81,9 @@ class HomeController extends Controller
                 'pending',
                 'failed',
                 'declined',
-                'grantTotal'
+                'grantTotal',
+                'salesData',
+                'months',
             )
         )->with(['success' => 'Bienvenido.']);
     }
