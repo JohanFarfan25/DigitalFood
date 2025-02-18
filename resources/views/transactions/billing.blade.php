@@ -12,7 +12,7 @@
                 <div class="col-auto my-auto">
                     <div class="h-100">
                         <h5 class="mt-2">
-                            Billing
+                            Facturación
                         </h5>
                     </div>
                 </div>
@@ -29,27 +29,27 @@
                     <!-- Selección de productos/lotes -->
                     <div class="card-body px-0 pt-0 pb-2 mt-3">
                         <div class="table-responsive p-1">
-                            <h6>Products Selected</h6>
+                            <h6>Productos Seleccionados</h6>
                             <table class="table align-items-center mb-0">
                                 <thead>
                                     <tr>
                                         <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                                            Batch
+                                            ID
                                         </th>
                                         <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
-                                            Product/Batch
+                                            Producto/Lote
                                         </th>
                                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                                            Quantity
+                                            Cantidad
                                         </th>
                                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                                            Unit Price
+                                            Precio Unitario
                                         </th>
                                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
                                             Subtotal
                                         </th>
                                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                                            Action
+                                            Acciones
                                         </th>
                                     </tr>
                                 </thead>
@@ -66,26 +66,26 @@
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label for="type">Transaction Type</label>
+                                <label for="type">Tipo de Transacción</label>
                                 <select name="type" id="type" class="form-control" required>
-                                    <option value="">Select Transaction Type</option>
-                                    <option value="purchase">Buys</option>
-                                    <option value="sale">Sale</option>
-                                    <option value="adjustment">Adjustment</option>
+                                    <option value="">Selecciones el Tipo de Transacción</option>
+                                    <option value="purchase">Compra</option>
+                                    <option value="sale">Venta</option>
+                                    <option value="adjustment">Ajuste</option>
                                 </select>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label for="date">Date</label>
+                                <label for="date">Fecha</label>
                                 <input type="date" name="date" id="date" class="form-control" required>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label for="warehouse_id">Warehouse</label>
+                                <label for="warehouse_id">Almacen</label>
                                 <select name="warehouse_id" id="warehouse_id" class="form-control" required>
-                                    <option value="">Select a warehouse</option>
+                                    <option value="">Seleccione el Almacen</option>
                                     @foreach ($warehouses as $warehouse)
                                     <option value="{{ $warehouse->id }}">{{ $warehouse->name }}</option>
                                     @endforeach
@@ -94,9 +94,9 @@
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label for="supplier_id">Supplier</label>
+                                <label for="supplier_id">Proveedor</label>
                                 <select name="supplier_id" id="supplier_id" class="form-control">
-                                    <option value="">Select a supplier</option>
+                                    <option value="">Seleccione el Proveedor</option>
                                     @foreach ($suppliers as $supplier)
                                     <option value="{{ $supplier->id }}">{{ $supplier->name }}</option>
                                     @endforeach
@@ -105,9 +105,9 @@
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label for="customer_id">Customer</label>
+                                <label for="customer_id">Cliente</label>
                                 <select name="customer_id" id="customer_id" class="form-control">
-                                    <option value="">Select a Customer</option>
+                                    <option value="">Seleccione el Cliente</option>
                                     @foreach ($customers as $customer)
                                     <option value="{{ $customer->id }}">{{ $customer->name }}</option>
                                     @endforeach
@@ -116,17 +116,17 @@
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label for="type_product">Product Type</label>
+                                <label for="type_product">Tipo de Producto</label>
                                 <select name="type_product" id="type_product" class="form-control" required onchange="updateProductSelect()">
-                                    <option value="">Select Product Type</option>
-                                    <option value="batch">Batch</option>
-                                    <option value="unit">Unit</option>
+                                    <option value="">Seleccione el Tipo de Producto</option>
+                                    <option value="batch">Lote</option>
+                                    <option value="unit">Unidad</option>
                                 </select>
                             </div>
                         </div>
                         <div class="col-md-12">
                             <div class="form-group">
-                                <label for="product_id">Batch / Product</label>
+                                <label for="product_id">Lote / Producto</label>
                                 <select name="product_id" id="product_id" class="form-control">
                                     <!-- Aquí se cargarán dinámicamente los lotes o productos -->
                                 </select>
@@ -135,14 +135,14 @@
                     </div>
                     <input type="hidden" name="items" id="items-data">
                     <div style="margin-bottom: 2rem; margin-top: 2rem;">
-                        <button type="button" class="btn btn-primary" onclick="addItem()">Add Product / Batch</button>
+                        <button type="button" class="btn btn-primary" onclick="addItem()">Agregar</button>
                     </div>
 
                     <!-- Total y botón de pago -->
                     <div class="row mt-3">
                         <div class="col-md-12 text-end">
                             <h5>Total: <span id="total-amount">$0.00</span></h5>
-                            <button id="save" class="btn btn-success">Generate Purchase Order</button>
+                            <button id="save" class="btn btn-success">Generar orden de compra</button>
                             <!-- <button type="button" class="btn btn-primary" onclick="processPayment()">Pagar con Epayco</button> -->
                         </div>
                     </div>
@@ -162,16 +162,16 @@
         function updateButtonText() {
             switch (orderType.value) {
                 case "purchase":
-                    saveButton.textContent = "Generate Purchase Order";
+                    saveButton.textContent = "Generar orden de compra";
                     break;
                 case "sale":
-                    saveButton.textContent = "Generate Sale Order";
+                    saveButton.textContent = "Generar orden de venta";
                     break;
                 case "adjustment":
-                    saveButton.textContent = "Generate Adjustment Order";
+                    saveButton.textContent = "Generar orden de ajuste";
                     break;
                 default:
-                    saveButton.textContent = "Generate Purchase Order"; // Valor por defecto
+                    saveButton.textContent = "Generar orden de compra"; // Valor por defecto
             }
         }
 
@@ -198,7 +198,7 @@
             batches.forEach(batch => {
                 const option = document.createElement('option');
                 option.value = batch.id;
-                option.textContent = `${batch.product.name}, Total Quantity: ${batch.total_quantity}`;
+                option.textContent = `${batch.product.name}, Cantidad total: ${batch.total_quantity}`;
                 option.setAttribute('data-price', batch.product.sale_price);
                 productSelect.appendChild(option);
             });

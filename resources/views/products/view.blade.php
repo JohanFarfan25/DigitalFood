@@ -12,7 +12,7 @@
                 <div class="col-auto my-auto">
                     <div class="h-100">
                         <h5 class="mt-2">
-                            {{ __('Product View') }}
+                            {{ __('Vista de Producto') }}
                         </h5>
                     </div>
                 </div>
@@ -38,7 +38,7 @@
                             </div>
                             <!-- Input para cargar imagen -->
                             <div class="form-group">
-                                <label for="image" class="form-control-label">{{ __('Upload Image') }}</label>
+                                <label for="image" class="form-control-label">{{ __('Cargar Imagen') }}</label>
                                 <div class="@error('image') border border-danger rounded-3 @enderror">
                                     <input type="file" id="image" class="form-control" name="image" accept="image/*" onchange="previewImage(event)">
                                     @error('image')
@@ -49,7 +49,7 @@
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label for="product-name" class="form-control-label">{{ __('Name') }}</label>
+                                <label for="product-name" class="form-control-label">{{ __('Nombre') }}</label>
                                 <div class="@error('product.name')border border-danger rounded-3 @enderror">
                                     <input type="text" class="form-control" placeholder="Name" name="name" id="name" aria-label="Name" aria-describedby="name" value="{{ old('name', $product->name) }}">
                                     @error('name')
@@ -60,7 +60,7 @@
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label for="product-description" class="form-control-label">{{ __('Description') }}</label>
+                                <label for="product-description" class="form-control-label">{{ __('Descripción') }}</label>
                                 <div class="@error('product.description')border border-danger rounded-3 @enderror">
                                     <input type="text" class="form-control" placeholder="description" name="description" id="description" aria-label="description" aria-describedby="description" value="{{ old('description', $product->description) }}">
                                     @error('description')
@@ -71,7 +71,7 @@
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label for="product-category" class="form-control-label">{{ __('Category') }}</label>
+                                <label for="product-category" class="form-control-label">{{ __('Categoría') }}</label>
                                 <div class="@error('product.category')border border-danger rounded-3 @enderror">
                                     <input type="text" class="form-control" placeholder="category" name="category" id="category" aria-label="category" aria-describedby="category" value="{{ old('category', $product->category) }}">
                                     @error('category')
@@ -82,7 +82,7 @@
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label for="product-unit_of_measure" class="form-control-label">{{ __('Unit Of Measure') }}</label>
+                                <label for="product-unit_of_measure" class="form-control-label">{{ __('Unidad de Medida') }}</label>
                                 <div class="@error('product.unit_of_measure')border border-danger rounded-3 @enderror">
                                     <input type="text" class="form-control" placeholder="unit_of_measure" name="unit_of_measure" id="unit_of_measure" aria-label="unit_of_measure" aria-describedby="unit_of_measure" value="{{ old('unit_of_measure', $product->unit_of_measure) }}">
                                     @error('unit_of_measure')
@@ -93,7 +93,7 @@
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label for="product-expiration_date" class="form-control-label">{{ __('Expiration Date') }}</label>
+                                <label for="product-expiration_date" class="form-control-label">{{ __('Fecha de Expriración') }}</label>
                                 <div class="@error('expiration_date') border border-danger rounded-3 @enderror">
                                     <!-- Campo de fecha con Flatpickr -->
                                     <input
@@ -114,7 +114,7 @@
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label for="product-sale_price" class="form-control-label">{{ __('Purchase Price') }}</label>
+                                <label for="product-sale_price" class="form-control-label">{{ __('Precio de compra') }}</label>
                                 <div class="@error('product.sale_price')border border-danger rounded-3 @enderror">
                                     <input type="text" class="form-control" placeholder="purchase_price" name="purchase_price" id="purchase_price" aria-label="purchase_price" aria-describedby="purchase_price" value="{{ old('purchase_price', $product->purchase_price) }}">
                                     @error('purchase_price')
@@ -125,7 +125,7 @@
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label for="product-sale_price" class="form-control-label">{{ __('Sale Price') }}</label>
+                                <label for="product-sale_price" class="form-control-label">{{ __('Precio de venta') }}</label>
                                 <div class="@error('product.sale_price')border border-danger rounded-3 @enderror">
                                     <input type="text" class="form-control" placeholder="sale_price" name="sale_price" id="sale_price" aria-label="sale_price" aria-describedby="sale_price" value="{{ old('sale_price', $product->sale_price) }}">
                                     @error('sale_price')
@@ -136,7 +136,7 @@
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label for="product-supplier_id" class="form-control-label">{{ __('Supplier') }}</label>
+                                <label for="product-supplier_id" class="form-control-label">{{ __('Proveedor') }}</label>
                                 <div class="@error('supplier_id') border border-danger rounded-3 @enderror">
                                     <!-- Select dropdown para proveedores -->
                                     <select
@@ -162,7 +162,7 @@
                         </div>
                     </div>
                     <div class="d-flex justify-content-end">
-                        <button type="submit" class="btn bg-gradient-primary btn-md mt-4 mb-4">{{ 'Save Changes' }}</button>
+                        <button type="submit" class="btn bg-gradient-primary btn-md mt-4 mb-4">{{ 'Guardar' }}</button>
                     </div>
                 </form>
 

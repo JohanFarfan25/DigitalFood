@@ -1,6 +1,21 @@
 @extends('layouts.user_type.auth')
 
 @section('content')
+@php
+// Definir la variable antes del switch
+$type = "Compra";
+@endphp
+
+@switch ($transaction->type)
+@case('purchase')
+@php $type = "Compra"; @endphp
+@break
+@case('sale')
+@php $type = "Vemta"; @endphp
+@break
+@case('adjustment')
+@php $type = "Compra"; @endphp
+@endswitch
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
 <div class="container-fluid">
     <div class="page-header min-height-100 border-radius-xl mt-4" style="background-image: url('../assets/img/curved-images/curved0.jpg'); background-position-y: 50%;">
@@ -11,7 +26,7 @@
             <div class="col-auto my-auto">
                 <div class="h-100">
                     <h5 class="mt-2">
-                        Order {{$transaction->type}} information Nº {{$transaction->id}}
+                        Información de Orden de {{$type}} Nº {{$transaction->id}}
                     </h5>
                 </div>
             </div>
@@ -26,7 +41,7 @@
                 <div class="card-header pb-0 px-3">
                     <div class="row">
                         <div class="col-md-6">
-                            <h6 class="mb-0">Billing Information</h6>
+                            <h6 class="mb-0">Información de facturación</h6>
                         </div>
                         <div class="col-md-6 d-flex justify-content-end align-items-center">
                             <i class="far fa-calendar-alt me-2"></i>
@@ -42,11 +57,11 @@
                                     <i class="fas fa-credit-card"></i> <!-- Ícono de tarjeta de crédito -->
                                 </button>
                                 <div class="d-flex flex-column">
-                                    <h6 class="mb-1 text-dark text-sm">Type</h6>
+                                    <h6 class="mb-1 text-dark text-sm">Tipo</h6>
                                 </div>
                             </div>
                             <div class="d-flex align-items-center text-danger text-dark text-sm ">
-                                {{$transaction->type}}
+                                {{$type}}
                             </div>
                         </li>
                         <li class="list-group-item border-0 d-flex justify-content-between ps-0 mb-2 border-radius-lg">
@@ -55,7 +70,7 @@
                                     <i class="fas fa-barcode"></i> <!-- Ícono de código de barras -->
                                 </button>
                                 <div class="d-flex flex-column">
-                                    <h6 class="mb-1 text-dark text-sm">Number</h6>
+                                    <h6 class="mb-1 text-dark text-sm">Número</h6>
                                 </div>
                             </div>
                             <div class="d-flex align-items-center text-danger text-dark text-sm ">
@@ -68,7 +83,7 @@
                                     <i class="fas fa-cogs"></i> <!-- Ícono de cantidad -->
                                 </button>
                                 <div class="d-flex flex-column">
-                                    <h6 class="mb-1 text-dark text-sm">Quantity</h6>
+                                    <h6 class="mb-1 text-dark text-sm">Cantidad</h6>
                                 </div>
                             </div>
                             <div class="d-flex align-items-center text-danger text-dark text-sm ">
@@ -81,7 +96,7 @@
                                     <i class="fas fa-warehouse"></i> <!-- Ícono de almacén -->
                                 </button>
                                 <div class="d-flex flex-column">
-                                    <h6 class="mb-1 text-dark text-sm">Warehouse</h6>
+                                    <h6 class="mb-1 text-dark text-sm">Almacen</h6>
                                 </div>
                             </div>
                             <div class="d-flex align-items-center text-danger text-dark text-sm ">
@@ -94,7 +109,7 @@
                                     <i class="fas fa-truck"></i> <!-- Ícono de camión -->
                                 </button>
                                 <div class="d-flex flex-column">
-                                    <h6 class="mb-1 text-dark text-sm">Supplier</h6>
+                                    <h6 class="mb-1 text-dark text-sm">Proveedor</h6>
                                 </div>
                             </div>
                             <div class="d-flex align-items-center text-danger text-dark text-sm ">
@@ -107,7 +122,7 @@
                                     <i class="fas fa-user"></i> <!-- Ícono de usuario -->
                                 </button>
                                 <div class="d-flex flex-column">
-                                    <h6 class="mb-1 text-dark text-sm">Customer</h6>
+                                    <h6 class="mb-1 text-dark text-sm">Cliente</h6>
                                 </div>
                             </div>
                             <div class="d-flex align-items-center text-danger text-dark text-sm ">
@@ -163,19 +178,19 @@
                         @endif
                         @if($transaction->transaction_status != 'completed')
                         <a href="/payment-process/{{ $transaction->id }}" class="mx-3 mt-2" data-bs-toggle="tooltip" data-bs-original-title="Pay">
-                            <span class="badge badge-sm bg-gradient-success">Pay transaction</span>
+                            <span class="badge badge-sm bg-gradient-success">Pagar transacción</span>
                         </a>
                         @endif
                     </ul>
                     <hr>
                     @if(isset($paymentmethod))
                     <div class="list-group mb-4">
-                        <span class="mb-2 text-xs text-dark"><b>Payment Method</b>
+                        <span class="mb-2 text-xs text-dark"><b>Método de pago</b>
                             <span class="text-dark ms-sm-2">
-                                <p style="line-height: 1.1; font-size: 13px; margin-top:1.5rem;">Franchise: {{$paymentmethod->account_type}}</p>
-                                <p style="line-height: 0.0; font-size: 13px;">Account Number: {{$paymentmethod->account_number}}</p>
-                                <p style="line-height: 0.0; font-size: 13px; margin-top:1.5rem;">Expiration Date: {{$paymentmethod->expiration_date}}</p>
-                                <p style="line-height: 0.0; font-size: 13px; margin-top:1.5rem;">Invoice: {{$transaction->fact}}</p>
+                                <p style="line-height: 1.1; font-size: 13px; margin-top:1.5rem;">Franquicia: {{$paymentmethod->account_type}}</p>
+                                <p style="line-height: 0.0; font-size: 13px;">Número de cuenta: {{$paymentmethod->account_number}}</p>
+                                <p style="line-height: 0.0; font-size: 13px; margin-top:1.5rem;">Fecha de expiración: {{$paymentmethod->expiration_date}}</p>
+                                <p style="line-height: 0.0; font-size: 13px; margin-top:1.5rem;">Factura: {{$transaction->fact}}</p>
                             </span>
                         </span>
                     </div>
@@ -187,7 +202,7 @@
         <div class="col-md-7 mt-4">
             <div class="card">
                 <div class="card-header pb-0 px-3">
-                    <h6 class="mb-0">( {{count($items)}} ) - Items</h6>
+                    <h6 class="mb-0">( {{count($items)}} ) - Productos</h6>
                 </div>
                 <div class="card-body pt-4 p-3">
                     <ul class="list-group">
@@ -195,25 +210,25 @@
                         <li class="list-group-item border-0 d-flex p-4 mb-2 bg-gray-100 border-radius-lg justify-content-between">
                             <div class="d-flex flex-column w-50">
                                 @if(isset($item->batch->id) && !is_null($item->batch->id))
-                                <span class="mb-2 text-xs text-dark"><b>Batch Nº:</b> {{$item->batch->id}}
+                                <span class="mb-2 text-xs text-dark"><b>Lote Nº:</b> {{$item->batch->id}}
                                     <span class="text-dark ms-sm-2">
-                                        <p style="line-height: 0.0; font-size: 13px; margin-top:1.5rem;">Product Name: {{$item->batch->product->name}}</p>
-                                        <p style="line-height: 1.1; font-size: 13px;">Total Quantity: {{$item->batch->total_quantity}}</p>
-                                        <p style="line-height: 0.0; font-size: 13px;">Location: {{$item->batch->location}}</p>
+                                        <p style="line-height: 0.0; font-size: 13px; margin-top:1.5rem;">Nombre del Producto: {{$item->batch->product->name}}</p>
+                                        <p style="line-height: 1.1; font-size: 13px;">Cantidad: {{$item->batch->total_quantity}}</p>
+                                        <p style="line-height: 0.0; font-size: 13px;">Ubicación: {{$item->batch->location}}</p>
                                     </span>
                                 </span>
                                 @else
-                                <span class="mb-2 text-xs text-dark"><b>Product Name: </b>{{$item->product->name}}
+                                <span class="mb-2 text-xs text-dark"><b>Nombre del Producto: </b>{{$item->product->name}}
                                     <span class="text-dark ms-sm-2">
                                         <p style="line-height: 0.0; font-size: 13px; margin-top:1.5rem; ">Price V/U: {{$item->product->sale_price}}</p>
-                                        <p style="line-height: 1.1; font-size: 13px; ">Quantity: {{$item->quantity}}</p>
-                                        <p style="line-height: 0.0; font-size: 13px;">Location: {{$transaction->warehouse->name}}</p>
+                                        <p style="line-height: 1.1; font-size: 13px; ">Cantidad: {{$item->quantity}}</p>
+                                        <p style="line-height: 0.0; font-size: 13px;">Ubicación: {{$transaction->warehouse->name}}</p>
                                     </span>
                                 </span>
                                 @endif
                             </div>
                             <div class="d-flex flex-column w-50">
-                                <span class="mb-2 text-m text-dark"><b>Price:</b>
+                                <span class="mb-2 text-m text-dark"><b>Precio:</b>
                                     <span class="ms-sm-2 text-success"><b>${{$item->price}}</b></span>
                                 </span>
                             </div>

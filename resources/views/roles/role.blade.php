@@ -28,7 +28,7 @@
 							<input type="text" id="searchInput" class="form-control me-3" placeholder="Search roles..." aria-label="Search">
 						</div>
 						@role('Super Admin')
-						<a href="/role-create" class="btn bg-gradient-primary btn-sm mb-0" type="button">+&nbsp; New Role</a>
+						<a href="/role-create" class="btn bg-gradient-primary btn-sm mb-0" type="button">+&nbsp; Nuevo Rol</a>
 						@endrole
 					</div>
 				</div>
@@ -41,19 +41,19 @@
 										ID
 									</th>
 									<th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
-										Team Id
+										Identificación
 									</th>
 									<th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-										Name
+										Nombre
 									</th>
 									<th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-										Guard Name
+										Nombre del guardia
 									</th>
 									<th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-										Creation Date
+										Fecha de Creación
 									</th>
 									<th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-										Action
+										Acciones
 									</th>
 								</tr>
 							</thead>
@@ -77,13 +77,13 @@
 									</td>
 									<td class="text-center">
 										<a href="/role-view/{{ $role->id }}" class="mx-3" data-bs-toggle="tooltip" data-bs-original-title="View Role">
-											<span class="badge badge-sm bg-gradient-success">view</span>
+											<span class="badge badge-sm bg-gradient-success">Ver</span>
 										</a>
 									</td>
 									@role('Super Admin')
 									<td class="text-center">
 										<a href="/roles-destroy/{{ $role->id }}" class="mx-3" data-bs-toggle="tooltip" data-bs-original-title="Delete Role">
-											<span class="badge badge-sm bg-gradient-secondary">delete</span>
+											<span class="badge badge-sm bg-gradient-secondary">Eliminar</span>
 										</a>
 									</td>
 									@endrole

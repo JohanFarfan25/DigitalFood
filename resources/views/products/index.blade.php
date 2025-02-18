@@ -12,7 +12,7 @@
                 <div class="col-auto my-auto">
                     <div class="h-100">
                         <h5 class="mt-2">
-                            Products
+                            Depósitos
                         </h5>
                     </div>
                 </div>
@@ -29,7 +29,7 @@
                             <input type="text" id="searchInput" class="form-control me-3" placeholder="Search products..." aria-label="Search">
                         </div>
                         @role('Super Admin')
-                        <a href="/product-create" class="btn bg-gradient-primary btn-sm mb-0" type="button">+&nbsp; New Warehouse</a>
+                        <a href="/product-create" class="btn bg-gradient-primary btn-sm mb-0" type="button">+&nbsp; Nuevo Depósito</a>
                         @endrole
                     </div>
                 </div>
@@ -42,37 +42,37 @@
                                         ID
                                     </th>
                                     <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
-                                        Image
+                                        Imagen
                                     </th>
                                     <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
-                                        Name
+                                        Nombre
                                     </th>
                                     <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                                        Description
+                                        Descripción
                                     </th>
                                     <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                                        Category
+                                        Categoría
                                     </th>
                                     <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                                        Unit Of Measure
+                                        Unidad de medida
                                     </th>
                                     <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                                        Expiration Date
+                                        Fecha de Expiración
                                     </th>
                                     <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                                        Purchase Price
+                                        Precio de compra
                                     </th>
                                     <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                                        Sale Price
+                                        Precio de venta
                                     </th>
                                     <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                                        Supplier Id
+                                        Proveedor
                                     </th>
                                     <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                                        Creation Date
+                                        Fecha de Creación
                                     </th>
                                     <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                                        Actions
+                                        Acciones
                                     </th>
                                 </tr>
                             </thead>
@@ -116,11 +116,11 @@
                                     </td>
                                     <td class="text-center">
                                         <a href="/product-view/{{ $product->id }}" class="mx-3" data-bs-toggle="tooltip" data-bs-original-title="Edit User">
-                                            <span class="badge badge-sm bg-gradient-success">View</span>
+                                            <span class="badge badge-sm bg-gradient-success">Ver</span>
                                         </a>
                                         @role('Super Admin')
                                         <a href="/product-destroy/{{ $product->id }}" class="mx-3" data-bs-toggle="tooltip" data-bs-original-title="Delete User">
-                                            <span class="badge badge-sm bg-gradient-secondary">delete</span>
+                                            <span class="badge badge-sm bg-gradient-secondary">Eliminar</span>
                                         </a>
                                         @endrole
                                     </td>

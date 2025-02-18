@@ -11,7 +11,7 @@
             Food
           </text>
           <text x="10" y="70" font-family="Arial, sans-serif" font-size="16" fill="#555">
-            Optimize, control and grow
+            Optimizar, controlar y hacer crecer
           </text>
           <circle cx="100" cy="30" r="5" fill="#596cff" />
           <rect x="102" y="25" width="6" height="10" fill="#596cff" />
@@ -47,7 +47,7 @@
         </a>
       </li>
       <li class="nav-item mt-2">
-        <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">Users Management</h6>
+        <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">Gestión de usuarios</h6>
       </li>
       <li class="nav-item">
         <a class="nav-link {{ (Request::is('user-profile') ? 'active' : '') }} " href="{{ url('user-profile') }}">
@@ -63,7 +63,7 @@
               </g>
             </svg>
           </div>
-          <span class="nav-link-text ms-1">Profile</span>
+          <span class="nav-link-text ms-1">Perfil</span>
         </a>
       </li>
       <li class="nav-item pb-2">
@@ -86,7 +86,7 @@
               </g>
             </svg>
           </div>
-          <span class="nav-link-text ms-1">Users</span>
+          <span class="nav-link-text ms-1">Usuarios</span>
         </a>
       </li>
       <li class="nav-item pb-2">
@@ -118,11 +118,11 @@
                 </g>
             </svg>
           </div>
-          <span class="nav-link-text ms-1">Permissions</span>
+          <span class="nav-link-text ms-1">Permisos</span>
         </a>
       </li>
       <li class="nav-item mt-2">
-        <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">Resource Management</h6>
+        <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">Gestión de recursos</h6>
       </li>
       <li class="nav-item pb-2">
         <a class="nav-link {{ (Request::is('suppliers') ? 'active' : '') }}" href="{{ url('suppliers') }}">
@@ -138,7 +138,7 @@
               </g>
             </svg>
           </div>
-          <span class="nav-link-text ms-1">Suppliers</span>
+          <span class="nav-link-text ms-1">Proveedores</span>
         </a>
       </li>
       <li class="nav-item pb-2">
@@ -155,7 +155,7 @@
               </g>
             </svg>
           </div>
-          <span class="nav-link-text ms-1">Customers</span>
+          <span class="nav-link-text ms-1">Clientes</span>
         </a>
       </li>
       <li class="nav-item pb-2">
@@ -165,7 +165,7 @@
               <path d="M7 14.0014H17M7 14.0014V11.6014C7 11.0413 7 10.7613 7.10899 10.5474C7.20487 10.3592 7.35785 10.2062 7.54601 10.1104C7.75992 10.0014 8.03995 10.0014 8.6 10.0014H15.4C15.9601 10.0014 16.2401 10.0014 16.454 10.1104C16.6422 10.2062 16.7951 10.3592 16.891 10.5474C17 10.7613 17 11.0413 17 11.6014V14.0014M7 14.0014V18.0014V21.0014M17 14.0014V18.0014V21.0014M18.3466 6.17468L14.1466 4.07468C13.3595 3.68113 12.966 3.48436 12.5532 3.40691C12.1876 3.33832 11.8124 3.33832 11.4468 3.40691C11.034 3.48436 10.6405 3.68113 9.85338 4.07468L5.65337 6.17468C4.69019 6.65627 4.2086 6.89707 3.85675 7.25631C3.5456 7.574 3.30896 7.95688 3.16396 8.37725C3 8.85262 3 9.39106 3 10.4679V19.4014C3 19.9614 3 20.2414 3.10899 20.4554C3.20487 20.6435 3.35785 20.7965 3.54601 20.8924C3.75992 21.0014 4.03995 21.0014 4.6 21.0014H19.4C19.9601 21.0014 20.2401 21.0014 20.454 20.8924C20.6422 20.7965 20.7951 20.6435 20.891 20.4554C21 20.2414 21 19.9614 21 19.4014V10.4679C21 9.39106 21 8.85262 20.836 8.37725C20.691 7.95688 20.4544 7.574 20.1433 7.25631C19.7914 6.89707 19.3098 6.65627 18.3466 6.17468Z" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
             </svg>
           </div>
-          <span class="nav-link-text ms-1">Warehouses</span>
+          <span class="nav-link-text ms-1">Almacenes</span>
         </a>
       </li>
       <li class="nav-item pb-2">
@@ -178,7 +178,7 @@
               </g>
             </svg>
           </div>
-          <span class="nav-link-text ms-1">Products</span>
+          <span class="nav-link-text ms-1">Productos</span>
         </a>
       </li>
       <li class="nav-item pb-2">
@@ -193,11 +193,11 @@
 
             </svg>
           </div>
-          <span class="nav-link-text ms-1">Batches</span>
+          <span class="nav-link-text ms-1">Lotes</span>
         </a>
       </li>
       <li class="nav-item mt-2">
-        <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">Payments Management</h6>
+        <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">Gestión de pagos</h6>
       </li>
       <li class="nav-item pb-2">
         <a class="nav-link {{ (Request::is('billing') ? 'active' : '') }}" href="{{ url('billing') }}">
@@ -273,7 +273,7 @@
               </g>
             </svg>
           </div>
-          <span class="nav-link-text ms-1">Billing</span>
+          <span class="nav-link-text ms-1">Facturación</span>
         </a>
       </li>
       <li class="nav-item pb-2">
@@ -295,7 +295,7 @@
               </g>
             </svg>
           </div>
-          <span class="nav-link-text ms-1">Transactions</span>
+          <span class="nav-link-text ms-1">Transacciones</span>
         </a>
       </li>
     </ul>

@@ -12,7 +12,7 @@
                 <div class="col-auto my-auto">
                     <div class="h-100">
                         <h5 class="mt-2">
-                            {{ __('Create Role') }}
+                            {{ __('Crear Rol') }}
                         </h5>
                     </div>
                 </div>
@@ -27,7 +27,7 @@
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label for="role-name" class="form-control-label">{{ __('Name') }}</label>
+                                <label for="role-name" class="form-control-label">{{ __('Nombre') }}</label>
                                 <div class="@error('role.name')border border-danger rounded-3 @enderror">
                                     <input type="text" class="form-control" placeholder="Name" name="name" id="name" aria-label="Name" aria-describedby="name">
                                     @error('name')
@@ -38,7 +38,7 @@
                         </div>
                     </div>
                     <div class="d-flex justify-content-end">
-                        <button type="submit" class="btn bg-gradient-primary btn-md mt-4 mb-4">{{ 'Save Changes' }}</button>
+                        <button type="submit" class="btn bg-gradient-primary btn-md mt-4 mb-4">{{ 'Guardar' }}</button>
                     </div>
                 </form>
 

@@ -12,7 +12,7 @@
                 <div class="col-auto my-auto">
                     <div class="h-100">
                         <h5 class="mt-2">
-                            Suppliers
+                            Proveedores
                         </h5>
                     </div>
                 </div>
@@ -29,7 +29,7 @@
                             <input type="text" id="searchInput" class="form-control me-3" placeholder="Search supplier..." aria-label="Search">
                         </div>
                         @role('Super Admin')
-                        <a href="/supplier-create" class="btn bg-gradient-primary btn-sm mb-0" type="button">+&nbsp; New Supplier</a>
+                        <a href="/supplier-create" class="btn bg-gradient-primary btn-sm mb-0" type="button">+&nbsp; Nuevo Proveedor</a>
                         @endrole
                     </div>
                 </div>
@@ -42,25 +42,25 @@
                                         ID
                                     </th>
                                     <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
-                                        Name
+                                        Nombre
                                     </th>
                                     <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                                        Contact
+                                        Contacto
                                     </th>
                                     <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                                        Address
+                                        Dirección
                                     </th>
                                     <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                                        Phone
+                                        Teléfono
                                     </th>
                                     <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                                        Email
+                                        Correo
                                     </th>
                                     <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                                        Creation Date
+                                        Fecha de creación
                                     </th>
                                     <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                                        Actions
+                                        Acciones
                                     </th>
                                 </tr>
                             </thead>
@@ -90,11 +90,11 @@
                                     </td>
                                     <td class="text-center">
                                         <a href="/supplier-view/{{ $supplier->id }}" class="mx-3" data-bs-toggle="tooltip" data-bs-original-title="Edit User">
-                                            <span class="badge badge-sm bg-gradient-success">View</span>
+                                            <span class="badge badge-sm bg-gradient-success">Ver</span>
                                         </a>
                                         @role('Super Admin')
                                         <a href="/supplier-destroy/{{ $supplier->id }}" class="mx-3" data-bs-toggle="tooltip" data-bs-original-title="Delete User">
-                                            <span class="badge badge-sm bg-gradient-secondary">delete</span>
+                                            <span class="badge badge-sm bg-gradient-secondary">Eliminar</span>
                                         </a>
                                         @endrole
                                     </td>

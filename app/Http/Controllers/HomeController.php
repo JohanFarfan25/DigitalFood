@@ -28,6 +28,7 @@ class HomeController extends Controller
         $totalWarehouses = Warehouse::count();
         $totalBaches = Batch::count();
         $transactions = Transaction::where('status', 1)->get();
+        $currentYear = date('Y');
 
         $salesByMonth = Transaction::selectRaw('MONTH(created_at) as month, SUM(price) as total')
         ->where('status', 1)
@@ -84,6 +85,7 @@ class HomeController extends Controller
                 'grantTotal',
                 'salesData',
                 'months',
+                'currentYear'
             )
         )->with(['success' => 'Bienvenido.']);
     }

@@ -17,7 +17,7 @@
                 <div class="col-auto my-auto">
                     <div class="h-100">
                         <h5 class="mb-1">
-                            Profile Information
+                            Información de Perfil
                         </h5>
                         <p class="mb-0 font-weight-bold text-sm">
                             {{ auth()->user()->getRoleNames()->first()}}
@@ -46,7 +46,7 @@
                             </div>
                             <!-- Input para cargar imagen -->
                             <div class="form-group">
-                                <label for="profile_picture" class="form-control-label">{{ __('Upload Image') }}</label>
+                                <label for="profile_picture" class="form-control-label">{{ __('Cargar Imagen') }}</label>
                                 <div class="@error('profile_picture') border border-danger rounded-3 @enderror">
                                     <input type="file" id="profile_picture" class="form-control" name="profile_picture" accept="image/*" onchange="previewImage(event)">
                                     @error('profile_picture')
@@ -59,7 +59,7 @@
                         <!-- Otros campos de formulario -->
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label for="about">{{ 'About Me' }}</label>
+                                <label for="about">{{ 'Acerca de mi' }}</label>
                                 <div class="@error('about_me') border border-danger rounded-3 @enderror">
                                     <textarea class="form-control" id="about" rows="3" placeholder="Say something about yourself" name="about_me" style="min-height: 252px;">{{ old('about_me', auth()->user()->about_me) }}</textarea>
                                 </div>
@@ -69,7 +69,7 @@
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label for="user-name" class="form-control-label">{{ __('Full Name') }}</label>
+                                <label for="user-name" class="form-control-label">{{ __('Nombre') }}</label>
                                 <div class="@error('name') border border-danger rounded-3 @enderror">
                                     <input class="form-control" value="{{ old('name', auth()->user()->name) }}" type="text" placeholder="Name" id="user-name" name="name">
                                     @error('name')
@@ -80,7 +80,7 @@
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label for="user-email" class="form-control-label">{{ __('Email') }}</label>
+                                <label for="user-email" class="form-control-label">{{ __('Correo') }}</label>
                                 <div class="@error('email') border border-danger rounded-3 @enderror">
                                     <input class="form-control" value="{{ old('email', auth()->user()->email) }}" type="email" placeholder="@example.com" id="user-email" name="email">
                                     @error('email')
@@ -94,7 +94,7 @@
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label for="user-phone" class="form-control-label">{{ __('Phone') }}</label>
+                                <label for="user-phone" class="form-control-label">{{ __('Teléfono') }}</label>
                                 <div class="@error('phone') border border-danger rounded-3 @enderror">
                                     <input class="form-control" type="tel" placeholder="000-000-0000" id="user-phone" name="phone" value="{{ old('phone', auth()->user()->phone) }}">
                                     @error('phone')
@@ -105,7 +105,7 @@
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label for="user-location" class="form-control-label">{{ __('Address') }}</label>
+                                <label for="user-location" class="form-control-label">{{ __('Dirección') }}</label>
                                 <div class="@error('location') border border-danger rounded-3 @enderror">
                                     <input class="form-control" type="text" placeholder="Location" id="user-location" name="location" value="{{ old('location', auth()->user()->location) }}">
                                 </div>
@@ -140,7 +140,7 @@
                     </div>
 
                     <div class="d-flex justify-content-end">
-                        <button type="submit" class="btn bg-gradient-primary btn-md mt-4 mb-4">{{ __('Save Changes') }}</button>
+                        <button type="submit" class="btn bg-gradient-primary btn-md mt-4 mb-4">{{ __('Guardar') }}</button>
                     </div>
                 </form>
 

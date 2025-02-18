@@ -12,7 +12,7 @@
                 <div class="col-auto my-auto">
                     <div class="h-100">
                         <h5 class="mt-2">
-                            {{ __('Create User') }}
+                            {{ __('Crear Usuario') }}
                         </h5>
                     </div>
                 </div>
@@ -34,7 +34,7 @@
                             </div>
                             <!-- Input para cargar imagen -->
                             <div class="form-group">
-                                <label for="profile_picture" class="form-control-label">{{ __('Upload Image') }}</label>
+                                <label for="profile_picture" class="form-control-label">{{ __('Cargar Imagen') }}</label>
                                 <div class="@error('user.profile_picture') border border-danger rounded-3 @enderror">
                                     <input type="file" id="profile_picture" class="form-control" name="profile_picture" accept="image/*">
                                     @error('profile_picture')
@@ -54,7 +54,7 @@
 
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label for="user-name" class="form-control-label">{{ __('Full Name') }}</label>
+                                <label for="user-name" class="form-control-label">{{ __('Nombre') }}</label>
                                 <div class="@error('user.name')border border-danger rounded-3 @enderror">
                                     <input type="text" class="form-control" placeholder="Name" name="name" id="name" aria-label="Name" aria-describedby="name">
                                     @error('name')
@@ -65,7 +65,7 @@
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label for="user-email" class="form-control-label">{{ __('Email') }}</label>
+                                <label for="user-email" class="form-control-label">{{ __('Correo') }}</label>
                                 <div class="@error('email')border border-danger rounded-3 @enderror">
                                     <input type="email" class="form-control" placeholder="Email" name="email" id="email" aria-label="Email" aria-describedby="email-addon">
                                     @error('email')
@@ -78,7 +78,7 @@
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label for="user.phone" class="form-control-label">{{ __('Phone Number') }}</label>
+                                <label for="user.phone" class="form-control-label">{{ __('Teléfono') }}</label>
                                 <div class="@error('user.phone')border border-danger rounded-3 @enderror">
                                     <input class="form-control" type="tel" placeholder="000-000-0000" id="number" name="phone">
                                     @error('phone')
@@ -89,7 +89,7 @@
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label for="user.location" class="form-control-label">{{ __('Address') }}</label>
+                                <label for="user.location" class="form-control-label">{{ __('Dirección') }}</label>
                                 <div class="@error('user.location') border border-danger rounded-3 @enderror">
                                     <input class="form-control" type="text" placeholder="Location" id="name" name="location">
                                 </div>
@@ -123,7 +123,7 @@
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label for="user.password" class="form-control-label">{{ __('Password') }}</label>
+                                <label for="user.password" class="form-control-label">{{ __('Contraseña') }}</label>
                                 <div class="@error('user.password')border border-danger rounded-3 @enderror">
                                     <input type="password" class="form-control" placeholder="Password" name="password" id="password" aria-label="Password" aria-describedby="password-addon">
                                     @error('password')
@@ -134,7 +134,7 @@
                         </div>
                     </div>
                     <div class="d-flex justify-content-end">
-                        <button type="submit" class="btn bg-gradient-primary btn-md mt-4 mb-4">{{ 'Save Changes' }}</button>
+                        <button type="submit" class="btn bg-gradient-primary btn-md mt-4 mb-4">{{ 'Guardar' }}</button>
                     </div>
                 </form>
 

@@ -12,7 +12,7 @@
                 <div class="col-auto my-auto">
                     <div class="h-100">
                         <h5 class="mt-2">
-                            {{ __('Customer View') }}
+                            {{ __('Vista del Cliente') }}
                         </h5>
                     </div>
                 </div>
@@ -27,7 +27,7 @@
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label for="document_type">Document Type</label>
+                                <label for="document_type">Tipo de Documento</label>
                                 <select name="document_type" id="document_type" class="form-control" required>
                                     <option value="">Select Document Type</option>
                                     <option value="CC" {{ old('document_type', $customer->document_type ?? '') == 'CC' ? 'selected' : '' }}>CC</option>
@@ -37,7 +37,7 @@
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label for="customer-document_number" class="form-control-label">{{ __('Document Number') }}</label>
+                                <label for="customer-document_number" class="form-control-label">{{ __('Numero de Documento') }}</label>
                                 <div class="@error('customer.document_number')border border-danger rounded-3 @enderror">
                                     <input type="text" class="form-control" placeholder="Document Number" name="document_number" id="document_number" aria-label="document_number" aria-describedby="document_number" value="{{ old('document_number', $customer->document_number) }}">
                                     @error('document_number')
@@ -48,7 +48,7 @@
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label for="customer-name" class="form-control-label">{{ __('Name') }}</label>
+                                <label for="customer-name" class="form-control-label">{{ __('Nombre') }}</label>
                                 <div class="@error('customer.name')border border-danger rounded-3 @enderror">
                                     <input type="text" class="form-control" placeholder="Name" name="name" id="name" aria-label="Name" aria-describedby="name" value="{{ old('name', $customer->name) }}">
                                     @error('name')
@@ -59,7 +59,7 @@
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label for="customer-address" class="form-control-label">{{ __('Address') }}</label>
+                                <label for="customer-address" class="form-control-label">{{ __('Dirección') }}</label>
                                 <div class="@error('customer.address')border border-danger rounded-3 @enderror">
                                     <input type="text" class="form-control" placeholder="address" name="address" id="address" aria-label="address" aria-describedby="address" value="{{ old('address', $customer->address) }}">
                                     @error('address')
@@ -70,7 +70,7 @@
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label for="customer-phone" class="form-control-label">{{ __('Phone') }}</label>
+                                <label for="customer-phone" class="form-control-label">{{ __('Télefono') }}</label>
                                 <div class="@error('customer.phone')border border-danger rounded-3 @enderror">
                                     <input type="text" class="form-control" placeholder="phone" name="phone" id="phone" aria-label="phone" aria-describedby="phone" value="{{ old('phone', $customer->phone) }}">
                                     @error('phone')
@@ -81,7 +81,7 @@
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label for="customer-email" class="form-control-label">{{ __('Email') }}</label>
+                                <label for="customer-email" class="form-control-label">{{ __('Correo') }}</label>
                                 <div class="@error('customer.email')border border-danger rounded-3 @enderror">
                                     <input type="text" class="form-control" placeholder="email" name="email" id="email" aria-label="email" aria-describedby="email" value="{{ old('email', $customer->email) }}">
                                     @error('email')
@@ -92,7 +92,7 @@
                         </div>
                     </div>
                     <div class="d-flex justify-content-end">
-                        <button type="submit" class="btn bg-gradient-primary btn-md mt-4 mb-4">{{ 'Save Changes' }}</button>
+                        <button type="submit" class="btn bg-gradient-primary btn-md mt-4 mb-4">{{ 'Guardar' }}</button>
                     </div>
                 </form>
 

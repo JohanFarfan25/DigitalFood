@@ -12,7 +12,7 @@
                 <div class="col-auto my-auto">
                     <div class="h-100">
                         <h5 class="mt-2">
-                            {{ __('Batch Create') }}
+                            {{ __('Crear Lote') }}
                         </h5>
                     </div>
                 </div>
@@ -52,7 +52,7 @@
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label for="batch-production_date" class="form-control-label">{{ __('Production Date') }}</label>
+                                <label for="batch-production_date" class="form-control-label">{{ __('Fecha de producción') }}</label>
                                 <div class="@error('production_date') border border-danger rounded-3 @enderror">
                                     <!-- Campo de fecha con Flatpickr -->
                                     <input
@@ -71,7 +71,7 @@
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label for="batch-expiration_date" class="form-control-label">{{ __('Expiration Date') }}</label>
+                                <label for="batch-expiration_date" class="form-control-label">{{ __('Fecha de Expiración') }}</label>
                                 <div class="@error('expiration_date') border border-danger rounded-3 @enderror">
                                     <!-- Campo de fecha con Flatpickr -->
                                     <input
@@ -90,7 +90,7 @@
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label for="batch-total_quantity" class="form-control-label">{{ __('Total Quantity') }}</label>
+                                <label for="batch-total_quantity" class="form-control-label">{{ __('Cantidad') }}</label>
                                 <div class="@error('batch.total_quantity')border border-danger rounded-3 @enderror">
                                     <input type="text" class="form-control" placeholder="total_quantity" name="total_quantity" id="total_quantity" aria-label="total_quantity" aria-describedby="total_quantity">
                                     @error('total_quantity')
@@ -101,7 +101,7 @@
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label for="batch-location" class="form-control-label">{{ __('Location') }}</label>
+                                <label for="batch-location" class="form-control-label">{{ __('Ubicación') }}</label>
                                 <div class="@error('batch.location')border border-danger rounded-3 @enderror">
                                     <input type="text" class="form-control" placeholder="location" name="location" id="location" aria-label="location" aria-describedby="location">
                                     @error('location')
@@ -113,7 +113,7 @@
                     </div>
             </div>
             <div class="d-flex justify-content-end">
-                <button type="submit" class="btn bg-gradient-primary btn-md mt-4 mb-4">{{ 'Save Changes' }}</button>
+                <button type="submit" class="btn bg-gradient-primary btn-md mt-4 mb-4">{{ 'Guardar' }}</button>
             </div>
             </form>
 

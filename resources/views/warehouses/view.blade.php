@@ -12,7 +12,7 @@
                 <div class="col-auto my-auto">
                     <div class="h-100">
                         <h5 class="mt-2">
-                            {{ __('Warehouse View') }}
+                            {{ __('Vista de Almacen') }}
                         </h5>
                     </div>
                 </div>
@@ -27,7 +27,7 @@
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label for="warehouse-name" class="form-control-label">{{ __('Name') }}</label>
+                                <label for="warehouse-name" class="form-control-label">{{ __('Nombre') }}</label>
                                 <div class="@error('warehouse.name')border border-danger rounded-3 @enderror">
                                     <input type="text" class="form-control" placeholder="Name" name="name" id="name" aria-label="Name" aria-describedby="name" value="{{ old('name', $warehouse->name) }}">
                                     @error('name')
@@ -38,7 +38,7 @@
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label for="warehouse-location" class="form-control-label">{{ __('Location') }}</label>
+                                <label for="warehouse-location" class="form-control-label">{{ __('Ubicación') }}</label>
                                 <div class="@error('warehouse.location')border border-danger rounded-3 @enderror">
                                     <input type="text" class="form-control" placeholder="location" name="location" id="location" aria-label="location" aria-describedby="location" value="{{ old('location', $warehouse->location) }}">
                                     @error('location')
@@ -49,7 +49,7 @@
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label for="warehouse-max_capacity" class="form-control-label">{{ __('Max Capacity') }}</label>
+                                <label for="warehouse-max_capacity" class="form-control-label">{{ __('Capacidad Máxima) }}</label>
                                 <div class="@error('warehouse.max_capacity')border border-danger rounded-3 @enderror">
                                     <input type="number" class="form-control" placeholder="max_capacity" name="max_capacity" id="max_capacity" aria-label="max_capacity" aria-describedby="max_capacity" value="{{ old('max_capacity', $warehouse->max_capacity) }}">
                                     @error('max_capacity')
@@ -60,7 +60,7 @@
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label for="warehouse-temperature_controlled" class="form-control-label">{{ __('Temperature Controlled') }}</label>
+                                <label for="warehouse-temperature_controlled" class="form-control-label">{{ __('Temperatura controlada') }}</label>
                                 <div class="@error('temperature_controlled') border border-danger rounded-3 @enderror">
                                     <!-- Select dropdown para temperatura controlada -->
                                     <select
@@ -81,7 +81,7 @@
                         </div>
                     </div>
                     <div class="d-flex justify-content-end">
-                        <button type="submit" class="btn bg-gradient-primary btn-md mt-4 mb-4">{{ 'Save Changes' }}</button>
+                        <button type="submit" class="btn bg-gradient-primary btn-md mt-4 mb-4">{{ 'Guardar' }}</button>
                     </div>
                 </form>
 

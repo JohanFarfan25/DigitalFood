@@ -4,7 +4,7 @@
 <div class="col-xl-12 col-sm-6 mb-xl-0 mb-4">
   <div class="col-auto my-auto p-3">
     <div class="h-100 font-weight-bolder mb-0" style="display: flex; justify-content: space-start;">
-      <h5 class="mt-2 mb-3"> Total Transactions: </h5>
+      <h5 class="mt-2 mb-3"> Total Transacciones: </h5>
       <p class="h-100 font-weight-bolder mb-0 mt-1" style="font-size: 25px; margin-left:6px;"> ${{$grantTotal}}</p>
     </div>
   </div>
@@ -16,7 +16,7 @@
         <div class="row">
           <div class="col-8">
             <div class="numbers">
-              <p class="text-sm mb-0 text-capitalize font-weight-bold">Completed</p>
+              <p class="text-sm mb-0 text-capitalize font-weight-bold">Completas</p>
               <h5 class="font-weight-bolder mb-0">
                 ${{$completed}}
                 <span class="text-success text-sm font-weight-bolder"></span>
@@ -38,7 +38,7 @@
         <div class="row">
           <div class="col-8">
             <div class="numbers">
-              <p class="text-sm mb-0 text-capitalize font-weight-bold">Pending</p>
+              <p class="text-sm mb-0 text-capitalize font-weight-bold">Pendientes</p>
               <h5 class="font-weight-bolder mb-0">
                 ${{$pending}}
                 <span class="text-success text-sm font-weight-bolder"></span>
@@ -60,7 +60,7 @@
         <div class="row">
           <div class="col-8">
             <div class="numbers">
-              <p class="text-sm mb-0 text-capitalize font-weight-bold">Failed</p>
+              <p class="text-sm mb-0 text-capitalize font-weight-bold">Fallidas</p>
               <h5 class="font-weight-bolder mb-0">
                 ${{$failed}}
                 <span class="text-danger text-sm font-weight-bolder"></span>
@@ -82,7 +82,7 @@
         <div class="row">
           <div class="col-8">
             <div class="numbers">
-              <p class="text-sm mb-0 text-capitalize font-weight-bold">Declined</p>
+              <p class="text-sm mb-0 text-capitalize font-weight-bold">Rechazado</p>
               <h5 class="font-weight-bolder mb-0">
                 ${{$declined}}
                 <span class="text-success text-sm font-weight-bolder"></span>
@@ -103,72 +103,77 @@
   <div class="col-lg-6 mb-lg-0 mb-4">
     <div class="card z-index-2">
       <div class="card-body p-3">
+        <div class="card-header pb-0">
+          <h6 style="font-weight: 700;">Resumen de ventas</h6>
+          <p class="text-sm">
+            <i class="fa fa-arrow-up text-success"></i>
+            <span class="font-weight-bold" style="font-size: 23px;">Año {{$currentYear}}</span>
+          </p>
+        </div>
         <div class="bg-gradient-dark border-radius-lg py-3 pe-1 mb-3">
           <div class="chart">
             <canvas id="chart-bars" class="chart-canvas" height="170"></canvas>
-          </div>
-        </div>
-        <h6 class="ms-2 mt-4 mb-0"> Totals </h6>
-        <p class="text-sm ms-2"> (<span class="font-weight-bolder">+23%</span>) than last week </p>
-        <div class="container border-radius-lg">
-          <div class="row">
-            <div class="col-3 py-3 ps-0">
-              <div class="d-flex mb-2">
-                <i class="ni ni-single-02 text-lg opacity-10" aria-hidden="true"></i>
-                <p class="text-xs mt-1 mb-0 font-weight-bold">Users</p>
-              </div>
-              <h4 class="font-weight-bolder" style="font-size: 90%;">{{$totalUsers}}</h4>
-              <div class="progress w-75">
-                <div class="progress-bar bg-secondary w-90" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
-              </div>
-            </div>
-            <div class="col-3 py-3 ps-0">
-              <div class="d-flex mb-2">
-                <i class="ni ni-circle-08 text-primary text-lg opacity-10" aria-hidden="true"></i>
-                <p class="text-xs mt-1 mb-0 font-weight-bold">Customers</p>
-              </div>
-              <h4 class="font-weight-bolder" style="font-size: 90%;">{{$totalCustomers}}</h4>
-              <div class="progress w-75">
-                <div class="progress-bar bg-primary w-90" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
-              </div>
-            </div>
-            <div class="col-3 py-3 ps-0">
-              <div class="d-flex mb-2">
-                <i class="ni ni-check-bold text-success text-lg opacity-10" aria-hidden="true"></i>
-                <p class="text-xs mt-1 mb-0 font-weight-bold">Suppliers</p>
-              </div>
-              <h4 class="font-weight-bolder" style="font-size: 90%;">{{$totalSupliers}}</h4>
-              <div class="progress w-75">
-                <div class="progress-bar bg-success w-90" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
-              </div>
-            </div>
-            <div class="col-3 py-3 ps-0">
-              <div class="d-flex mb-2">
-                <i class="ni ni-bullet-list-67 text-danger text-lg opacity-10" aria-hidden="true"></i>
-                <p class="text-xs mt-1 mb-0 font-weight-bold">Products</p>
-              </div>
-              <h4 class="font-weight-bolder" style="font-size: 90%;">{{$totalProducts}}</h4>
-              <div class="progress w-75">
-                <div class="progress-bar bg-danger w-90" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
-              </div>
-            </div>
           </div>
         </div>
       </div>
     </div>
   </div>
   <div class="col-lg-6">
-    <div class="card z-index-2">
-      <div class="card-header pb-0">
-        <h6>Sales overview</h6>
+    <div class="card z-index-2" style="min-height: 250px;">
+      <div class="card-header pb-0 mt-3">
+        <h6 style="font-weight: 700;" >Otros</h6>
         <p class="text-sm">
           <i class="fa fa-arrow-up text-success"></i>
-          <span class="font-weight-bold">4% more</span> in 2021
+          <span class="font-weight-bold">Año {{$currentYear}}</span>
         </p>
       </div>
       <div class="card-body p-3">
-        <div class="chart">
-          <canvas id="chart-line" class="chart-canvas" height="300"></canvas>
+        <div class="chart" style="min-height: 210px;">
+          <p class="text-sm ms-2"> (<span class="font-weight-bolder">+23%</span>) que la semana pasada </p>
+          <div class="container border-radius-lg">
+            <div class="row">
+              <div class="col-3 py-3 ps-0">
+                <div class="d-flex mb-2">
+                  <i class="ni ni-single-02 text-lg opacity-10" aria-hidden="true"></i>
+                  <p class="text-xs mt-1 mb-0 font-weight-bold">Usuarios</p>
+                </div>
+                <h4 class="font-weight-bolder" style="font-size: 90%;">{{$totalUsers}}</h4>
+                <div class="progress w-75">
+                  <div class="progress-bar bg-secondary w-90" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
+              </div>
+              <div class="col-3 py-3 ps-0">
+                <div class="d-flex mb-2">
+                  <i class="ni ni-circle-08 text-primary text-lg opacity-10" aria-hidden="true"></i>
+                  <p class="text-xs mt-1 mb-0 font-weight-bold">Clientes</p>
+                </div>
+                <h4 class="font-weight-bolder" style="font-size: 90%;">{{$totalCustomers}}</h4>
+                <div class="progress w-75">
+                  <div class="progress-bar bg-primary w-90" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
+              </div>
+              <div class="col-3 py-3 ps-0">
+                <div class="d-flex mb-2">
+                  <i class="ni ni-check-bold text-success text-lg opacity-10" aria-hidden="true"></i>
+                  <p class="text-xs mt-1 mb-0 font-weight-bold">Proveedores</p>
+                </div>
+                <h4 class="font-weight-bolder" style="font-size: 90%;">{{$totalSupliers}}</h4>
+                <div class="progress w-75">
+                  <div class="progress-bar bg-success w-90" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
+              </div>
+              <div class="col-3 py-3 ps-0">
+                <div class="d-flex mb-2">
+                  <i class="ni ni-bullet-list-67 text-danger text-lg opacity-10" aria-hidden="true"></i>
+                  <p class="text-xs mt-1 mb-0 font-weight-bold">Productos</p>
+                </div>
+                <h4 class="font-weight-bolder" style="font-size: 90%;">{{$totalProducts}}</h4>
+                <div class="progress w-75">
+                  <div class="progress-bar bg-danger w-90" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
