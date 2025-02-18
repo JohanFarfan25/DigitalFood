@@ -50,6 +50,7 @@ class HomeController extends Controller
         $pending = number_format($pending, 0, ',', '.');
         $failed = number_format($failed, 0, ',', '.');
         $declined = number_format($declined, 0, ',', '.');
+        $grantTotal = $completed + $pending + $failed + $declined;
 
         return view(
             'dashboard',
@@ -63,7 +64,8 @@ class HomeController extends Controller
                 'completed',
                 'pending',
                 'failed',
-                'declined'
+                'declined',
+                'grantTotal'
             )
         )->with(['success' => 'Bienvenido.']);
     }

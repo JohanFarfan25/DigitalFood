@@ -109,7 +109,7 @@
             <canvas id="chart-bars" class="chart-canvas" height="170"></canvas>
           </div>
         </div>
-        <h6 class="ms-2 mt-4 mb-0"> Active Users </h6>
+        <h6 class="ms-2 mt-4 mb-0"> Totals </h6>
         <p class="text-sm ms-2"> (<span class="font-weight-bolder">+23%</span>) than last week </p>
         <div class="container border-radius-lg">
           <div class="row">
@@ -132,7 +132,7 @@
                 </div>
                 <p class="text-xs mt-1 mb-0 font-weight-bold">Users</p>
               </div>
-              <h4 class="font-weight-bolder">36K</h4>
+              <h4 class="font-weight-bolder" style="font-size: 90%;">{{$totalUsers}}</h4>
               <div class="progress w-75">
                 <div class="progress-bar bg-dark w-60" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>
               </div>
@@ -156,9 +156,9 @@
                     </g>
                   </svg>
                 </div>
-                <p class="text-xs mt-1 mb-0 font-weight-bold">Clicks</p>
+                <p class="text-xs mt-1 mb-0 font-weight-bold">Customers</p>
               </div>
-              <h4 class="font-weight-bolder">2m</h4>
+              <h4 class="font-weight-bolder" style="font-size: 90%;">{{$totalCustomers}}</h4>
               <div class="progress w-75">
                 <div class="progress-bar bg-dark w-90" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100"></div>
               </div>
@@ -180,9 +180,9 @@
                     </g>
                   </svg>
                 </div>
-                <p class="text-xs mt-1 mb-0 font-weight-bold">Sales</p>
+                <p class="text-xs mt-1 mb-0 font-weight-bold">Transactions</p>
               </div>
-              <h4 class="font-weight-bolder">435$</h4>
+              <h4 class="font-weight-bolder" style="font-size: 90%;">${{$grantTotal}}</h4>
               <div class="progress w-75">
                 <div class="progress-bar bg-dark w-30" role="progressbar" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100"></div>
               </div>
@@ -205,9 +205,9 @@
                     </g>
                   </svg>
                 </div>
-                <p class="text-xs mt-1 mb-0 font-weight-bold">Items</p>
+                <p class="text-xs mt-1 mb-0 font-weight-bold">Products</p>
               </div>
-              <h4 class="font-weight-bolder">43</h4>
+              <h4 class="font-weight-bolder" style="font-size: 90%;">{{$totalProducts}}</h4>
               <div class="progress w-75">
                 <div class="progress-bar bg-dark w-50" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
               </div>
