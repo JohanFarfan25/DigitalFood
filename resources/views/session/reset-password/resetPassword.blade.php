@@ -8,14 +8,14 @@
             <div class="col-xl-4 col-lg-5 col-md-6 d-flex flex-column mx-auto">
                 <div class="card card-plain mt-8">
                     <div class="card-header pb-0 text-left bg-transparent">
-                        <h4 class="mb-0">Change password</h4>
+                        <h4 class="mb-0">Cambiar la contraseña</h4>
                     </div>
                     <div class="card-body">
                         <form role="form" action="/reset-password" method="POST">
                             @csrf
                             <input type="hidden" name="token" value="{{ $token }}">
                             <div>
-                                <label for="email">Email</label>
+                                <label for="email">Correo</label>
                                 <div class="">
                                     <input id="email" name="email" type="email" class="form-control" placeholder="Email" aria-label="Email" aria-describedby="email-addon">
                                     @error('email')
@@ -24,7 +24,7 @@
                                 </div>
                             </div>
                             <div>
-                                <label for="password">New Password</label>
+                                <label for="password">Nueva Contraseña</label>
                                 <div class="">
                                     <input id="password" name="password" type="password" class="form-control" placeholder="Password" aria-label="Password" aria-describedby="password-addon">
                                     @error('password')
@@ -33,7 +33,7 @@
                                 </div>
                             </div>
                             <div>
-                                <label for="password_confirmation">Confirm Password</label>
+                                <label for="password_confirmation">Confirmar Contraseña</label>
                                 <div class="">
                                     <input id="password-confirmation" name="password_confirmation" type="password" class="form-control" placeholder="Password-confirmation" aria-label="Password-confirmation" aria-describedby="Password-addon">
                                     @error('password')
@@ -42,7 +42,7 @@
                                 </div>
                             </div>
                             <div class="text-center">
-                                <button type="submit" class="btn bg-gradient-info w-100 mt-4 mb-0">Recover your password</button>
+                                <button type="submit" class="btn bg-gradient-info w-100 mt-4 mb-0">Recupera tu contraseña</button>
                             </div>
                         </form>
                     </div>
